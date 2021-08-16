@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Popular from "./pages/Popular";
 import TopRated from "./pages/TopRated";
+import Favorite from "./pages/Favorite";
 import SingleMovie from "./pages/SingleMovie";
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
           </Route>
           <Route path="/top_rated">
             <TopRated />
+          </Route>
+          <Route path="/favorite">
+            <Favorite />
           </Route>
           <Route path="/movie/:id" children={<SingleMovie />} />
         </Switch>
