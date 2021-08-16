@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import css from "./pages.module.scss";
@@ -10,7 +10,7 @@ import css from "./pages.module.scss";
 const { cards, cards_inner, cards_title, card, center, btn_fav } = css;
 
 const Favorite = () => {
-  const { favoriteArr, poster_img, posterNotFound, handleAdd, handleRemove } =
+  const { favoriteArr, poster_img, posterNotFound, handleRemove } =
     useGlobalContext();
 
   return (

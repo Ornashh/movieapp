@@ -39,7 +39,6 @@ const reducer = (state, action) => {
       } else {
         state.favoriteArr.push({
           ...action.payload,
-          fav: true,
         });
       }
 
