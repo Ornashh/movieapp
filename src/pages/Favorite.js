@@ -6,13 +6,13 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import css from "./pages.module.scss";
 
-const { favorite, cards_inner, cards_title, card } = css;
+const { cards, cards_inner, cards_title, card } = css;
 
 const Favorite = () => {
   const { favoriteArr, poster_img, posterNotFound } = useGlobalContext();
 
   return (
-    <div className={`${favorite} fade_in`}>
+    <div className={`${cards} fade_in`}>
       <div className={cards_title}>Favorite Movies</div>
       <div className={cards_inner}>
         {favoriteArr &&
