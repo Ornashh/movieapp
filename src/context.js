@@ -9,12 +9,14 @@ import {
 import posterNotFound from "./assets/poster-not-found.jpg";
 import backdropNotFound from "./assets/backdrop-not-found.jpg";
 
+const movieFromLocalStorage = JSON.parse(localStorage.getItem("movie") || "[]");
+
 const initialState = {
   resultsArr: [],
   nowPlayingArr: [],
   popularArr: [],
   topRatedArr: [],
-  favoriteArr: [],
+  favoriteArr: movieFromLocalStorage,
   name: "kill bill",
   loading: true,
 };
@@ -95,6 +97,10 @@ const AppProvider = ({ children }) => {
     };
     getTopRated(page);
   }, [page]);
+
+  useEffect(() => {
+    localStorage.setItem("movie", JSON.stringify(state.favoriteArr));
+  }, [state.favoriteArr]);
 
   const search = (movie) => {
     dispatch({ type: "SEARCH", payload: movie });
