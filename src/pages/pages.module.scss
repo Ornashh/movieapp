@@ -91,3 +91,10 @@
     transform: scale(1.05);
   }
 }
+
+@media (max-width: 768px) {
+  .btn_fav {
+    opacity: 1;
+    visibility: visible;
+  }
+}
