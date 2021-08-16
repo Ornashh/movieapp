@@ -1,0 +1,51 @@
+.cast {
+  padding: 0 20px 50px 110px;
+}
+
+@media (max-width: 1024px) {
+  .cast {
+    padding: 0 20px 50px 20px;
+  }
+}
+
+.item {
+  position: relative;
+  width: inherit;
+  height: 320px;
+}
+
+@media (max-width: 768px) {
+  .item {
+    height: 250px;
+  }
+}
+
+.item img {
+  object-fit: cover;
+  object-position: top;
+  width: 100%;
+  height: 100%;
+}
+
+.names_real {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 10px 0 3px 0;
+}
+
+@media (max-width: 768px) {
+  .names_real {
+    font-size: 0.8rem;
+  }
+}
+
+.names_character {
+  color: #70757a;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .names_character {
+    font-size: 0.7rem;
+  }
+}
