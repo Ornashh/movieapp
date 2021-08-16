@@ -76,7 +76,7 @@
 
 .btn_fav {
   font-size: 2rem;
-  color: #fff;
+  color: #1976d2;
   position: absolute;
   top: 0;
   right: 0;
@@ -84,9 +84,6 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  &:hover {
-    color: #1976d2;
-  }
   &:hover {
     transform: scale(1.05);
   }

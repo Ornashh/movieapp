@@ -39,12 +39,21 @@ const reducer = (state, action) => {
       } else {
         state.favoriteArr.push({
           ...action.payload,
+          fav: true,
         });
       }
 
       return {
         ...state,
         favoriteArr: [...state.favoriteArr],
+      };
+
+    case "REMOVE_FAVORITE":
+      return {
+        ...state,
+        favoriteArr: state.favoriteArr.filter(
+          (item) => item.id !== action.payload.id
+        ),
       };
 
     default:
