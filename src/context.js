@@ -11,9 +11,10 @@ import backdropNotFound from "./assets/backdrop-not-found.jpg";
 
 const initialState = {
   resultsArr: [],
+  nowPlayingArr: [],
   popularArr: [],
   topRatedArr: [],
-  nowPlayingArr: [],
+  favoriteArr: [],
   name: "kill bill",
   loading: true,
 };
