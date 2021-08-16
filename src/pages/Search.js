@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
+import { AiOutlineHeart } from "react-icons/ai";
 import css from "../pages/pages.module.scss";
 
-const { cards, cards_inner, cards_title, card } = css;
+const { cards, cards_inner, cards_title, card, btn_fav } = css;
 
 const Search = () => {
-  const { resultsArr, poster_img, posterNotFound, name, search } =
+  const { resultsArr, poster_img, posterNotFound, name, search, handleAdd } =
     useGlobalContext();
 
   const value = useRef();
@@ -43,6 +44,9 @@ const Search = () => {
                       alt={title}
                     />
                   </Link>
+                  <button onClick={() => handleAdd(movie)} className={btn_fav}>
+                    <AiOutlineHeart />
+                  </button>
                 </div>
               );
             })}
