@@ -9,6 +9,12 @@ const reducer = (state, action) => {
         ...state,
         resultsArr: action.payload,
       };
+    case "NOW_PLAYING":
+      return {
+        ...state,
+        nowPlayingArr: action.payload,
+        loading: false,
+      };
     case "POPULAR":
       return {
         ...state,
@@ -21,12 +27,26 @@ const reducer = (state, action) => {
         topRatedArr: [...state.topRatedArr, ...action.payload],
         loading: false,
       };
-    case "NOW_PLAYING":
+    case "ADD_FAVORITE":
+      const exist = state.favoriteArr.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (exist) {
+        state.favoriteArr.map((item) =>
+          item.id === action.payload.id ? { ...exist } : item
+        );
+      } else {
+        state.favoriteArr.push({
+          ...action.payload,
+        });
+      }
+
       return {
         ...state,
-        nowPlayingArr: action.payload,
-        loading: false,
+        favoriteArr: [...state.favoriteArr],
       };
+
     default:
       return state;
   }

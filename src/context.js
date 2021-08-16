@@ -100,6 +100,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "SEARCH", payload: movie });
   };
 
+  const handleAdd = (movie) => {
+    dispatch({ type: "ADD_FAVORITE", payload: movie });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -112,6 +116,7 @@ const AppProvider = ({ children }) => {
         search,
         page,
         setPage,
+        handleAdd,
       }}
     >
       {children}

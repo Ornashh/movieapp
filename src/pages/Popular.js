@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
+import { AiOutlineHeart } from "react-icons/ai";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import css from "./pages.module.scss";
 
 const Popular = () => {
-  const { popularArr, poster_img, posterNotFound, page, setPage } =
+  const { popularArr, poster_img, posterNotFound, page, setPage, handleAdd } =
     useGlobalContext();
 
-  const { cards, cards_inner, cards_title, card, btn_more } = css;
+  const { cards, cards_inner, cards_title, card, btn_more, btn_fav } = css;
 
   return (
     <div className={`${cards} fade_in`}>
@@ -30,6 +31,9 @@ const Popular = () => {
                     alt={title}
                   />
                 </Link>
+                <button onClick={() => handleAdd(movie)} className={btn_fav}>
+                  <AiOutlineHeart />
+                </button>
               </div>
             );
           })}
