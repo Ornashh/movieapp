@@ -51,9 +51,13 @@ const NowPlaing = () => {
                     <div className={info}>
                       <div className={info_inner}>
                         <div className={info_title}>{title}</div>
-                        <div className={info_overview}>
-                          {`${overview.substring(0, 200)}...`}
-                        </div>
+                        {overview === "" ? (
+                          ""
+                        ) : (
+                          <div className={info_overview}>
+                            {`${overview.substring(0, 200)}...`}
+                          </div>
+                        )}
                         <div className={info_link}>
                           <Link to={`/movie/${id}`}>Details</Link>
                         </div>
