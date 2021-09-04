@@ -114,6 +114,10 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "REMOVE_FAVORITE", payload: movie });
   };
 
+  const handleClear = () => {
+    dispatch({ type: "CLEAR" });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -128,6 +132,7 @@ const AppProvider = ({ children }) => {
         setPage,
         handleAdd,
         handleRemove,
+        handleClear,
       }}
     >
       {children}

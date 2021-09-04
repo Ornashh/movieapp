@@ -11,7 +11,7 @@ const { cards, cards_inner, cards_title, card, center, btn_fav, btn_wrapper } =
   css;
 
 const Favorite = () => {
-  const { favoriteArr, poster_img, posterNotFound, handleRemove } =
+  const { favoriteArr, poster_img, posterNotFound, handleRemove, handleClear } =
     useGlobalContext();
 
   return (
@@ -49,7 +49,7 @@ const Favorite = () => {
               })}
           </div>
           <div className={btn_wrapper}>
-            <button>Remove all</button>
+            <button onClick={handleClear}>Clear all</button>
           </div>
         </>
       )}
