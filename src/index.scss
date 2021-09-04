@@ -154,9 +154,9 @@ main {
   position: relative;
   width: inherit;
   height: 320px;
-  transition: transform 0.3s ease !important;
-  &:hover {
-    transform: scale(1.03);
+  &:hover .btn_fav {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -194,4 +194,26 @@ main {
   width: inherit;
   height: inherit;
   background-color: #1f1f1f;
+}
+
+.btn_fav {
+  font-size: 2rem;
+  color: #1976d2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 768px) {
+  .btn_fav {
+    opacity: 1;
+    visibility: visible;
+  }
 }

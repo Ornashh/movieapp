@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
+import { AiOutlineHeart } from "react-icons/ai";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Lazy, Navigation } from "swiper/core";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -9,7 +11,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 SwiperCore.use([Lazy, Navigation]);
 
 const Popular = () => {
-  const { popularArr, poster_img, posterNotFound } = useGlobalContext();
+  const { popularArr, poster_img, posterNotFound, handleAdd } =
+    useGlobalContext();
 
   return (
     <div className="popular fade_in">
@@ -53,6 +56,12 @@ const Popular = () => {
                           alt={title}
                         />
                       </Link>
+                      <button
+                        onClick={() => handleAdd(movie)}
+                        className="btn_fav"
+                      >
+                        <AiOutlineHeart />
+                      </button>
                     </div>
                   </SwiperSlide>
                 </div>

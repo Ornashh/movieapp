@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
+import { AiOutlineHeart } from "react-icons/ai";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper/core";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -9,7 +11,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 SwiperCore.use([Navigation]);
 
 const TopRated = () => {
-  const { topRatedArr, poster_img, posterNotFound } = useGlobalContext();
+  const { topRatedArr, poster_img, posterNotFound, handleAdd } =
+    useGlobalContext();
   return (
     <div className="topRated fade_in">
       <div className="main_title">Top Rated Movies</div>
@@ -52,6 +55,12 @@ const TopRated = () => {
                           }
                         />
                       </Link>
+                      <button
+                        onClick={() => handleAdd(movie)}
+                        className="btn_fav"
+                      >
+                        <AiOutlineHeart />
+                      </button>
                     </div>
                   </SwiperSlide>
                 </div>
