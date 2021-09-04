@@ -59,11 +59,12 @@
 .info_overview {
   font-size: 1.03rem;
   line-height: 1.2;
-  margin: 5px 0 15px 0;
+  margin-top: 5px;
 }
 
 .info_link {
   display: flex;
+  margin: 20px 0;
 }
 
 .info_link a {
@@ -71,14 +72,10 @@
   font-weight: 600;
   color: #fff;
   background-color: #1976d2;
-  border-radius: 5px;
   text-decoration: none;
   padding: 8px 20px;
-  transition: transform 0.3s ease;
+  transition: background-color 0.3s ease;
   &:hover {
-    transform: scale(1.05);
-  }
-  &:active {
-    transform: scale(0.95);
+    background-color: #165ea5;
   }
 }
