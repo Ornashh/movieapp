@@ -18,7 +18,7 @@ const TopRated = () => {
     favoriteArr,
   } = useGlobalContext();
 
-  const { cards, cards_inner, cards_title, card, btn_more, btn_fav } = css;
+  const { cards, cards_inner, cards_title, card, btn_wrapper, btn_fav } = css;
 
   return (
     <div className={`${cards} fade_in`}>
@@ -49,7 +49,7 @@ const TopRated = () => {
             );
           })}
       </div>
-      <div className={btn_more}>
+      <div className={btn_wrapper}>
         <button onClick={() => setPage(page + 1)}>Load More</button>
       </div>
     </div>

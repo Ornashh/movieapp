@@ -7,7 +7,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import css from "./pages.module.scss";
 
-const { cards, cards_inner, cards_title, card, center, btn_fav } = css;
+const { cards, cards_inner, cards_title, card, center, btn_fav, btn_wrapper } =
+  css;
 
 const Favorite = () => {
   const { favoriteArr, poster_img, posterNotFound, handleRemove } =
@@ -46,6 +47,9 @@ const Favorite = () => {
                   </div>
                 );
               })}
+          </div>
+          <div className={btn_wrapper}>
+            <button>Remove all</button>
           </div>
         </>
       )}
