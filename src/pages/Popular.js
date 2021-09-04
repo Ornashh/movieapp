@@ -2,14 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import css from "./pages.module.scss";
 
 const Popular = () => {
-  const { popularArr, poster_img, posterNotFound, page, setPage, handleAdd } =
-    useGlobalContext();
+  const {
+    popularArr,
+    poster_img,
+    posterNotFound,
+    page,
+    setPage,
+    handleAdd,
+    favoriteArr,
+  } = useGlobalContext();
+
+  // console.log(favoriteArr);
 
   const { cards, cards_inner, cards_title, card, btn_more, btn_fav } = css;
 
@@ -32,7 +41,11 @@ const Popular = () => {
                   />
                 </Link>
                 <button onClick={() => handleAdd(movie)} className={btn_fav}>
-                  <AiOutlineHeart />
+                  {favoriteArr.find((item) => item.id === movie.id) ? (
+                    <AiFillHeart />
+                  ) : (
+                    <AiOutlineHeart />
+                  )}
                 </button>
               </div>
             );

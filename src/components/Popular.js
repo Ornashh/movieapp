@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Lazy, Navigation } from "swiper/core";
@@ -11,7 +11,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 SwiperCore.use([Lazy, Navigation]);
 
 const Popular = () => {
-  const { popularArr, poster_img, posterNotFound, handleAdd } =
+  const { popularArr, poster_img, posterNotFound, handleAdd, favoriteArr } =
     useGlobalContext();
 
   return (
@@ -60,7 +60,11 @@ const Popular = () => {
                         onClick={() => handleAdd(movie)}
                         className="btn_fav"
                       >
-                        <AiOutlineHeart />
+                        {favoriteArr.find((item) => item.id === movie.id) ? (
+                          <AiFillHeart />
+                        ) : (
+                          <AiOutlineHeart />
+                        )}
                       </button>
                     </div>
                   </SwiperSlide>
