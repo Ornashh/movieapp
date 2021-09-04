@@ -61,18 +61,14 @@
 }
 
 .btn_more button {
-  font-size: 1.3rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 600;
   color: #fff;
   background-color: #1976d2;
-  border-radius: 5px;
   padding: 10px 20px;
-  transition: transform 0.3s ease;
+  transition: background-color 0.3s ease;
   &:hover {
-    transform: scale(1.05);
-  }
-  &:active {
-    transform: scale(0.95);
+    background-color: #165ea5;
   }
 }
 
