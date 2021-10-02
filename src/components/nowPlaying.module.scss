@@ -9,7 +9,7 @@
 }
 
 .nowPlaying_title {
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -41,10 +41,10 @@
   justify-content: center;
   width: 50%;
   height: 100%;
-  padding-left: 100px;
+  padding-left: 50px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .info_inner {
     width: 100%;
     padding: 20px;
