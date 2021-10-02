@@ -153,7 +153,7 @@ main {
 .item {
   position: relative;
   width: inherit;
-  height: 320px;
+  height: 350px;
   &:hover .btn_fav {
     opacity: 1;
     visibility: visible;
@@ -162,7 +162,7 @@ main {
 
 @media (max-width: 768px) {
   .item {
-    height: 250px;
+    height: auto;
   }
 }
 
