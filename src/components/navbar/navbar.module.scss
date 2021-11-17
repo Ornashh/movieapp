@@ -28,10 +28,12 @@
   width: 40px;
   height: 40px;
   transition: all 0.3s ease;
+
   &:hover {
     color: #1976d2;
     transform: scale(1.1);
   }
+
   &:active {
     transform: scale(0.95);
   }

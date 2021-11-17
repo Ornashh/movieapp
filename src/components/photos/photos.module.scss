@@ -9,17 +9,20 @@
 }
 
 .photo_inner {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 330px);
+  gap: 20px;
   justify-content: center;
 }
 
 .item {
+  border-radius: 5px;
   cursor: pointer;
   width: 330px;
   height: 200px;
-  margin: 10px;
   transition: transform 0.3s ease;
+  overflow: hidden;
+
   &:hover {
     transform: scale(1.03);
   }
@@ -49,7 +52,9 @@
   justify-content: center;
   align-items: center;
   z-index: 20;
+
   img {
+    border-radius: 5px;
     max-width: 100%;
   }
 }

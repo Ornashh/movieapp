@@ -9,18 +9,21 @@
 }
 
 .video_inner {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 330px);
+  gap: 20px;
   justify-content: center;
 }
 
 .item {
+  border-radius: 5px;
   cursor: pointer;
   position: relative;
   width: 330px;
   height: 200px;
-  margin: 10px;
   transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+
   &:hover {
     transform: scale(1.03);
   }

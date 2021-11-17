@@ -27,6 +27,7 @@ const Details = ({ details }) => {
     movie_genres,
     movie_overview,
     movie_moreInfo,
+    moreInfo_item
   } = css;
 
   let poster;
@@ -73,15 +74,20 @@ const Details = ({ details }) => {
         </div>
         <div className={movie_overview}>{overview}</div>
         <div className={movie_moreInfo}>
-          <p>{`Release: ${new Date(release_date).toLocaleDateString("en-US", {
-            month: "long",
-            day: "numeric",
-            year: "numeric",
-          })}`}</p>
-          <p>{`Runtime: ${timeConverter(runtime)}`}</p>
-          <p>{`Budget: ${moneyConverter(budget)}`}</p>
-          <p>{`Revenue: ${moneyConverter(revenue)}`}</p>
-          <p>{`Rating: ${vote_average}`}</p>
+          <div className={moreInfo_item}>
+            <div>Release</div>
+            <div>Runtime</div>
+            <div>Budget</div>
+            <div>Revenue</div>
+            <div>Rating</div>
+          </div>
+          <div className={moreInfo_item}>
+            <div>{new Date(release_date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric"})}</div>
+            <div>{timeConverter(runtime)}</div>
+            <div>{moneyConverter(budget)}</div>
+            <div>{moneyConverter(revenue)}</div>
+            <div>{vote_average}</div>
+          </div>
         </div>
       </div>
     </div>

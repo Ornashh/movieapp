@@ -6,6 +6,16 @@
   box-sizing: border-box;
 }
 
+html {
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #fff;
+  }
+}
+
 body {
   color: #fff;
   font-family: "Ubuntu", sans-serif;
@@ -60,6 +70,7 @@ main {
   width: 100%;
   padding: 15px 0;
   transition: all 0.3s ease;
+
   &:hover {
     color: #fff;
     background-color: #0e0e0e;
@@ -152,9 +163,12 @@ main {
 
 // ITEM STYLES
 .item {
+  border-radius: 5px;
   position: relative;
   width: inherit;
   height: 350px;
+  overflow: hidden;
+
   &:hover .btn_fav {
     opacity: 1;
     visibility: visible;
@@ -187,7 +201,7 @@ main {
 
 @media (max-width: 1024px) {
   .recomm {
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 100px 20px;
   }
 }
 
@@ -207,6 +221,7 @@ main {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+
   &:hover {
     transform: scale(1.05);
   }

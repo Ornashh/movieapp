@@ -9,9 +9,11 @@
 }
 
 .item {
+  border-radius: 5px;
   position: relative;
   width: inherit;
   height: 320px;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {

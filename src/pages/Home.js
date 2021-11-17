@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../context";
 
-import NowPlaying from "../components/NowPlaying";
+import NowPlaying from "../components/nowplaying/NowPlaying";
 import Popular from "../components/Popular";
 import TopRated from "../components/TopRated";
 

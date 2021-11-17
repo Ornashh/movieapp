@@ -4,14 +4,15 @@
 
 @media (max-width: 1024px) {
   .cards {
-    padding: 20px;
+    padding: 20px 20px 100px 20px;
   }
 }
 
 .cards_inner {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  justify-content: center;
+  gap: 20px;
 }
 
 @media (max-width: 520px) {
@@ -23,18 +24,21 @@
 .cards_title {
   font-size: 2rem;
   font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .card {
+  border-radius: 5px;
   position: relative;
   width: 220px;
   height: 320px;
-  margin: 10px;
+  overflow: hidden;
   transition: all 0.3s ease !important;
+
   &:hover {
     transform: scale(1.03);
   }
+
   &:hover .btn_fav {
     opacity: 1;
     visibility: visible;
@@ -65,8 +69,10 @@
   font-weight: 600;
   color: #fff;
   background-color: #1976d2;
+  border-radius: 5px;
   padding: 10px 20px;
   transition: background-color 0.3s ease;
+
   &:hover {
     background-color: #165ea5;
   }
@@ -86,6 +92,7 @@
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
+
   &:hover {
     transform: scale(1.05);
   }
