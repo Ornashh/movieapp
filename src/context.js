@@ -17,7 +17,7 @@ const initialState = {
   popularArr: [],
   topRatedArr: [],
   favoriteArr: movieFromLocalStorage,
-  name: "kill bill",
+  name: "",
   loading: true,
 };
 
@@ -41,7 +41,9 @@ const AppProvider = ({ children }) => {
         console.log(error);
       }
     };
-    getResults(state.name);
+    if (state.name) {
+      getResults(state.name);
+    }
   }, [state.name]);
 
   useEffect(() => {

@@ -28,7 +28,7 @@ const Search = () => {
       </form>
 
       <div className={`${cards} fade_in`}>
-        <div className={cards_title}>Results: {name}</div>
+        {name && <div className={cards_title}>Results: {name}</div>}
         <div className={cards_inner}>
           {resultsArr &&
             resultsArr.map((movie) => {
