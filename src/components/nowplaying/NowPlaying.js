@@ -4,9 +4,9 @@ import { useGlobalContext } from "../../context";
 import css from "./nowPlaying.module.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Pagination } from "swiper/core";
+import SwiperCore, { Autoplay, Pagination } from "swiper/core";
 
-SwiperCore.use([Pagination]);
+SwiperCore.use([Autoplay, Pagination]);
 
 const NowPlaing = () => {
   const { nowPlayingArr, backdrop_img, backdropNotFound } = useGlobalContext();
@@ -28,6 +28,10 @@ const NowPlaing = () => {
       <div className={nowPlaying_title}>Now Playing Movies</div>
       <div className={nowPlaying_inner}>
         <Swiper
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
           pagination={{
             dynamicBullets: true,
           }}

@@ -6,7 +6,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AiOutlineHeart } from "react-icons/ai";
 import css from "../pages/pages.module.scss";
 
-const { cards, cards_inner, cards_title, card, btn_fav, empty } = css;
+const { cards, cards_inner, cards_title, card, btn_fav, form, empty } = css;
 
 const Search = () => {
   const { resultsArr, poster_img, posterNotFound, name, search, handleAdd } =
@@ -23,7 +23,7 @@ const Search = () => {
 
   return (
     <>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className={form} onSubmit={handleSubmit}>
         <input type="text" placeholder="Search" ref={value} />
       </form>
 
