@@ -52,6 +52,9 @@
 
 .desc_name {
   font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .desc_type {
@@ -70,6 +73,7 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
+
   iframe {
     width: 100%;
     height: 100%;

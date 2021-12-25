@@ -8,11 +8,10 @@ import SwiperCore, { Autoplay, Pagination } from "swiper/core";
 
 SwiperCore.use([Autoplay, Pagination]);
 
-const NowPlaing = () => {
+const NowPlaying = () => {
   const { nowPlayingArr, backdrop_img, backdropNotFound } = useGlobalContext();
 
   const {
-    nowPlaying,
     nowPlaying_inner,
     nowPlaying_title,
     item,
@@ -24,12 +23,12 @@ const NowPlaing = () => {
   } = css;
 
   return (
-    <div className={`${nowPlaying} fade_in`}>
+    <div className="block fade_in">
       <div className={nowPlaying_title}>Now Playing Movies</div>
       <div className={nowPlaying_inner}>
         <Swiper
           autoplay={{
-            delay: 5000,
+            delay: 10000,
             disableOnInteraction: false,
           }}
           pagination={{
@@ -77,4 +76,4 @@ const NowPlaing = () => {
   );
 };
 
-export default NowPlaing;
+export default NowPlaying;

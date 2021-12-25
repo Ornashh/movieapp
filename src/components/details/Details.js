@@ -1,9 +1,11 @@
 import React from "react";
 import css from "./details.module.scss";
 import { useGlobalContext } from "../../context";
+import Rate from "rc-rate";
+import "rc-rate/assets/index.css";
 
-const Details = ({ details }) => {
-  const { poster_img, backdrop_img, posterNotFound, backdropNotFound } =
+const Details = ({details}) => {
+  const {poster_img, backdrop_img, posterNotFound, backdropNotFound} =
     useGlobalContext();
 
   const {
@@ -27,7 +29,7 @@ const Details = ({ details }) => {
     movie_genres,
     movie_overview,
     movie_moreInfo,
-    moreInfo_item
+    moreInfo_item,
   } = css;
 
   let poster;
@@ -39,7 +41,7 @@ const Details = ({ details }) => {
     : (backdrop = backdropNotFound);
 
   const backgroundImg = {
-    background: `url(${backdrop}) no-repeat center center/cover`,
+    background: `url(${backdrop}) no-repeat center center/cover fixed`,
   };
 
   const moneyConverter = (money) => {
@@ -52,25 +54,30 @@ const Details = ({ details }) => {
   };
 
   const timeConverter = (time) => {
-    const hours = Math.floor(time / 60);
-    const mins = time % 60;
-    return `${hours}h ${mins}m`;
+    const hour = Math.floor(time / 60);
+    const min = time % 60;
+    return `${hour}h ${min}m`;
   };
 
   return (
     <div className={`${movie} fade_in`} style={backgroundImg}>
       <div className={movie_poster}>
-        <img src={poster} alt={title || "movie_title"} />
+        <img src={poster} alt={title || "movie_title"}/>
       </div>
       <div className={movie_info}>
         <div className={movie_name}>{title}</div>
         <div className={movie_genres}>
-          {genres &&
-            genres
-              .map((genre, id) => {
-                return genre.name;
-              })
-              .join(", ")}
+          {genres?.map((genre) => {
+            return genre.name;
+          }).join(", ")}
+        </div>
+        <div>
+          <Rate
+            value={vote_average / 2}
+            count={5}
+            disabled={true}
+            allowHalf={true}
+          />
         </div>
         <div className={movie_overview}>{overview}</div>
         <div className={movie_moreInfo}>
@@ -79,14 +86,18 @@ const Details = ({ details }) => {
             <div>Runtime</div>
             <div>Budget</div>
             <div>Revenue</div>
-            <div>Rating</div>
           </div>
           <div className={moreInfo_item}>
-            <div>{new Date(release_date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric"})}</div>
+            <div>
+              {new Date(release_date).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </div>
             <div>{timeConverter(runtime)}</div>
             <div>{moneyConverter(budget)}</div>
             <div>{moneyConverter(revenue)}</div>
-            <div>{vote_average}</div>
           </div>
         </div>
       </div>

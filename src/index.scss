@@ -75,6 +75,7 @@ main {
     color: #fff;
     background-color: #0e0e0e;
   }
+
   &:last-child {
     border: none;
   }
@@ -117,26 +118,15 @@ main {
   margin-bottom: 10px;
 }
 
-// POPULAR STYLES
-.popular {
-  padding: 20px 20px 0 110px;
-}
+.content {
+  padding: 40px 20px 40px 110px;
 
-@media (max-width: 1024px) {
-  .popular {
-    padding: 0 20px;
+  .block:not(:last-child) {
+    margin-bottom: 35px;
   }
-}
 
-// TOP RATED STYLES
-.topRated {
-  padding: 30px 20px 20px 110px;
-}
-
-@media (max-width: 1024px) {
-  .topRated {
-    padding: 30px 20px 20px 20px;
-    margin-bottom: 90px;
+  @media screen and (max-width: 1024px) {
+    padding: 40px 20px;
   }
 }
 
@@ -174,12 +164,12 @@ main {
 }
 
 // RECOMMENDATIONS STYLES
-.recomm {
-  padding: 0 20px 20px 110px;
+.rec {
+  padding: 0 20px 30px 110px;
 }
 
 @media (max-width: 1024px) {
-  .recomm {
+  .rec {
     padding: 0 20px 100px 20px;
   }
 }

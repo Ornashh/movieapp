@@ -37,31 +37,30 @@ const Cast = ({ credits }) => {
             },
           }}
         >
-          {credits &&
-            credits.map((cast) => {
-              const { id, profile_path, name, character } = cast;
-              return (
-                <div key={id}>
-                  <SwiperSlide key={uuidv4()}>
-                    <div className={item}>
-                      <LazyLoadImage
-                        wrapperClassName="lazyLoad"
-                        src={
-                          profile_path
-                            ? poster_img + profile_path
-                            : posterNotFound
-                        }
-                        alt={name}
-                      />
-                    </div>
-                    <div className={names}>
-                      <div className={names_real}>{name}</div>
-                      <div className={names_character}>{character}</div>
-                    </div>
-                  </SwiperSlide>
-                </div>
-              );
-            })}
+          {credits?.map((cast) => {
+            const { id, profile_path, name, character } = cast;
+            return (
+              <div key={id}>
+                <SwiperSlide key={uuidv4()}>
+                  <div className={item}>
+                    <LazyLoadImage
+                      wrapperClassName="lazyLoad"
+                      src={
+                        profile_path
+                          ? poster_img + profile_path
+                          : posterNotFound
+                      }
+                      alt={name}
+                    />
+                  </div>
+                  <div className={names}>
+                    <div className={names_real}>{name}</div>
+                    <div className={names_character}>{character}</div>
+                  </div>
+                </SwiperSlide>
+              </div>
+            );
+          })}
         </Swiper>
       </div>
     </div>
