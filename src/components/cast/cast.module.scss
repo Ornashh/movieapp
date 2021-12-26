@@ -14,6 +14,12 @@
   width: inherit;
   height: 320px;
   overflow: hidden;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 @media (max-width: 768px) {
