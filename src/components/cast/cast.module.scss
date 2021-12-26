@@ -29,25 +29,25 @@
   height: 100%;
 }
 
-.names_real {
+.real_name {
   font-size: 1.1rem;
   font-weight: 500;
   margin: 10px 0 3px 0;
 }
 
 @media (max-width: 768px) {
-  .names_real {
+  .real_name {
     font-size: 0.8rem;
   }
 }
 
-.names_character {
+.character_name {
   color: #70757a;
   font-weight: 500;
 }
 
 @media (max-width: 768px) {
-  .names_character {
+  .character_name {
     font-size: 0.7rem;
   }
 }

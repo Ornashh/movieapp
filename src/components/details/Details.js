@@ -1,8 +1,10 @@
 import React from "react";
-import css from "./details.module.scss";
 import { useGlobalContext } from "../../context";
+
 import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
+
+import css from "./details.module.scss";
 
 const Details = ({details}) => {
   const {poster_img, backdrop_img, posterNotFound, backdropNotFound} =

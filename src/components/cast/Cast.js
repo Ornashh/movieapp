@@ -1,6 +1,6 @@
 import React from "react";
 import { useGlobalContext } from "../../context";
-import { v4 as uuidv4 } from "uuid";
+import { Link } from "react-router-dom";
 
 import css from "./cast.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -9,10 +9,10 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 SwiperCore.use([Navigation]);
 
-const Cast = ({ credits }) => {
-  const { poster_img, posterNotFound } = useGlobalContext();
+const Cast = ({credits}) => {
+  const {poster_img, posterNotFound} = useGlobalContext();
 
-  const { cast, cast_inner, item, names, names_real, names_character } = css;
+  const {cast, cast_inner, item, names, real_name, character_name} = css;
 
   return (
     <div className={cast}>
@@ -38,24 +38,26 @@ const Cast = ({ credits }) => {
           }}
         >
           {credits?.map((cast) => {
-            const { id, profile_path, name, character } = cast;
+            const {id, cast_id, profile_path, name, character} = cast;
             return (
               <div key={id}>
-                <SwiperSlide key={uuidv4()}>
+                <SwiperSlide key={cast_id}>
                   <div className={item}>
-                    <LazyLoadImage
-                      wrapperClassName="lazyLoad"
-                      src={
-                        profile_path
-                          ? poster_img + profile_path
-                          : posterNotFound
-                      }
-                      alt={name}
-                    />
+                    <Link to={`/person/${id}`}>
+                      <LazyLoadImage
+                        wrapperClassName="lazyLoad"
+                        src={
+                          profile_path
+                            ? poster_img + profile_path
+                            : posterNotFound
+                        }
+                        alt={name}
+                      />
+                    </Link>
                   </div>
                   <div className={names}>
-                    <div className={names_real}>{name}</div>
-                    <div className={names_character}>{character}</div>
+                    <div className={real_name}>{name}</div>
+                    <div className={character_name}>{character}</div>
                   </div>
                 </SwiperSlide>
               </div>

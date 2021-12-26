@@ -23,7 +23,7 @@ const initialState = {
 
 const AppContext = React.createContext();
 
-const AppProvider = ({ children }) => {
+const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [page, setPage] = useState(1);
 
@@ -36,7 +36,7 @@ const AppProvider = ({ children }) => {
         const response = await fetch(SEARCH_URL + query);
         const data = await response.json();
 
-        dispatch({ type: "RESULTS", payload: data.results });
+        dispatch({type: "RESULTS", payload: data.results});
       } catch (error) {
         console.log(error);
       }
@@ -49,7 +49,7 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     const getNowPlaying = async () => {
       try {
-        dispatch({ type: "LOADING" });
+        dispatch({type: "LOADING"});
         const response = await fetch(NOW_PLAYING_URL);
         const data = await response.json();
 
@@ -67,7 +67,7 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     const getPopular = async (p) => {
       try {
-        dispatch({ type: "LOADING" });
+        dispatch({type: "LOADING"});
         const response = await fetch(POPULAR_URL + p);
         const data = await response.json();
 
@@ -85,7 +85,7 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     const getTopRated = async (p) => {
       try {
-        dispatch({ type: "LOADING" });
+        dispatch({type: "LOADING"});
         const response = await fetch(TOP_RATED_URL + p);
         const data = await response.json();
 
@@ -105,19 +105,19 @@ const AppProvider = ({ children }) => {
   }, [state.favoriteArr]);
 
   const search = (movie) => {
-    dispatch({ type: "SEARCH", payload: movie });
+    dispatch({type: "SEARCH", payload: movie});
   };
 
   const handleAdd = (movie) => {
-    dispatch({ type: "ADD_FAVORITE", payload: movie });
+    dispatch({type: "ADD_FAVORITE", payload: movie});
   };
 
   const handleRemove = (movie) => {
-    dispatch({ type: "REMOVE_FAVORITE", payload: movie });
+    dispatch({type: "REMOVE_FAVORITE", payload: movie});
   };
 
   const handleClear = () => {
-    dispatch({ type: "CLEAR" });
+    dispatch({type: "CLEAR"});
   };
 
   return (

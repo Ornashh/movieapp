@@ -10,30 +10,32 @@ import Popular from "./pages/Popular";
 import TopRated from "./pages/TopRated";
 import Favorite from "./pages/Favorite";
 import SingleMovie from "./pages/SingleMovie";
+import Person from "./pages/Person";
 
 function App() {
   return (
     <main>
       <Router>
-        <Navbar />
-        <ScrollToTop />
+        <Navbar/>
+        <ScrollToTop/>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Home/>
           </Route>
           <Route path="/search">
-            <Search />
+            <Search/>
           </Route>
           <Route path="/popular">
-            <Popular />
+            <Popular/>
           </Route>
           <Route path="/top_rated">
-            <TopRated />
+            <TopRated/>
           </Route>
           <Route path="/favorite">
-            <Favorite />
+            <Favorite/>
           </Route>
-          <Route path="/movie/:id" children={<SingleMovie />} />
+          <Route path="/movie/:id" children={<SingleMovie/>}/>
+          <Route path="/person/:id" children={<Person/>}/>
         </Switch>
       </Router>
     </main>
