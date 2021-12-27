@@ -12,25 +12,16 @@ const reducer = (state, action) => {
         resultsArr: action.payload,
       };
 
-    case "NOW_PLAYING":
-      return {
-        ...state,
-        nowPlayingArr: action.payload,
-        loading: false,
-      };
-
     case "POPULAR":
       return {
         ...state,
         popularArr: [...state.popularArr, ...action.payload],
-        loading: false,
       };
 
     case "TOP_RATED":
       return {
         ...state,
         topRatedArr: [...state.topRatedArr, ...action.payload],
-        loading: false,
       };
 
     case "ADD_FAVORITE":

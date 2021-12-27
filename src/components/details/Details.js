@@ -5,8 +5,9 @@ import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
 
 import css from "./details.module.scss";
+import Loading from "../Loading";
 
-const Details = ({details}) => {
+const Details = ({details, loading}) => {
   const {poster_img, backdrop_img, posterNotFound, backdropNotFound} =
     useGlobalContext();
 
@@ -62,48 +63,50 @@ const Details = ({details}) => {
   };
 
   return (
-    <div className={`${movie} fade_in`} style={backgroundImg}>
-      <div className={movie_poster}>
-        <img src={poster} alt={title || "movie_title"}/>
-      </div>
-      <div className={movie_info}>
-        <div className={movie_name}>{title}</div>
-        <div className={movie_genres}>
-          {genres?.map((genre) => {
-            return genre.name;
-          }).join(", ")}
+    <Loading loading={loading}>
+      <div className={`${movie} fade_in`} style={backgroundImg}>
+        <div className={movie_poster}>
+          <img src={poster} alt={title || "movie_title"}/>
         </div>
-        <div>
-          <Rate
-            value={vote_average / 2}
-            count={5}
-            disabled={true}
-            allowHalf={true}
-          />
-        </div>
-        <div className={movie_overview}>{overview}</div>
-        <div className={movie_moreInfo}>
-          <div className={moreInfo_item}>
-            <div>Release</div>
-            <div>Runtime</div>
-            <div>Budget</div>
-            <div>Revenue</div>
+        <div className={movie_info}>
+          <div className={movie_name}>{title}</div>
+          <div className={movie_genres}>
+            {genres?.map((genre) => {
+              return genre.name;
+            }).join(", ")}
           </div>
-          <div className={moreInfo_item}>
-            <div>
-              {new Date(release_date).toLocaleDateString("en-US", {
-                month: "long",
-                day: "numeric",
-                year: "numeric",
-              })}
+          <div>
+            <Rate
+              value={vote_average / 2}
+              count={5}
+              disabled={true}
+              allowHalf={true}
+            />
+          </div>
+          <div className={movie_overview}>{overview}</div>
+          <div className={movie_moreInfo}>
+            <div className={moreInfo_item}>
+              <div>Release</div>
+              <div>Runtime</div>
+              <div>Budget</div>
+              <div>Revenue</div>
             </div>
-            <div>{timeConverter(runtime)}</div>
-            <div>{moneyConverter(budget)}</div>
-            <div>{moneyConverter(revenue)}</div>
+            <div className={moreInfo_item}>
+              <div>
+                {new Date(release_date).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </div>
+              <div>{timeConverter(runtime)}</div>
+              <div>{moneyConverter(budget)}</div>
+              <div>{moneyConverter(revenue)}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Loading>
   );
 };
 

@@ -4,9 +4,11 @@ import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
 import css from "./pages.module.scss"
+import Loading from "../components/Loading";
 
 function Person() {
   const {id} = useParams();
+  const [loading, setLoading] = useState(true)
   const {poster_img, posterNotFound} = useGlobalContext();
   const [person, setPerson] = useState({});
   const [readMore, setReadMore] = useState(false);
@@ -44,12 +46,13 @@ function Person() {
   useEffect(() => {
     const getPerson = async (person_id) => {
       try {
+        setLoading(true);
         const resp = await fetch(
           `${API_URL}person/${person_id}?api_key=${API_KEY}&language=en-US`
         );
         const data = await resp.json();
-        console.log(data)
         setPerson(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -58,30 +61,32 @@ function Person() {
   }, [id]);
 
   return (
-    <div className={person_outer}>
-      <div className={person_inner}>
-        <div className={person_img}>
-          <img src={poster_img + profile_path} alt="#"/>
-        </div>
-        <div className={person_info}>
-          <h1 className={person_name}>{name}</h1>
-          <div className={person_date}>
-            {dateFormat(birthday)} &#8212; {deathday === null ? "" : dateFormat(deathday)}
+    <Loading loading={loading}>
+      <div className={person_outer}>
+        <div className={person_inner}>
+          <div className={person_img}>
+            <img src={poster_img + profile_path} alt="#"/>
           </div>
-          <div className={person_place}>
-            {place_of_birth}
-          </div>
-          <div>
-            <p className={readMore ? `${read_more} ${person_biography}` : `${person_biography}`}>
-              {biography}
-            </p>
-            <button onClick={() => setReadMore(!readMore)} className={btn_readMore}>
-              {readMore ? "Read Less" : "Read More"}
-            </button>
+          <div className={person_info}>
+            <h1 className={person_name}>{name}</h1>
+            <div className={person_date}>
+              {dateFormat(birthday)} &#8212; {deathday === null ? "" : dateFormat(deathday)}
+            </div>
+            <div className={person_place}>
+              {place_of_birth}
+            </div>
+            <div>
+              <p className={readMore ? `${read_more} ${person_biography}` : `${person_biography}`}>
+                {biography}
+              </p>
+              <button onClick={() => setReadMore(!readMore)} className={btn_readMore}>
+                {readMore ? "Read Less" : "Read More"}
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Loading>
   );
 }
 

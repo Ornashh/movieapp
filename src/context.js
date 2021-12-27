@@ -13,12 +13,10 @@ const movieFromLocalStorage = JSON.parse(localStorage.getItem("movie") || "[]");
 
 const initialState = {
   resultsArr: [],
-  nowPlayingArr: [],
   popularArr: [],
   topRatedArr: [],
   favoriteArr: movieFromLocalStorage,
   name: "",
-  loading: true,
 };
 
 const AppContext = React.createContext();
@@ -26,6 +24,7 @@ const AppContext = React.createContext();
 const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const backdrop_img = "https://image.tmdb.org/t/p/w1280";
   const poster_img = "https://image.tmdb.org/t/p/w780";
@@ -46,59 +45,39 @@ const AppProvider = ({children}) => {
     }
   }, [state.name]);
 
-  useEffect(() => {
-    const getNowPlaying = async () => {
-      try {
-        dispatch({type: "LOADING"});
-        const response = await fetch(NOW_PLAYING_URL);
-        const data = await response.json();
+  // useEffect(() => {
+  //   const getPopular = async (p) => {
+  //     try {
+  //       const response = await fetch(POPULAR_URL + p);
+  //       const data = await response.json();
+  //
+  //       dispatch({
+  //         type: "POPULAR",
+  //         payload: data.results,
+  //       });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getPopular(page);
+  // }, [page]);
 
-        dispatch({
-          type: "NOW_PLAYING",
-          payload: data.results,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getNowPlaying();
-  }, []);
-
-  useEffect(() => {
-    const getPopular = async (p) => {
-      try {
-        dispatch({type: "LOADING"});
-        const response = await fetch(POPULAR_URL + p);
-        const data = await response.json();
-
-        dispatch({
-          type: "POPULAR",
-          payload: data.results,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getPopular(page);
-  }, [page]);
-
-  useEffect(() => {
-    const getTopRated = async (p) => {
-      try {
-        dispatch({type: "LOADING"});
-        const response = await fetch(TOP_RATED_URL + p);
-        const data = await response.json();
-
-        dispatch({
-          type: "TOP_RATED",
-          payload: data.results,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getTopRated(page);
-  }, [page]);
+  // useEffect(() => {
+  //   const getTopRated = async (p) => {
+  //     try {
+  //       const response = await fetch(TOP_RATED_URL + p);
+  //       const data = await response.json();
+  //
+  //       dispatch({
+  //         type: "TOP_RATED",
+  //         payload: data.results,
+  //       });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getTopRated(page);
+  // }, [page]);
 
   useEffect(() => {
     localStorage.setItem("movie", JSON.stringify(state.favoriteArr));
@@ -135,6 +114,7 @@ const AppProvider = ({children}) => {
         handleAdd,
         handleRemove,
         handleClear,
+        loading
       }}
     >
       {children}

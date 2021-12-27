@@ -1,7 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context";
+import { Link } from "react-router-dom";
+
+import { NOW_PLAYING_URL } from "../../helpers/Config";
 import css from "./nowPlaying.module.scss";
+import Loading from "../Loading";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper/core";
@@ -9,7 +12,9 @@ import SwiperCore, { Autoplay, Pagination } from "swiper/core";
 SwiperCore.use([Autoplay, Pagination]);
 
 const NowPlaying = () => {
-  const { nowPlayingArr, backdrop_img, backdropNotFound } = useGlobalContext();
+  const {nowPlayingArr, backdrop_img, backdropNotFound} = useGlobalContext();
+  const [nowPlaying, setNowPlaying] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const {
     nowPlaying_inner,
@@ -22,22 +27,37 @@ const NowPlaying = () => {
     info_link,
   } = css;
 
+  useEffect(() => {
+    const getNowPlaying = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(NOW_PLAYING_URL);
+        const data = await response.json();
+        setNowPlaying(data.results);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getNowPlaying();
+  }, []);
+
   return (
-    <div className="block fade_in">
-      <div className={nowPlaying_title}>Now Playing Movies</div>
-      <div className={nowPlaying_inner}>
-        <Swiper
-          autoplay={{
-            delay: 10000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            dynamicBullets: true,
-          }}
-        >
-          {nowPlayingArr &&
-            nowPlayingArr.map((movie) => {
-              const { id, title, overview, backdrop_path } = movie;
+    <Loading loading={loading} style={{height: "50vh"}}>
+      <div className="block fade_in">
+        <div className={nowPlaying_title}>Now Playing Movies</div>
+        <div className={nowPlaying_inner}>
+          <Swiper
+            autoplay={{
+              delay: 10000,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              dynamicBullets: true,
+            }}
+          >
+            {nowPlaying?.map((movie) => {
+              const {id, title, overview, backdrop_path} = movie;
               return (
                 <div key={id}>
                   <SwiperSlide key={id}>
@@ -70,9 +90,10 @@ const NowPlaying = () => {
                 </div>
               );
             })}
-        </Swiper>
+          </Swiper>
+        </div>
       </div>
-    </div>
+    </Loading>
   );
 };
 

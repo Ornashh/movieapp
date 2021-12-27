@@ -12,6 +12,7 @@ import Tabs from "../components/Tabs";
 
 const SingleTvShow = () => {
   const {id} = useParams();
+  const [loading, setLoading] = useState(true)
   const [details, setDetails] = useState({});
   const [credits, setCredits] = useState([]);
   const [videos, setVideos] = useState([]);
@@ -22,11 +23,13 @@ const SingleTvShow = () => {
   useEffect(() => {
     const getDetails = async (movie_id) => {
       try {
+        setLoading(true);
         const resp = await fetch(
           `${API_URL}movie/${movie_id}?api_key=${API_KEY}&language=en-US`
         );
         const data = await resp.json();
         setDetails(data);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -100,7 +103,7 @@ const SingleTvShow = () => {
 
   return (
     <>
-      <Details details={details}/>
+      <Details details={details} loading={loading}/>
 
       <Tabs index={index} setIndex={setIndex}/>
 

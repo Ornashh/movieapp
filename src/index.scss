@@ -34,20 +34,6 @@ main {
   position: relative;
 }
 
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding-left: 110px;
-}
-
-@media (max-width: 1024px) {
-  .loading {
-    padding: 0;
-  }
-}
-
 .btn_tabs {
   display: flex;
   justify-content: center;
@@ -200,5 +186,22 @@ main {
   .btn_fav {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+.loading_wrapper {
+  width: 100%;
+  height: 100%;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-left: 110px;
+
+    @media screen and (max-width: 1024px) {
+      padding: 0;
+    }
   }
 }
