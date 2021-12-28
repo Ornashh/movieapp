@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { API_KEY, API_URL } from "../helpers/Config";
-import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../context";
+import { useParams } from "react-router-dom";
+
+import { API_KEY, API_URL } from "../helpers/Config";
+import Loading from "../components/Loading";
+import clsx from "clsx";
 
 import css from "./pages.module.scss"
-import Loading from "../components/Loading";
 
 function Person() {
   const {id} = useParams();
   const [loading, setLoading] = useState(true)
-  const {poster_img, posterNotFound} = useGlobalContext();
+  const {poster_img} = useGlobalContext();
   const [person, setPerson] = useState({});
   const [readMore, setReadMore] = useState(false);
 
@@ -76,7 +78,7 @@ function Person() {
               {place_of_birth}
             </div>
             <div>
-              <p className={readMore ? `${read_more} ${person_biography}` : `${person_biography}`}>
+              <p className={readMore ? clsx(read_more, person_biography) : person_biography}>
                 {biography}
               </p>
               <button onClick={() => setReadMore(!readMore)} className={btn_readMore}>

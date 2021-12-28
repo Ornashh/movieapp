@@ -9,7 +9,7 @@ function Loading({loading = true, show = true, children, style = {}}) {
           <Loader type="Puff" color="#1976D2" height={70} width={70} style={style}/>
         </div>
       ) : (
-        <>{show ? <>{children}</> : null}</>
+        <>{children}</>
       )}
     </>
   );

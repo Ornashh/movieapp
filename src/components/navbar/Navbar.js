@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import css from "./navbar.module.scss";
 import {
@@ -10,25 +10,36 @@ import {
   AiOutlineHeart,
 } from "react-icons/ai";
 
-const { nav, nav_link } = css;
-
 const Navbar = () => {
+  const location = useLocation();
+  const {nav, nav_link} = css;
+
+  const activeLink = (link) => {
+    switch (location.pathname) {
+      case `/${link}`: {
+        return "#1976d2";
+      }
+      default:
+        return "#fff";
+    }
+  };
+
   return (
     <nav className={nav}>
-      <Link to={"/"} className={nav_link} title="Home">
-        <AiOutlineHome />
+      <Link to={"/home"} className={nav_link} title="Home">
+        <AiOutlineHome color={activeLink("home")}/>
       </Link>
       <Link to={"/search"} className={nav_link} title="Search">
-        <AiOutlineSearch />
+        <AiOutlineSearch color={activeLink("search")}/>
       </Link>
       <Link to={"/popular"} className={nav_link} title="Popular">
-        <AiOutlineFire />
+        <AiOutlineFire color={activeLink("popular")}/>
       </Link>
       <Link to={"/top_rated"} className={nav_link} title="Top rated">
-        <AiOutlineStar />
+        <AiOutlineStar color={activeLink("top_rated")}/>
       </Link>
       <Link to={"/favorite"} className={nav_link} title="Favorite">
-        <AiOutlineHeart />
+        <AiOutlineHeart color={activeLink("favorite")}/>
       </Link>
     </nav>
   );

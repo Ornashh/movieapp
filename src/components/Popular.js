@@ -18,10 +18,10 @@ const Popular = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getPopular = async (p) => {
+    const getPopular = async () => {
       try {
         setLoading(true);
-        const response = await fetch(POPULAR_URL + p);
+        const response = await fetch(POPULAR_URL);
         const data = await response.json();
         setPopular(data.results);
         setLoading(false);

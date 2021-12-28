@@ -1,8 +1,5 @@
 const reducer = (state, action) => {
   switch (action.type) {
-    case "LOADING":
-      return {...state, loading: true};
-
     case "SEARCH":
       return {...state, name: action.payload};
 
@@ -10,18 +7,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         resultsArr: action.payload,
-      };
-
-    case "POPULAR":
-      return {
-        ...state,
-        popularArr: [...state.popularArr, ...action.payload],
-      };
-
-    case "TOP_RATED":
-      return {
-        ...state,
-        topRatedArr: [...state.topRatedArr, ...action.payload],
       };
 
     case "ADD_FAVORITE":

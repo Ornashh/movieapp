@@ -4,6 +4,7 @@ import { useGlobalContext } from "../context";
 
 import { AiFillHeart } from "react-icons/ai";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import clsx from "clsx";
 
 import css from "./pages.module.scss";
 
@@ -17,7 +18,7 @@ const Favorite = () => {
   return (
     <div className={`${cards} fade_in`}>
       {favoriteArr.length === 0 ? (
-        <div className={`${cards_title} ${center}`}>Favorite list is empty</div>
+        <div className={clsx(cards_title, center)}>Favorite list is empty</div>
       ) : (
         <>
           <div className={cards_title}>Favorite Movies</div>

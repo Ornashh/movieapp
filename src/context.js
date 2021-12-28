@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useContext, useReducer } from "react";
 import reducer from "./reducer";
-import {
-  SEARCH_URL,
-  NOW_PLAYING_URL,
-  POPULAR_URL,
-  TOP_RATED_URL,
-} from "./helpers/Config";
+import { SEARCH_URL } from "./helpers/Config";
 import posterNotFound from "./assets/poster-not-found.jpg";
 import backdropNotFound from "./assets/backdrop-not-found.jpg";
 
@@ -13,8 +8,6 @@ const movieFromLocalStorage = JSON.parse(localStorage.getItem("movie") || "[]");
 
 const initialState = {
   resultsArr: [],
-  popularArr: [],
-  topRatedArr: [],
   favoriteArr: movieFromLocalStorage,
   name: "",
 };
@@ -23,8 +16,6 @@ const AppContext = React.createContext();
 
 const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(true);
 
   const backdrop_img = "https://image.tmdb.org/t/p/w1280";
   const poster_img = "https://image.tmdb.org/t/p/w780";
@@ -44,40 +35,6 @@ const AppProvider = ({children}) => {
       getResults(state.name);
     }
   }, [state.name]);
-
-  // useEffect(() => {
-  //   const getPopular = async (p) => {
-  //     try {
-  //       const response = await fetch(POPULAR_URL + p);
-  //       const data = await response.json();
-  //
-  //       dispatch({
-  //         type: "POPULAR",
-  //         payload: data.results,
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getPopular(page);
-  // }, [page]);
-
-  // useEffect(() => {
-  //   const getTopRated = async (p) => {
-  //     try {
-  //       const response = await fetch(TOP_RATED_URL + p);
-  //       const data = await response.json();
-  //
-  //       dispatch({
-  //         type: "TOP_RATED",
-  //         payload: data.results,
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getTopRated(page);
-  // }, [page]);
 
   useEffect(() => {
     localStorage.setItem("movie", JSON.stringify(state.favoriteArr));
@@ -109,12 +66,9 @@ const AppProvider = ({children}) => {
         posterNotFound,
         backdropNotFound,
         search,
-        page,
-        setPage,
         handleAdd,
         handleRemove,
         handleClear,
-        loading
       }}
     >
       {children}

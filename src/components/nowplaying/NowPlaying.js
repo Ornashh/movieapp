@@ -12,7 +12,7 @@ import SwiperCore, { Autoplay, Pagination } from "swiper/core";
 SwiperCore.use([Autoplay, Pagination]);
 
 const NowPlaying = () => {
-  const {nowPlayingArr, backdrop_img, backdropNotFound} = useGlobalContext();
+  const {backdrop_img, backdropNotFound} = useGlobalContext();
   const [nowPlaying, setNowPlaying] = useState([]);
   const [loading, setLoading] = useState(true);
 

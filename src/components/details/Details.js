@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context";
+
+import { API_KEY, API_URL } from "../../helpers/Config";
 
 import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
-
-import css from "./details.module.scss";
 import Loading from "../Loading";
 
-const Details = ({details, loading}) => {
+import css from "./details.module.scss";
+
+const Details = ({id}) => {
   const {poster_img, backdrop_img, posterNotFound, backdropNotFound} =
     useGlobalContext();
+  const [details, setDetails] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const {
     backdrop_path,
@@ -61,6 +65,19 @@ const Details = ({details, loading}) => {
     const min = time % 60;
     return `${hour}h ${min}m`;
   };
+
+  useEffect(() => {
+    fetch(`${API_URL}movie/${id}?api_key=${API_KEY}&language=en-US`)
+      .then((resp) => {
+        return resp.json()
+      }).then((data) => {
+      setDetails(data);
+    }).catch((error) => {
+      console.log(error)
+    }).finally(() => {
+      setLoading(false);
+    })
+  }, [id]);
 
   return (
     <Loading loading={loading}>
