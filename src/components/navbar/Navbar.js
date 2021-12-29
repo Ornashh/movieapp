@@ -26,8 +26,8 @@ const Navbar = () => {
 
   return (
     <nav className={nav}>
-      <Link to={"/home"} className={nav_link} title="Home">
-        <AiOutlineHome color={activeLink("home")}/>
+      <Link to={"/"} className={nav_link} title="Home">
+        <AiOutlineHome color={location.pathname === "/" ? "#1976d2" : "#fff"}/>
       </Link>
       <Link to={"/search"} className={nav_link} title="Search">
         <AiOutlineSearch color={activeLink("search")}/>

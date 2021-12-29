@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 import { API_KEY, API_URL } from "../../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "../Loading";
 
 import css from "./cast.module.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper/core";
-import Loading from "../Loading";
 
 SwiperCore.use([Navigation]);
 
@@ -22,14 +22,14 @@ const Cast = ({id}) => {
 
   useEffect(() => {
     fetch(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`).then((resp) => {
-      return resp.json()
+      return resp.json();
     }).then((data) => {
       setCredits(data.cast);
     }).catch((error) => {
-      console.log(error)
+      console.log(error);
     }).finally(() => {
       setLoading(false);
-    })
+    });
   }, [id]);
 
   return (

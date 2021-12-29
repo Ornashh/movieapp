@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { API_KEY, API_URL } from "../../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import css from "./videos.module.scss";
 import Loading from "../Loading";
 import Modal from "../Modal";
+import css from "./videos.module.scss";
 
 const Videos = ({id}) => {
   const [videos, setVideos] = useState([]);
@@ -30,21 +30,21 @@ const Videos = ({id}) => {
   useEffect(() => {
     fetch(`${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
       .then((resp) => {
-        return resp.json()
+        return resp.json();
       }).then((data) => {
       setVideos(data.results);
     }).catch((error) => {
-      console.log(error)
+      console.log(error);
     }).finally(() => {
       setLoading(false);
-    })
+    });
   }, [id]);
 
   const handleClickAway = (e) => {
     if (e.target.id !== "video") {
-      setModalIsOpen(false)
+      setModalIsOpen(false);
     }
-  }
+  };
 
   return (
     <Loading loading={loading} style={{height: "50vh"}}>

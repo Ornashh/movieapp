@@ -1,14 +1,5 @@
 const reducer = (state, action) => {
   switch (action.type) {
-    case "SEARCH":
-      return {...state, name: action.payload};
-
-    case "RESULTS":
-      return {
-        ...state,
-        resultsArr: action.payload,
-      };
-
     case "ADD_FAVORITE":
       const exist = state.favoriteArr.find(
         (item) => item.id === action.payload.id

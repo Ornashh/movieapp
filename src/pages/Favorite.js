@@ -1,19 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
+import { Link } from "react-router-dom";
 
-import { AiFillHeart } from "react-icons/ai";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import clsx from "clsx";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import css from "./pages.module.scss";
-
-const {cards, cards_inner, cards_title, card, center, btn_fav, btn_wrapper} =
-  css;
+import { AiFillHeart } from "react-icons/ai";
 
 const Favorite = () => {
   const {favoriteArr, poster_img, posterNotFound, handleRemove, handleClear} =
     useGlobalContext();
+
+  const {cards, cards_inner, cards_title, card, center, btn_fav, btn_wrapper} =
+    css;
 
   return (
     <div className={`${cards} fade_in`}>

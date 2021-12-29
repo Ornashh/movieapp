@@ -19,7 +19,7 @@ function App() {
         <Navbar/>
         <ScrollToTop/>
         <Switch>
-          <Route exact path="/home">
+          <Route exact path="/">
             <Home/>
           </Route>
           <Route path="/search">

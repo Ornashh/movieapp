@@ -1,28 +1,45 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 import { useGlobalContext } from "../context";
+import { Link } from "react-router-dom";
+
+import { SEARCH_URL } from "../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "../components/Loading";
 
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import css from "../pages/pages.module.scss";
-
-const {cards, cards_inner, cards_title, card, btn_fav, form, empty} = css;
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const Search = () => {
-  const {resultsArr, poster_img, posterNotFound, name, search, handleAdd, favoriteArr} =
+  const {poster_img, posterNotFound, handleAdd, favoriteArr} =
     useGlobalContext();
-
   const value = useRef();
+  const [name, setName] = useState("");
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const {cards, cards_inner, cards_title, card, btn_fav, form, empty} = css;
+  
+  useEffect(() => {
+    fetch(SEARCH_URL + name).then((resp) => {
+      return resp.json();
+    }).then((data) => {
+      setResults(data.results);
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {
+      setLoading(false);
+    });
+  }, [name]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    search(value.current.value);
+    setName(value.current.value);
     value.current.value = "";
   };
 
   return (
-    <>
+    <Loading loading={loading}>
       <form className={form} onSubmit={handleSubmit}>
         <input type="text" placeholder="Search" ref={value}/>
       </form>
@@ -31,7 +48,7 @@ const Search = () => {
         <div className={`${cards} fade_in`}>
           <div className={cards_title}>Results: {name}</div>
           <div className={cards_inner}>
-            {resultsArr?.map((movie) => {
+            {results?.map((movie) => {
               const {id, title, poster_path} = movie;
               return (
                 <div key={id} className={card}>
@@ -64,7 +81,7 @@ const Search = () => {
       ) : (
         <div className={`${empty} fade_in`}>No search results</div>
       )}
-    </>
+    </Loading>
   );
 };
 

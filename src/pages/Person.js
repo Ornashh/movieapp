@@ -3,17 +3,17 @@ import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 
 import { API_KEY, API_URL } from "../helpers/Config";
-import Loading from "../components/Loading";
 import clsx from "clsx";
+import Loading from "../components/Loading";
 
-import css from "./pages.module.scss"
+import css from "./pages.module.scss";
 
 function Person() {
   const {id} = useParams();
-  const [loading, setLoading] = useState(true)
   const {poster_img} = useGlobalContext();
   const [person, setPerson] = useState({});
   const [readMore, setReadMore] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const {
     person_outer,
@@ -35,15 +35,15 @@ function Person() {
     deathday,
     place_of_birth,
     biography
-  } = person
+  } = person;
 
   const dateFormat = (date) => {
     return new Date(date).toLocaleDateString("en-US", {
       month: "long",
       day: "numeric",
       year: "numeric",
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     const getPerson = async (person_id) => {

@@ -3,9 +3,9 @@ import { useGlobalContext } from "../../context";
 import { Link } from "react-router-dom";
 
 import { NOW_PLAYING_URL } from "../../helpers/Config";
-import css from "./nowPlaying.module.scss";
 import Loading from "../Loading";
 
+import css from "./nowPlaying.module.scss";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper/core";
 
@@ -28,18 +28,15 @@ const NowPlaying = () => {
   } = css;
 
   useEffect(() => {
-    const getNowPlaying = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(NOW_PLAYING_URL);
-        const data = await response.json();
-        setNowPlaying(data.results);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getNowPlaying();
+    fetch(NOW_PLAYING_URL).then((resp) => {
+      return resp.json();
+    }).then((data) => {
+      setNowPlaying(data.results);
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {
+      setLoading(false);
+    });
   }, []);
 
   return (

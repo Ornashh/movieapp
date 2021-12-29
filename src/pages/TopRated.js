@@ -4,10 +4,10 @@ import { useGlobalContext } from "../context";
 
 import { TOP_RATED_URL } from "../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import Loading from "../components/Loading";
 
 import css from "./pages.module.scss";
-import Loading from "../components/Loading";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const TopRated = () => {
   const {
@@ -17,21 +17,21 @@ const TopRated = () => {
     favoriteArr,
   } = useGlobalContext();
   const [topRated, setTopRated] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const {cards, cards_inner, cards_title, card, btn_wrapper, btn_fav} = css;
 
   useEffect(() => {
     fetch(TOP_RATED_URL + page).then((resp) => {
-      return resp.json()
+      return resp.json();
     }).then((data) => {
       setTopRated([...topRated, ...data.results]);
     }).catch((error) => {
-      console.log(error)
+      console.log(error);
     }).finally(() => {
       setLoading(false);
-    })
+    });
   }, [page]);
 
   return (
