@@ -3,8 +3,9 @@ import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 
 import { API_KEY, API_URL } from "../helpers/Config";
-import clsx from "clsx";
 import Loading from "../components/Loading";
+import PersonMovie from "../components/PersonMovie";
+import PersonShow from "../components/PersonShow";
 
 import css from "./pages.module.scss";
 
@@ -24,7 +25,6 @@ function Person() {
     person_date,
     person_place,
     person_biography,
-    read_more,
     btn_readMore,
   } = css;
 
@@ -46,20 +46,20 @@ function Person() {
   };
 
   useEffect(() => {
-    const getPerson = async (person_id) => {
-      try {
-        setLoading(true);
-        const resp = await fetch(
-          `${API_URL}person/${person_id}?api_key=${API_KEY}&language=en-US`
-        );
-        const data = await resp.json();
+    fetch(`${API_URL}person/${id}?api_key=${API_KEY}&language=en-US`)
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
         setPerson(data);
-        setLoading(false);
-      } catch (error) {
+        console.log(data);
+      })
+      .catch((error) => {
         console.log(error);
-      }
-    };
-    getPerson(id);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   return (
@@ -78,15 +78,21 @@ function Person() {
               {place_of_birth}
             </div>
             <div>
-              <p className={readMore ? clsx(read_more, person_biography) : person_biography}>
-                {biography}
-              </p>
-              <button onClick={() => setReadMore(!readMore)} className={btn_readMore}>
-                {readMore ? "Read Less" : "Read More"}
-              </button>
+              {biography?.length <= 300 ? biography : (
+                <>
+                  <p className={person_biography}>
+                    {readMore ? biography : `${biography?.substring(0, 300)}...`}
+                  </p>
+                  <button className={btn_readMore} onClick={() => setReadMore(!readMore)}>
+                    {readMore ? "Read Less" : "Read More"}
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
+        <PersonMovie/>
+        <PersonShow/>
       </div>
     </Loading>
   );

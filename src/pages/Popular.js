@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { POPULAR_URL } from "../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import Loading from "../components/Loading";
 
 import css from "./pages.module.scss";
-import { POPULAR_URL } from "../helpers/Config";
-import Loading from "../components/Loading";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const Popular = () => {
   const {
@@ -22,17 +22,20 @@ const Popular = () => {
 
   useEffect(() => {
     fetch(POPULAR_URL + page).then((resp) => {
-      return resp.json()
-    }).then((data) => {
-      setPopular([...popular, ...data.results]);
-    }).catch((error) => {
-      console.log(error)
-    }).finally(() => {
-      setLoading(false);
+      return resp.json();
     })
+      .then((data) => {
+        setPopular([...popular, ...data.results]);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [page]);
 
-  const {cards, cards_inner, cards_title, card, btn_wrapper, btn_fav} = css;
+  const {cards, cards_inner, cards_title, card, btn_fav} = css;
 
   return (
     <Loading loading={loading}>
@@ -63,7 +66,7 @@ const Popular = () => {
             );
           })}
         </div>
-        <div className={btn_wrapper}>
+        <div className="btn_wrapper">
           <button onClick={() => setPage(page + 1)}>Load More</button>
         </div>
       </div>

@@ -69,20 +69,24 @@ const Details = ({id}) => {
   useEffect(() => {
     fetch(`${API_URL}movie/${id}?api_key=${API_KEY}&language=en-US`)
       .then((resp) => {
-        return resp.json()
-      }).then((data) => {
-      setDetails(data);
-    }).catch((error) => {
-      console.log(error)
-    }).finally(() => {
-      setLoading(false);
-    })
+        return resp.json();
+      })
+      .then((data) => {
+        setDetails(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   return (
     <Loading loading={loading}>
       <div className={`${movie} fade_in`} style={backgroundImg}>
         <div className={movie_poster}>
+
           <img src={poster} alt={title || "movie_title"}/>
         </div>
         <div className={movie_info}>

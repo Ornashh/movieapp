@@ -31,13 +31,16 @@ const Videos = ({id}) => {
     fetch(`${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
       .then((resp) => {
         return resp.json();
-      }).then((data) => {
-      setVideos(data.results);
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      setLoading(false);
-    });
+      })
+      .then((data) => {
+        setVideos(data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   const handleClickAway = (e) => {

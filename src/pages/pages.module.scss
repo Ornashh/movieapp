@@ -80,25 +80,6 @@
   height: 100%;
 }
 
-.btn_wrapper {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.btn_wrapper button {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #fff;
-  background-color: #1976d2;
-  border-radius: 5px;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #165ea5;
-  }
-}
-
 .person_outer {
   padding: 20px 110px 20px 110px;
 
@@ -147,19 +128,12 @@
   .person_biography {
     font-size: 14px;
     line-height: 20px;
-    -webkit-line-clamp: 4;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  .read_more {
-    -webkit-line-clamp: inherit;
   }
 
   .btn_readMore {
     font-size: 14px;
     color: #1976d2;
+    padding: 3px 0;
   }
 }
 

@@ -30,13 +30,16 @@ const NowPlaying = () => {
   useEffect(() => {
     fetch(NOW_PLAYING_URL).then((resp) => {
       return resp.json();
-    }).then((data) => {
-      setNowPlaying(data.results);
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      setLoading(false);
-    });
+    })
+      .then((data) => {
+        setNowPlaying(data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (

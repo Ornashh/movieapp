@@ -18,18 +18,19 @@ const Popular = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getPopular = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(POPULAR_URL);
-        const data = await response.json();
+    fetch(POPULAR_URL)
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
         setPopular(data.results);
-        setLoading(false);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.log(error);
-      }
-    };
-    getPopular();
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (

@@ -10,28 +10,27 @@ import css from "./pages.module.scss";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const TopRated = () => {
-  const {
-    poster_img,
-    posterNotFound,
-    handleAdd,
-    favoriteArr,
-  } = useGlobalContext();
+  const {poster_img, posterNotFound, handleAdd, favoriteArr} = useGlobalContext();
   const [topRated, setTopRated] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  const {cards, cards_inner, cards_title, card, btn_wrapper, btn_fav} = css;
+  const {cards, cards_inner, cards_title, card, btn_fav} = css;
 
   useEffect(() => {
-    fetch(TOP_RATED_URL + page).then((resp) => {
-      return resp.json();
-    }).then((data) => {
-      setTopRated([...topRated, ...data.results]);
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      setLoading(false);
-    });
+    fetch(TOP_RATED_URL + page)
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
+        setTopRated([...topRated, ...data.results]);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [page]);
 
   return (
@@ -63,7 +62,7 @@ const TopRated = () => {
             );
           })}
         </div>
-        <div className={btn_wrapper}>
+        <div className="btn_wrapper">
           <button onClick={() => setPage(page + 1)}>Load More</button>
         </div>
       </div>

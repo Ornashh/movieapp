@@ -10,25 +10,31 @@ import css from "../pages/pages.module.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const Search = () => {
-  const {poster_img, posterNotFound, handleAdd, favoriteArr} =
-    useGlobalContext();
+  const {poster_img, posterNotFound, handleAdd, favoriteArr} = useGlobalContext();
   const value = useRef();
   const [name, setName] = useState("");
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const {cards, cards_inner, cards_title, card, btn_fav, form, empty} = css;
-  
+
   useEffect(() => {
-    fetch(SEARCH_URL + name).then((resp) => {
-      return resp.json();
-    }).then((data) => {
-      setResults(data.results);
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      setLoading(false);
-    });
+    if (name) {
+      setLoading(true);
+      fetch(SEARCH_URL + name)
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((data) => {
+          setResults(data.results);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   }, [name]);
 
   const handleSubmit = (e) => {

@@ -21,14 +21,17 @@ const Rec = ({id}) => {
   useEffect(() => {
     fetch(`${API_URL}movie/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`)
       .then((resp) => {
-        return resp.json()
-      }).then((data) => {
-      setRec(data.results);
-    }).catch((error) => {
-      console.log(error)
-    }).finally(() => {
-      setLoading(false);
-    })
+        return resp.json();
+      })
+      .then((data) => {
+        setRec(data.results);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   return (

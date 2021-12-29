@@ -23,13 +23,16 @@ const Cast = ({id}) => {
   useEffect(() => {
     fetch(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`).then((resp) => {
       return resp.json();
-    }).then((data) => {
-      setCredits(data.cast);
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      setLoading(false);
-    });
+    })
+      .then((data) => {
+        setCredits(data.cast);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   return (

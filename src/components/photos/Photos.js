@@ -31,13 +31,16 @@ const Photos = ({id}) => {
     fetch(`${API_URL}movie/${id}/images?api_key=${API_KEY}&language=en-US&include_image_language=null`)
       .then((resp) => {
         return resp.json();
-      }).then((data) => {
-      setPhotos(data.backdrops);
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      setLoading(false);
-    });
+      })
+      .then((data) => {
+        setPhotos(data.backdrops);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [id]);
 
   const handleCloseModal = (e) => {

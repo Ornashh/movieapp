@@ -19,18 +19,19 @@ const TopRated = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const getTopRated = async (p) => {
-      try {
-        setLoading(true);
-        const response = await fetch(TOP_RATED_URL + p);
-        const data = await response.json();
+    fetch(TOP_RATED_URL)
+      .then((resp) => {
+        return resp.json();
+      })
+      .then((data) => {
         setTopRated(data.results);
-        setLoading(false);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.log(error);
-      }
-    };
-    getTopRated();
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
