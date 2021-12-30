@@ -9,7 +9,7 @@ import css from "./pages.module.scss";
 import { AiFillHeart } from "react-icons/ai";
 
 const Favorite = () => {
-  const {favoriteArr, poster_img, posterNotFound, handleRemove, handleClear} =
+  let {favoriteArr, poster_img, posterNotFound, handleRemove, handleClear} =
     useGlobalContext();
 
   const {cards, cards_inner, cards_title, card, center, btn_fav} =
@@ -17,7 +17,7 @@ const Favorite = () => {
 
   return (
     <div className={`${cards} fade_in`}>
-      {favoriteArr.length === 0 ? (
+      {favoriteArr?.length === 0 ? (
         <div className={clsx(cards_title, center)}>Favorite list is empty</div>
       ) : (
         <>

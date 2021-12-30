@@ -46,18 +46,18 @@
 .movie_info {
   width: 50%;
   margin-left: 50px;
+
+  div {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
 }
 
 @media (max-width: 1024px) {
   .movie_info {
     width: 100%;
     margin-left: 0;
-  }
-}
-
-.movie_info div {
-  &:not(:last-child) {
-    margin-bottom: 15px;
   }
 }
 
@@ -80,6 +80,11 @@
   display: grid;
   grid-template-columns: 100px 1fr;
   gap: 10px;
+
+  p {
+    font-weight: 500;
+    margin: 5px 0;
+  }
 }
 
 .moreInfo_item {
@@ -92,9 +97,4 @@
       margin: 0 0 10px 0 !important;
     }
   }
-}
-
-.movie_moreInfo p {
-  font-weight: 500;
-  margin: 5px 0;
 }

@@ -21,9 +21,10 @@ const Cast = ({id}) => {
   const {cast, cast_inner, item, names, real_name, character_name} = css;
 
   useEffect(() => {
-    fetch(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`).then((resp) => {
-      return resp.json();
-    })
+    fetch(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`)
+      .then((resp) => {
+        return resp.json();
+      })
       .then((data) => {
         setCredits(data.cast);
       })

@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import { API_KEY, API_URL } from "../helpers/Config";
 import Loading from "../components/Loading";
 import PersonMovie from "../components/PersonMovie";
-import PersonShow from "../components/PersonShow";
 
 import css from "./pages.module.scss";
 
@@ -52,7 +51,6 @@ function Person() {
       })
       .then((data) => {
         setPerson(data);
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);
@@ -78,10 +76,10 @@ function Person() {
               {place_of_birth}
             </div>
             <div>
-              {biography?.length <= 300 ? biography : (
+              {biography?.length <= 400 ? biography : (
                 <>
                   <p className={person_biography}>
-                    {readMore ? biography : `${biography?.substring(0, 300)}...`}
+                    {readMore ? biography : `${biography?.substring(0, 400)}...`}
                   </p>
                   <button className={btn_readMore} onClick={() => setReadMore(!readMore)}>
                     {readMore ? "Read Less" : "Read More"}
@@ -92,7 +90,6 @@ function Person() {
           </div>
         </div>
         <PersonMovie/>
-        <PersonShow/>
       </div>
     </Loading>
   );

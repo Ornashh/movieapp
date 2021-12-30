@@ -86,7 +86,6 @@ const Details = ({id}) => {
     <Loading loading={loading}>
       <div className={`${movie} fade_in`} style={backgroundImg}>
         <div className={movie_poster}>
-
           <img src={poster} alt={title || "movie_title"}/>
         </div>
         <div className={movie_info}>
