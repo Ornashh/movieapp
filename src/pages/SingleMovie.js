@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import Details from "../components/details/Details";
 import Tabs from "../components/Tabs";
 import Cast from "../components/cast/Cast";
-import Videos from "../components/videos/Videos";
-import Photos from "../components/photos/Photos";
+import Videos from "../components/Videos";
+import Photos from "../components/Photos";
 import Rec from "../components/Rec";
 
 const SingleTvShow = () => {

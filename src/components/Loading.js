@@ -1,7 +1,7 @@
 import React from 'react';
 import Loader from "react-loader-spinner";
 
-function Loading({loading = true, show = true, children, style = {}}) {
+function Loading({loading = true, children, style = {}}) {
   return (
     <>
       {loading ? (
