@@ -25,7 +25,6 @@ function PersonMovie() {
       })
       .then((data) => {
         setPersonMovie(data.cast);
-        console.log(data.cast);
       })
       .catch((error) => {
         console.log(error);

@@ -22,17 +22,17 @@ export const MediaItem = styled.div`
   height: 200px;
   transition: transform 0.3s ease-out;
   overflow: hidden;
-  cursor: pointer;
+  cursor: ${props => props.pointer ? "pointer" : ""};
 
   &:hover {
     transform: scale(1.03);
   }
-  
+
   &:hover span {
     opacity: 1;
     visibility: visible;
   }
-  
+
   img {
     object-fit: cover;
     object-position: center;
@@ -45,11 +45,10 @@ export const MediaItem = styled.div`
   }
 `;
 
-export const PlayIcon = styled.span`
-  font-size: 2rem;
-  color: #1976d2;
+export const InfoWrapper = styled.span`
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -58,8 +57,34 @@ export const PlayIcon = styled.span`
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  cursor: pointer;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease-out;
+
+  svg {
+    font-size: 2rem;
+    color: #1976d2;
+    cursor: pointer;
+  }
+`;
+
+export const Info = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  
+  h4 {
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 3px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
 `;

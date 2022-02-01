@@ -6,7 +6,7 @@ import { SEARCH_URL } from "../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Loading from "../components/Loading";
 
-import css from "../pages/pages.module.scss";
+import { CardsOuter, CardsInner, CardsTitle, Card, FavButton, EmptyMessage } from "../components/styledComponents/Cards";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const Search = () => {
@@ -15,8 +15,6 @@ const Search = () => {
   const [name, setName] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const {cards, cards_inner, cards_title, card, btn_fav, form, empty} = css;
 
   useEffect(() => {
     if (name) {
@@ -46,18 +44,18 @@ const Search = () => {
 
   return (
     <Loading loading={loading}>
-      <form className={form} onSubmit={handleSubmit}>
-        <input type="text" placeholder="Search" ref={value}/>
+      <form className="form" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Search" ref={value} autoFocus/>
       </form>
 
       {name ? (
-        <div className={`${cards} fade_in`}>
-          <div className={cards_title}>Results: {name}</div>
-          <div className={cards_inner}>
+        <CardsOuter className="fade_in">
+          <CardsTitle>Results: {name}</CardsTitle>
+          <CardsInner>
             {results?.map((movie) => {
               const {id, title, poster_path} = movie;
               return (
-                <div key={id} className={card}>
+                <Card key={id}>
                   <Link to={`/movie/${id}`}>
                     <LazyLoadImage
                       wrapperClassName="lazyLoad"
@@ -69,23 +67,23 @@ const Search = () => {
                       alt={title}
                     />
                   </Link>
-                  <button
+                  <FavButton
                     onClick={() => handleAdd(movie)}
-                    className={btn_fav}
+                    className="fav_btn"
                   >
                     {favoriteArr.find((item) => item.id === movie.id) ? (
                       <AiFillHeart/>
                     ) : (
                       <AiOutlineHeart/>
                     )}
-                  </button>
-                </div>
+                  </FavButton>
+                </Card>
               );
             })}
-          </div>
-        </div>
+          </CardsInner>
+        </CardsOuter>
       ) : (
-        <div className={`${empty} fade_in`}>No search results</div>
+        <EmptyMessage className="fade_in">No search results</EmptyMessage>
       )}
     </Loading>
   );

@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1b374f5-8669-45c4-99ef-5ba89456048b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/styledComponents/Button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/styledComponents/Cards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Loading.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PersonMovie.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PersonMovie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Photos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Photos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Videos.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Videos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/styledComponents/Media.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/styledComponents/Media.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Popular.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Popular.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TopRated.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopRated.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +47,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../react-humanbenchmark_clone" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -46,6 +56,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Desktop\movieapp\src\components\styledComponents" />
       <recent name="C:\Users\admin\Desktop\react-movieapp\src\components" />
     </key>
   </component>
@@ -74,6 +85,8 @@
       <workItem from="1643657983156" duration="5000" />
       <workItem from="1643658005888" duration="7000" />
       <workItem from="1643658014207" duration="200000" />
+      <workItem from="1643658498615" duration="5000" />
+      <workItem from="1643738749167" duration="4753000" />
     </task>
     <servers />
   </component>

@@ -7,7 +7,8 @@ import {
   MediaOuter,
   MediaInner,
   MediaItem,
-  PlayIcon,
+  InfoWrapper,
+  Info,
 } from "./styledComponents/Media";
 import Loading from "./Loading";
 import Modal from "./Modal";
@@ -57,7 +58,7 @@ const Videos = ({id}) => {
       <MediaOuter>
         <MediaInner className="fade_in">
           {videos?.map((video) => {
-            const {id, key} = video;
+            const {id, key, name, type} = video;
             return (
               <MediaItem key={id}>
                 <LazyLoadImage
@@ -65,9 +66,13 @@ const Videos = ({id}) => {
                   src={`https://i3.ytimg.com/vi/${key}/maxresdefault.jpg`}
                   alt="video"
                 />
-                <PlayIcon onClick={() => openModal(key)}>
-                  <FaPlay/>
-                </PlayIcon>
+                <InfoWrapper>
+                  <FaPlay onClick={() => openModal(key)}/>
+                  <Info>
+                    <h4>{name}</h4>
+                    <p>{type}</p>
+                  </Info>
+                </InfoWrapper>
               </MediaItem>
             );
           })}

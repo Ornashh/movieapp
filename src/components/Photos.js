@@ -58,7 +58,7 @@ const Photos = ({id}) => {
           {photos?.map((photo) => {
             const {file_path} = photo;
             return (
-              <MediaItem key={uuidv4()}>
+              <MediaItem key={uuidv4()} pointer>
                 <LazyLoadImage
                   wrapperClassName="lazyLoad"
                   src={file_path ? backdrop_img + file_path : backdropNotFound}
