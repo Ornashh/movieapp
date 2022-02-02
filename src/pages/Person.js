@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { API_KEY, API_URL } from "../helpers/Config";
 import Loading from "../components/Loading";
 import PersonMovie from "../components/PersonMovie";
+import PageTitle from "../components/PageTitle";
 
 import css from "./pages.module.scss";
 
@@ -61,37 +62,39 @@ function Person() {
   }, [id]);
 
   return (
-    <Loading loading={loading}>
-      <div className={person_outer}>
-        <div className={person_inner}>
-          <div className={person_img}>
-            <img src={poster_img + profile_path} alt="#"/>
+    <PageTitle title={name}>
+      <Loading loading={loading}>
+        <div className={person_outer}>
+          <div className={person_inner}>
+            <div className={person_img}>
+              <img src={poster_img + profile_path} alt="#"/>
+            </div>
+            <div className={person_info}>
+              <h1 className={person_name}>{name}</h1>
+              <div className={person_date}>
+                {dateFormat(birthday)} &#8212; {deathday === null ? "" : dateFormat(deathday)}
+              </div>
+              <div className={person_place}>
+                {place_of_birth}
+              </div>
+              <div>
+                {biography?.length <= 400 ? biography : (
+                  <>
+                    <p className={person_biography}>
+                      {readMore ? biography : `${biography?.substring(0, 400)}...`}
+                    </p>
+                    <button className={btn_readMore} onClick={() => setReadMore(!readMore)}>
+                      {readMore ? "Read Less" : "Read More"}
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
-          <div className={person_info}>
-            <h1 className={person_name}>{name}</h1>
-            <div className={person_date}>
-              {dateFormat(birthday)} &#8212; {deathday === null ? "" : dateFormat(deathday)}
-            </div>
-            <div className={person_place}>
-              {place_of_birth}
-            </div>
-            <div>
-              {biography?.length <= 400 ? biography : (
-                <>
-                  <p className={person_biography}>
-                    {readMore ? biography : `${biography?.substring(0, 400)}...`}
-                  </p>
-                  <button className={btn_readMore} onClick={() => setReadMore(!readMore)}>
-                    {readMore ? "Read Less" : "Read More"}
-                  </button>
-                </>
-              )}
-            </div>
-          </div>
+          <PersonMovie/>
         </div>
-        <PersonMovie/>
-      </div>
-    </Loading>
+      </Loading>
+    </PageTitle>
   );
 }
 

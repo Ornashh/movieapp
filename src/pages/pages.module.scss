@@ -1,24 +1,3 @@
-.form {
-  padding: 20px 20px 0 110px;
-
-  input {
-    outline: none;
-    border: none;
-    color: #000;
-    font-size: 1.3rem;
-    border-radius: 5px;
-    width: 100%;
-    padding: 15px;
-    transition: all 0.3s ease;
-  }
-}
-
-@media (max-width: 1024px) {
-  .form {
-    padding: 20px;
-  }
-}
-
 .cards {
   padding: 20px 20px 20px 110px;
 }

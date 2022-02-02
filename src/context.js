@@ -9,13 +9,13 @@ const initialState = {
   favoriteArr: movieFromLocalStorage,
 };
 
+const backdrop_img = "https://image.tmdb.org/t/p/w1280";
+const poster_img = "https://image.tmdb.org/t/p/w780";
+
 const AppContext = React.createContext();
 
 const AppProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  const backdrop_img = "https://image.tmdb.org/t/p/w1280";
-  const poster_img = "https://image.tmdb.org/t/p/w780";
 
   useEffect(() => {
     localStorage.setItem("movie", JSON.stringify(state.favoriteArr));

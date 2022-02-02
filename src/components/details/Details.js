@@ -9,11 +9,11 @@ import Loading from "../Loading";
 
 import css from "./details.module.scss";
 
-const Details = ({id}) => {
+const Details = ({details, loading}) => {
   const {poster_img, backdrop_img, posterNotFound, backdropNotFound} =
     useGlobalContext();
-  const [details, setDetails] = useState({});
-  const [loading, setLoading] = useState(true);
+  // const [details, setDetails] = useState({});
+  // const [loading, setLoading] = useState(true);
 
   const {
     backdrop_path,
@@ -65,22 +65,6 @@ const Details = ({id}) => {
     const min = time % 60;
     return `${hour}h ${min}m`;
   };
-
-  useEffect(() => {
-    fetch(`${API_URL}movie/${id}?api_key=${API_KEY}&language=en-US`)
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setDetails(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [id]);
 
   return (
     <Loading loading={loading}>

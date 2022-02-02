@@ -22,6 +22,7 @@ export const CardsInner = styled.div`
 export const CardsTitle = styled.div`
   font-size: 1.7rem;
   font-weight: 500;
+  text-align: ${props => props.center ? "center" : ""};
   margin-bottom: 15px;
 `;
 

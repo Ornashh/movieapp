@@ -3,14 +3,17 @@ import React from "react";
 import NowPlaying from "../components/nowplaying/NowPlaying";
 import Popular from "../components/Popular";
 import TopRated from "../components/TopRated";
+import PageTitle from "../components/PageTitle";
 
 const Home = () => {
   return (
-    <div className="content">
-      <NowPlaying/>
-      <Popular/>
-      <TopRated/>
-    </div>
+    <PageTitle title="Home">
+      <div className="content">
+        <NowPlaying/>
+        <Popular/>
+        <TopRated/>
+      </div>
+    </PageTitle>
   );
 };
 
