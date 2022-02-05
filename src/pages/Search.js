@@ -6,6 +6,7 @@ import { SEARCH_URL } from "../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Loading from "../components/Loading";
 import PageTitle from "../components/PageTitle";
+import FavoriteIcon from "../components/FavoriteIcon";
 
 import styled from "styled-components";
 import {
@@ -13,10 +14,8 @@ import {
   CardsInner,
   CardsTitle,
   Card,
-  FavButton,
   EmptyMessage
 } from "../components/styledComponents/Cards";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 const Form = styled.form`
   padding: 20px 20px 0 110px;
@@ -96,16 +95,7 @@ const Search = () => {
                         alt={title}
                       />
                     </Link>
-                    <FavButton
-                      onClick={() => handleAdd(movie)}
-                      className="fav_btn"
-                    >
-                      {favoriteArr.find((item) => item.id === movie.id) ? (
-                        <AiFillHeart/>
-                      ) : (
-                        <AiOutlineHeart/>
-                      )}
-                    </FavButton>
+                    <FavoriteIcon element={movie} />
                   </Card>
                 );
               })}

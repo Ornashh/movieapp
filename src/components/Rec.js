@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useGlobalContext } from "../context";
-import { Link } from "react-router-dom";
 
 import { API_KEY, API_URL } from "../helpers/Config";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import styled from "styled-components";
+import { Carousel, Title } from "./Slider";
+import Slider from "./Slider";
 import Loading from "./Loading";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation } from "swiper/core";
-
-SwiperCore.use([Navigation]);
+const RecWrapper = styled.div`
+  padding: 0 20px 0 110px;
+`;
 
 const Rec = ({id}) => {
-  const {poster_img, posterNotFound, handleAdd, favoriteArr} =
-    useGlobalContext();
   const [rec, setRec] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -36,70 +32,16 @@ const Rec = ({id}) => {
 
   return (
     <Loading loading={loading} style={{height: "50vh"}}>
-      <div className="rec fade_in">
-        <div className="main_title">Recommended Movies</div>
-        {rec.length === 0 ? (
-          ""
-        ) : (
-          <div className="rec_inner">
-            <Swiper
-              className="mySwiper"
-              navigation={true}
-              freeMode={true}
-              spaceBetween={10}
-              breakpoints={{
-                320: {
-                  slidesPerView: 2,
-                },
-                640: {
-                  slidesPerView: 3,
-                },
-                768: {
-                  slidesPerView: 4,
-                },
-                1024: {
-                  slidesPerView: 6,
-                },
-              }}
-            >
-              {rec?.map((movie) => {
-                const {id, poster_path, title} = movie;
-                return (
-                  <div key={id}>
-                    <SwiperSlide key={id}>
-                      <div className="item">
-                        <Link to={`/movie/${id}`}>
-                          <LazyLoadImage
-                            wrapperClassName="lazyLoad"
-                            src={
-                              poster_path
-                                ? poster_img + poster_path
-                                : posterNotFound
-                            }
-                            alt={title}
-                          />
-                        </Link>
-                        <button
-                          onClick={() => handleAdd(movie)}
-                          className="btn_fav"
-                        >
-                          {favoriteArr.find(
-                            (item) => item.id === movie.id
-                          ) ? (
-                            <AiFillHeart/>
-                          ) : (
-                            <AiOutlineHeart/>
-                          )}
-                        </button>
-                      </div>
-                    </SwiperSlide>
-                  </div>
-                );
-              })}
-            </Swiper>
-          </div>
-        )}
-      </div>
+      <RecWrapper>
+        <Carousel className="fade_in">
+          <Title>Recommended Movies</Title>
+          {rec.length === 0 ? (
+            ""
+          ) : (
+            <Slider data={rec} />
+          )}
+        </Carousel>
+      </RecWrapper>
     </Loading>
   );
 };

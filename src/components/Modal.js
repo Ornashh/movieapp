@@ -60,7 +60,7 @@ function Modal({handleClickAway, handleClick, children}) {
       >
         <FaTimes size={"3em"}/>
       </ModalCloseButton>
-      <ModalInner className="modal_inner" id="video">
+      <ModalInner>
         {children}
       </ModalInner>
     </ModalOuter>

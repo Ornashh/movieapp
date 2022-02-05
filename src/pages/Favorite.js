@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PageTitle from "../components/PageTitle";
 
-import { CardsOuter, CardsInner, CardsTitle, Card, FavButton } from "../components/styledComponents/Cards";
-import { Button, ButtonWrapper } from "../components/styledComponents/Button";
+import { CardsOuter, CardsInner, CardsTitle, Card } from "../components/styledComponents/Cards";
+import Button from "../components/Button"
+import { FavButton } from "../components/FavoriteIcon";
 import { AiFillHeart } from "react-icons/ai";
 
 const Favorite = () => {
@@ -47,9 +48,7 @@ const Favorite = () => {
                 );
               })}
             </CardsInner>
-            <ButtonWrapper>
-              <Button onClick={handleClear}>Clear all</Button>
-            </ButtonWrapper>
+            <Button handleClick={handleClear}>Clear all</Button>
           </>
         )}
       </CardsOuter>

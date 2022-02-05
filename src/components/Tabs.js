@@ -4,7 +4,6 @@ import styled from "styled-components"
 const TabPanel = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
   padding-left: 90px;
 
   @media screen and (max-width: 1024px) {

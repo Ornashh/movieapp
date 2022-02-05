@@ -25,6 +25,14 @@ const Photos = ({id}) => {
   };
 
   useEffect(() => {
+    if (modalIsOpen) {
+      document.querySelector("body").style.overflow = "hidden"
+    } else {
+      document.querySelector("body").style.overflow = "unset"
+    }
+  }, [modalIsOpen]);
+
+  useEffect(() => {
     setLoading(true);
     fetch(`${API_URL}movie/${id}/images?api_key=${API_KEY}&language=en-US&include_image_language=null`)
       .then((resp) => {

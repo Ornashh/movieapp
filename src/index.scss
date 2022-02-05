@@ -7,12 +7,15 @@
 }
 
 html {
+  scroll-behavior: smooth;
+
   &::-webkit-scrollbar {
-    width: 3px;
+    width: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: #1976d2;
+    border-radius: 5px;
   }
 }
 
@@ -46,7 +49,7 @@ main {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-15px);
   }
   to {
     opacity: 1;
@@ -59,118 +62,8 @@ main {
   color: #fff !important;
 }
 
-.main_title {
-  font-size: 1.8rem;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.content {
-  padding: 40px 20px 40px 110px;
-
-  .block:not(:last-child) {
-    margin-bottom: 35px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    padding: 40px 20px 100px 20px;
-  }
-}
-
-// ITEM STYLES
-.item {
-  border-radius: 5px;
-  position: relative;
-  width: inherit;
-  height: 350px;
-  overflow: hidden;
-
-  &:hover .btn_fav {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-@media (max-width: 768px) {
-  .item {
-    height: auto;
-  }
-}
-
-.item {
-  img {
-    object-fit: cover;
-    object-position: top;
-    width: 100%;
-    height: 100%;
-  }
-
-  a {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-// RECOMMENDATIONS STYLES
-.rec {
-  padding: 0 20px 30px 110px;
-}
-
-@media (max-width: 1024px) {
-  .rec {
-    padding: 0 20px 100px 20px;
-  }
-}
-
-.person_movie {
-  margin: 30px 0;
-}
-
 .lazyLoad {
   width: inherit;
   height: inherit;
   background-color: #1f1f1f;
-}
-
-.btn_fav {
-  font-size: 2rem;
-  color: #1976d2;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-
-@media (max-width: 768px) {
-  .btn_fav {
-    opacity: 1;
-    visibility: visible;
-  }
-}
-
-.btn_wrapper {
-  text-align: center;
-  margin-top: 20px;
-
-  button {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #fff;
-    background-color: #1976d2;
-    border-radius: 5px;
-    padding: 10px 20px;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #165ea5;
-    }
-  }
 }

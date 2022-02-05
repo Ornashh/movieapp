@@ -27,6 +27,14 @@ const Videos = ({id}) => {
   };
 
   useEffect(() => {
+    if (modalIsOpen) {
+      document.querySelector("body").style.overflow = "hidden"
+    } else {
+      document.querySelector("body").style.overflow = "unset"
+    }
+  }, [modalIsOpen]);
+
+  useEffect(() => {
     setLoading(true);
     fetch(`${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
       .then((resp) => {

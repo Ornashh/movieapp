@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import Details from "../components/details/Details";
+import Details from "../components/Details";
 import Tabs from "../components/Tabs";
-import Cast from "../components/cast/Cast";
+import Cast from "../components/Cast";
 import Videos from "../components/Videos";
 import Photos from "../components/Photos";
 import Rec from "../components/Rec";

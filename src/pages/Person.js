@@ -7,7 +7,60 @@ import Loading from "../components/Loading";
 import PersonMovie from "../components/PersonMovie";
 import PageTitle from "../components/PageTitle";
 
-import css from "./pages.module.scss";
+import styled from "styled-components";
+
+const PersonOuter = styled.div`
+  padding: 20px 20px 20px 110px;
+
+  @media screen and (max-width: 1024px) {
+    padding: 20px 20px 100px;
+  }`
+;
+
+const PersonInner = styled.div`
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+`;
+
+const PersonImage = styled.div`
+  border-radius: 5px;
+  width: 300px;
+  height: 450px;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const PersonInfo = styled.div`
+  padding: 10px 20px;
+  
+  div {
+    margin-top: 10px;
+  }
+`;
+
+const PersonBiography = styled.div`
+  font-size: 14px;
+  line-height: 20px;
+`;
+
+const ReadMore = styled.button`
+  font-size: 14px;
+  color: #1976d2;
+  padding: 3px 0;
+`;
+
 
 function Person() {
   const {id} = useParams();
@@ -15,18 +68,6 @@ function Person() {
   const [person, setPerson] = useState({});
   const [readMore, setReadMore] = useState(false);
   const [loading, setLoading] = useState(true);
-
-  const {
-    person_outer,
-    person_inner,
-    person_img,
-    person_info,
-    person_name,
-    person_date,
-    person_place,
-    person_biography,
-    btn_readMore,
-  } = css;
 
   const {
     profile_path,
@@ -64,35 +105,33 @@ function Person() {
   return (
     <PageTitle title={name}>
       <Loading loading={loading}>
-        <div className={person_outer}>
-          <div className={person_inner}>
-            <div className={person_img}>
+        <PersonOuter>
+          <PersonInner>
+            <PersonImage>
               <img src={poster_img + profile_path} alt="#"/>
-            </div>
-            <div className={person_info}>
-              <h1 className={person_name}>{name}</h1>
-              <div className={person_date}>
+            </PersonImage>
+            <PersonInfo>
+              <h1>{name}</h1>
+              <div>
                 {dateFormat(birthday)} &#8212; {deathday === null ? "" : dateFormat(deathday)}
               </div>
-              <div className={person_place}>
-                {place_of_birth}
-              </div>
+              <div>{place_of_birth}</div>
               <div>
                 {biography?.length <= 400 ? biography : (
                   <>
-                    <p className={person_biography}>
+                    <PersonBiography>
                       {readMore ? biography : `${biography?.substring(0, 400)}...`}
-                    </p>
-                    <button className={btn_readMore} onClick={() => setReadMore(!readMore)}>
+                    </PersonBiography>
+                    <ReadMore onClick={() => setReadMore(!readMore)}>
                       {readMore ? "Read Less" : "Read More"}
-                    </button>
+                    </ReadMore>
                   </>
                 )}
               </div>
-            </div>
-          </div>
+            </PersonInfo>
+          </PersonInner>
           <PersonMovie/>
-        </div>
+        </PersonOuter>
       </Loading>
     </PageTitle>
   );

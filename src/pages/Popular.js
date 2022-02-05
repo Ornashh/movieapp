@@ -6,18 +6,13 @@ import { POPULAR_URL } from "../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Loading from "../components/Loading";
 import PageTitle from "../components/PageTitle";
+import Button from "../components/Button"
+import FavoriteIcon from "../components/FavoriteIcon";
 
-import { CardsOuter, CardsInner, CardsTitle, Card, FavButton } from "../components/styledComponents/Cards";
-import { Button, ButtonWrapper } from "../components/styledComponents/Button";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { CardsOuter, CardsInner, CardsTitle, Card } from "../components/styledComponents/Cards";
 
 const Popular = () => {
-  const {
-    poster_img,
-    posterNotFound,
-    handleAdd,
-    favoriteArr,
-  } = useGlobalContext();
+  const {poster_img, posterNotFound} = useGlobalContext();
   const [loading, setLoading] = useState(true);
   const [popular, setPopular] = useState([]);
   const [page, setPage] = useState(1);
@@ -56,20 +51,12 @@ const Popular = () => {
                       alt={title}
                     />
                   </Link>
-                  <FavButton onClick={() => handleAdd(movie)} className="fav_btn">
-                    {favoriteArr.find((item) => item.id === movie.id) ? (
-                      <AiFillHeart/>
-                    ) : (
-                      <AiOutlineHeart/>
-                    )}
-                  </FavButton>
+                  <FavoriteIcon element={movie}/>
                 </Card>
               );
             })}
           </CardsInner>
-          <ButtonWrapper>
-            <Button onClick={() => setPage(page + 1)}>Load More</Button>
-          </ButtonWrapper>
+          <Button handleClick={() => setPage(page + 1)}>Load More</Button>
         </CardsOuter>
       </Loading>
     </PageTitle>
