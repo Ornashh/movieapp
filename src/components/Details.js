@@ -29,7 +29,7 @@ const Movie = styled.div`
   }
 
   @media screen and (max-width: 1024px) {
-    height: auto;
+    height: calc(100vh - 80px);
     padding: 20px;
   }
 `;
@@ -68,6 +68,10 @@ const MovieTitle = styled.div`
   font-size: 3.5rem;
   font-weight: 700;
   line-height: 1.1;
+
+  @media screen and (max-width: 1024px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const MovieGenres = styled.div`

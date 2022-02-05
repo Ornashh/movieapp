@@ -46,10 +46,6 @@ const ModalCloseButton = styled.button`
   top: 0;
   right: 0;
   z-index: -1;
-
-  @media screen and (max-width: 768px) {
-    width: 90%;
-  }
 `;
 
 function Modal({handleClickAway, handleClick, children}) {

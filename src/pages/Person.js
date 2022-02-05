@@ -48,6 +48,10 @@ const PersonInfo = styled.div`
   div {
     margin-top: 10px;
   }
+
+  @media screen and (max-width: 1024px) {
+    padding: 0;
+  }
 `;
 
 const PersonBiography = styled.div`

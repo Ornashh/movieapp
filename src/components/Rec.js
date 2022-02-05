@@ -7,7 +7,13 @@ import Slider from "./Slider";
 import Loading from "./Loading";
 
 const RecWrapper = styled.div`
+  margin-bottom: 30px;
   padding: 0 20px 0 110px;
+  
+  @media screen and (max-width: 1024px) {
+    margin-bottom: 100px;
+    padding: 0 20px;
+  }
 `;
 
 const Rec = ({id}) => {

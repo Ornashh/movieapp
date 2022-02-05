@@ -22,7 +22,7 @@ const Tab = styled.button`
   transition: all 0.3s ease;
 
   &:hover {
-    color: #fff;
+    color: #1976d2;
     background-color: #0e0e0e;
   }
 

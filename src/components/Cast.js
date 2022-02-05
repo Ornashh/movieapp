@@ -17,7 +17,7 @@ const CastWrapper = styled.div`
   padding: 0 20px 0 110px;
 
   @media screen and (max-width: 1024px) {
-    padding: 0 20px 50px 20px;
+    padding: 0 20px 0 20px;
   }
 `;
 
