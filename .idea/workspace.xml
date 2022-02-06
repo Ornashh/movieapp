@@ -3,16 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a1b374f5-8669-45c4-99ef-5ba89456048b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Cast.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cast.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Details.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Modal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Modal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Rec.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Rec.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Tabs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/styledComponents/Media.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/styledComponents/Media.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/Config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Person.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Person.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Popular.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Popular.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Search.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/TopRated.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/TopRated.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +91,9 @@
       <workItem from="1644059977929" duration="5826000" />
       <workItem from="1644076177460" duration="364000" />
       <workItem from="1644080003627" duration="1186000" />
-      <workItem from="1644087168030" duration="11809000" />
+      <workItem from="1644087168030" duration="11890000" />
+      <workItem from="1644149527379" duration="5899000" />
+      <workItem from="1644168064523" duration="2482000" />
     </task>
     <servers />
   </component>

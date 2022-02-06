@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #1976d2 #0e0e0e;
 
   &::-webkit-scrollbar {
     width: 5px;

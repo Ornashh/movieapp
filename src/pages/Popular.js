@@ -22,7 +22,9 @@ const Popular = () => {
       return resp.json();
     })
       .then((data) => {
-        setPopular([...popular, ...data.results]);
+        setPopular((prevState) => {
+          return [...prevState, ...data.results]
+        })
       })
       .catch((error) => {
         console.log(error);

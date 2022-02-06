@@ -23,7 +23,9 @@ const TopRated = () => {
         return resp.json();
       })
       .then((data) => {
-        setTopRated([...topRated, ...data.results]);
+        setTopRated((prevState) => {
+          return [...prevState, ...data.results]
+        })
       })
       .catch((error) => {
         console.log(error);

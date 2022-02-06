@@ -16,6 +16,7 @@ import {
   Card,
   EmptyMessage
 } from "../components/styledComponents/Cards";
+import Button from "../components/Button";
 
 const Form = styled.form`
   padding: 20px 20px 0 110px;
@@ -37,21 +38,25 @@ const Form = styled.form`
 `;
 
 const Search = () => {
-  const {poster_img, posterNotFound, handleAdd, favoriteArr} = useGlobalContext();
+  const {poster_img, posterNotFound} = useGlobalContext();
   const value = useRef();
   const [name, setName] = useState("");
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(null);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (name) {
-      setLoading(true);
-      fetch(SEARCH_URL + name)
+      fetch(`${SEARCH_URL}page=${page}&query=${name}`)
         .then((resp) => {
           return resp.json();
         })
         .then((data) => {
-          setResults(data.results);
+          setResults((prevState) => {
+            return [...prevState, ...data.results]
+          });
+          setTotal(data.total_pages);
         })
         .catch((error) => {
           console.log(error);
@@ -60,13 +65,14 @@ const Search = () => {
           setLoading(false);
         });
     }
-  }, [name]);
+  }, [page, name]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     setName(value.current.value);
     value.current.value = "";
+    setResults([]);
   };
 
   return (
@@ -95,11 +101,16 @@ const Search = () => {
                         alt={title}
                       />
                     </Link>
-                    <FavoriteIcon element={movie} />
+                    <FavoriteIcon element={movie}/>
                   </Card>
                 );
               })}
             </CardsInner>
+            {page === total ? (
+              ""
+            ) : (
+              <Button handleClick={() => setPage(page + 1)}>Load More</Button>
+            )}
           </CardsOuter>
         ) : (
           <EmptyMessage className="fade_in">No search results</EmptyMessage>

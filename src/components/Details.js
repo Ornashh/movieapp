@@ -86,17 +86,17 @@ const MovieOverview = styled.div`
 const MovieMoreInfo = styled.div`
   display: grid;
   grid-template-columns: 100px 1fr;
-  align-items: center;
-  
+  align-items: flex-start;
+
   div {
     margin: 0 !important;
-    
+
     h4 {
       &:not(:last-child) {
         margin: 0 0 10px 0 !important;
       }
     }
-    
+
     p {
       &:not(:last-child) {
         margin: 0 0 10px 0 !important;
@@ -120,6 +120,8 @@ const Details = ({details, loading}) => {
     budget,
     revenue,
     vote_average,
+    production_countries,
+    production_companies
   } = details;
 
   let poster;
@@ -173,12 +175,19 @@ const Details = ({details, loading}) => {
           <MovieOverview>{overview}</MovieOverview>
           <MovieMoreInfo>
             <div>
+              <h4>Country:</h4>
               <h4>Release:</h4>
               <h4>Runtime:</h4>
               <h4>Budget:</h4>
               <h4>Revenue:</h4>
+              <h4>Production:</h4>
             </div>
             <div>
+              <p>
+                {production_countries?.map((el) => {
+                  return el.name
+                }).join(", ")}
+              </p>
               <p>
                 {new Date(release_date).toLocaleDateString("en-US", {
                   month: "long",
@@ -189,6 +198,11 @@ const Details = ({details, loading}) => {
               <p>{timeConverter(runtime)}</p>
               <p>{moneyConverter(budget)}</p>
               <p>{moneyConverter(revenue)}</p>
+              <p>
+                {production_companies?.map((production) => {
+                  return production.name
+                }).join(", ")}
+              </p>
             </div>
           </MovieMoreInfo>
         </MovieInfo>
