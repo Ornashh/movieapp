@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import GlobalStyle from "./globalStyles";
 import ScrollToTop from "./helpers/ScrollToTop";
 
 import Navbar from "./components/Navbar";
@@ -15,6 +16,7 @@ import Person from "./pages/Person";
 function App() {
   return (
     <main>
+      <GlobalStyle/>
       <Router>
         <Navbar/>
         <ScrollToTop/>
