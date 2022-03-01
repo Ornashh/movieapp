@@ -52,12 +52,6 @@ const MovieInfo = styled.div`
   width: 50%;
   margin-left: 50px;
 
-  div {
-    &:not(:last-child) {
-      margin-bottom: 15px;
-    }
-  }
-
   @media screen and (max-width: 1024px) {
     width: 100%;
     margin-left: 0;
@@ -75,32 +69,23 @@ const MovieTitle = styled.div`
 `;
 
 const MovieGenres = styled.div`
-  font-weight: 500
+  font-weight: 500;
+  margin: 15px 0;
 `;
 
 const MovieOverview = styled.div`
   font-size: 1.03rem;
   line-height: 1.2;
+  margin: 15px 0;
 `;
 
 const MovieMoreInfo = styled.div`
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  align-items: flex-start;
-
   div {
-    margin: 0 !important;
-
-    h4 {
-      &:not(:last-child) {
-        margin: 0 0 10px 0 !important;
-      }
-    }
-
-    p {
-      &:not(:last-child) {
-        margin: 0 0 10px 0 !important;
-      }
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    
+    &:not(:last-child) {
+      margin-bottom: 10px;
     }
   }
 `;
@@ -136,6 +121,20 @@ const Details = ({details, loading}) => {
     background: `url(${backdrop}) no-repeat center center/cover fixed`,
   };
 
+  const genresFormat = genres?.map((genre) => {
+    return genre.name;
+  }).join(", ");
+
+  const countryFormat = production_countries?.map((el) => {
+    return el.name;
+  }).join(", ");
+
+  const dateFormat = new Date(release_date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
   const moneyConverter = (money) => {
     const formatter = new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -151,6 +150,10 @@ const Details = ({details, loading}) => {
     return `${hour}h ${min}m`;
   };
 
+  const productionFormat = production_companies?.map((production) => {
+    return production.name;
+  }).join(", ");
+
   return (
     <Loading loading={loading}>
       <Movie className="fade_in" style={backgroundImg}>
@@ -159,11 +162,7 @@ const Details = ({details, loading}) => {
         </MoviePoster>
         <MovieInfo>
           <MovieTitle>{title}</MovieTitle>
-          <MovieGenres>
-            {genres?.map((genre) => {
-              return genre.name;
-            }).join(", ")}
-          </MovieGenres>
+          <MovieGenres>{genresFormat}</MovieGenres>
           <div>
             <Rate
               value={vote_average / 2}
@@ -176,33 +175,27 @@ const Details = ({details, loading}) => {
           <MovieMoreInfo>
             <div>
               <h4>Country:</h4>
-              <h4>Release:</h4>
-              <h4>Runtime:</h4>
-              <h4>Budget:</h4>
-              <h4>Revenue:</h4>
-              <h4>Production:</h4>
+              <p>{countryFormat}</p>
             </div>
             <div>
-              <p>
-                {production_countries?.map((el) => {
-                  return el.name
-                }).join(", ")}
-              </p>
-              <p>
-                {new Date(release_date).toLocaleDateString("en-US", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </p>
+              <h4>Release:</h4>
+              <p>{dateFormat}</p>
+            </div>
+            <div>
+              <h4>Runtime:</h4>
               <p>{timeConverter(runtime)}</p>
+            </div>
+            <div>
+              <h4>Budget:</h4>
               <p>{moneyConverter(budget)}</p>
+            </div>
+            <div>
+              <h4>Revenue:</h4>
               <p>{moneyConverter(revenue)}</p>
-              <p>
-                {production_companies?.map((production) => {
-                  return production.name
-                }).join(", ")}
-              </p>
+            </div>
+            <div>
+              <h4>Production:</h4>
+              <p>{productionFormat}</p>
             </div>
           </MovieMoreInfo>
         </MovieInfo>
