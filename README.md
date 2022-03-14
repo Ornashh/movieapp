@@ -1,4 +1,6 @@
-# Movie App with React.js
+# Movie App
+
+#### React.js, Styled Components, TMDB(API)
 
 ## [Demo](https://ornashh-movieapp.netlify.app)
 
