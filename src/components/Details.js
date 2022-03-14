@@ -14,6 +14,7 @@ const Movie = styled.div`
   align-items: center;
   position: relative;
   height: 100vh;
+  min-height: 600px;
   padding: 20px 20px 20px 110px;
   z-index: 5;
 
@@ -29,17 +30,21 @@ const Movie = styled.div`
   }
 
   @media screen and (max-width: 1024px) {
-    height: calc(100vh - 80px);
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
     padding: 20px;
+    height: auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
 `;
 
 const MoviePoster = styled.div`
   width: 300px;
-
-  @media screen and (max-width: 1024px) {
-    display: none;
-  }
 
   img {
     border-radius: 5px;

@@ -13,12 +13,11 @@ SwiperCore.use([Autoplay, Pagination]);
 
 const MovieWrapper = styled.div`
   margin-bottom: 35px;
-`;
+  padding-left: 90px;
 
-const Title = styled.div`
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 10px;
+  @media screen and (max-width: 1024px) {
+    padding: 0;
+  }
 `;
 
 const MovieItem = styled.div`
@@ -109,7 +108,6 @@ const NowPlaying = () => {
   return (
     <Loading loading={loading} style={{height: "50vh"}}>
       <MovieWrapper className="fade_in">
-        <Title>Now Playing Movies</Title>
         <Swiper
           autoplay={{
             delay: 10000,

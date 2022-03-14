@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 
-import { Carousel, Title } from "./Slider";
+import { Title } from "./Slider";
 
 import { API_KEY, API_URL } from "../helpers/Config";
 import Loading from "./Loading";
@@ -30,10 +30,10 @@ function PersonMovie() {
 
   return (
     <Loading loading={loading} style={{height: "50vh"}}>
-      <Carousel className="fade_in">
+      <div className="fade_in">
         <Title>Movies</Title>
         <Slider data={personMovie} />
-      </Carousel>
+      </div>
     </Loading>
   );
 }

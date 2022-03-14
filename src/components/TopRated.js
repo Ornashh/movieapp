@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { TOP_RATED_URL } from "../helpers/Config";
-import { Carousel, Title } from "./Slider";
+import { SliderOuter, Title } from "./Slider";
 import Slider from "./Slider";
 import Loading from "./Loading";
 
@@ -27,12 +27,12 @@ const TopRated = () => {
 
   return (
     <Loading loading={loading} style={{height: "50vh"}}>
-      <div className="fade_in" style={{ marginBottom: 35 }}>
-        <Carousel>
+      <SliderOuter>
+        <div className="fade_in">
           <Title>Top Rated Movies</Title>
           <Slider data={topRated} />
-        </Carousel>
-      </div>
+        </div>
+      </SliderOuter>
     </Loading>
   );
 };

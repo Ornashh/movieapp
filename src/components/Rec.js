@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { API_KEY, API_URL } from "../helpers/Config";
 import styled from "styled-components";
-import { Carousel, Title } from "./Slider";
+import { Title } from "./Slider";
 import Slider from "./Slider";
 import Loading from "./Loading";
 
@@ -39,14 +39,14 @@ const Rec = ({id}) => {
   return (
     <Loading loading={loading} style={{height: "50vh"}}>
       <RecWrapper>
-        <Carousel className="fade_in">
+        <div className="fade_in">
           <Title>Recommended Movies</Title>
           {rec.length === 0 ? (
             ""
           ) : (
             <Slider data={rec} />
           )}
-        </Carousel>
+        </div>
       </RecWrapper>
     </Loading>
   );

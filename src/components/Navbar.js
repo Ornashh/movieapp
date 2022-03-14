@@ -21,6 +21,7 @@ const Nav = styled.nav`
   left: 0;
   width: 90px;
   height: 100%;
+  min-height: 600px;
   padding: 15px;
   z-index: 10;
 

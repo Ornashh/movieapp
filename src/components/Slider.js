@@ -10,8 +10,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper/core";
 SwiperCore.use([Navigation]);
 
-export const Carousel = styled.div`
-  //margin-bottom: 35px;
+export const SliderOuter = styled.div`
+  margin-bottom: 35px;
+  padding-left: 110px;
+
+  @media screen and (max-width: 1024px) {
+    padding: 0 20px;
+  }
 `;
 
 export const Title = styled.div`
@@ -20,7 +25,7 @@ export const Title = styled.div`
   margin-bottom: 10px;
 `;
 
-export const CarouselCard = styled.div`
+export const SliderCard = styled.div`
   border-radius: 5px;
   position: relative;
   width: inherit;
@@ -90,7 +95,7 @@ function Slider({data}) {
         const {id, title, poster_path} = movie;
         return (
           <SwiperSlide key={id}>
-            <CarouselCard>
+            <SliderCard>
               <Link to={`/movie/${id}`}>
                 <LazyLoadImage
                   wrapperClassName="lazyLoad"
@@ -103,7 +108,7 @@ function Slider({data}) {
                 />
               </Link>
               <FavoriteIcon element={movie} />
-            </CarouselCard>
+            </SliderCard>
           </SwiperSlide>
         );
       })}
