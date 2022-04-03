@@ -4,63 +4,86 @@ import { useGlobalContext } from "../context";
 
 import { POPULAR_URL } from "../helpers/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Loading from "../components/Loading";
 import PageTitle from "../components/PageTitle";
-import Button from "../components/Button"
 import FavoriteIcon from "../components/FavoriteIcon";
+import LoadMoreLoading from "../components/LoadMoreLoading";
 
 import { CardsOuter, CardsInner, CardsTitle, Card } from "../components/styledComponents/Cards";
 
 const Popular = () => {
   const {poster_img, posterNotFound} = useGlobalContext();
-  const [loading, setLoading] = useState(true);
   const [popular, setPopular] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(null);
+  const [isFetching, setFetching] = useState(true);
+
+  const handleScroll = (e) => {
+    const scrollHeight = e.target.documentElement.scrollHeight;
+    const currentHeight = Math.ceil(
+      e.target.documentElement.scrollTop + window.innerHeight
+    );
+
+    if ((scrollHeight - currentHeight) <= 50) {
+      setFetching(true);
+    }
+  };
 
   useEffect(() => {
-    fetch(POPULAR_URL + page).then((resp) => {
-      return resp.json();
-    })
-      .then((data) => {
-        setPopular((prevState) => {
-          return [...prevState, ...data.results]
+    if (isFetching) {
+      fetch(POPULAR_URL + page).then((resp) => {
+        return resp.json();
+      })
+        .then((data) => {
+          setPopular((prevState) => {
+            return [...prevState, ...data.results];
+          });
+          setTotalPage(data.total_pages);
+          setPage(page + 1);
         })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [page]);
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          setFetching(false);
+        });
+    }
+  }, [isFetching]);
+
+  useEffect(() => {
+    document.addEventListener("scroll", handleScroll);
+
+    return () => {
+      document.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <PageTitle title="Popular">
-      <Loading loading={loading}>
-        <CardsOuter className="fade_in">
-          <CardsTitle>Popular Movies</CardsTitle>
-          <CardsInner>
-            {popular?.map((movie) => {
-              const {id, title, poster_path} = movie;
-              return (
-                <Card key={id}>
-                  <Link to={`/movie/${id}`}>
-                    <LazyLoadImage
-                      wrapperClassName="lazyLoad"
-                      src={
-                        poster_path ? poster_img + poster_path : posterNotFound
-                      }
-                      alt={title}
-                    />
-                  </Link>
-                  <FavoriteIcon element={movie}/>
-                </Card>
-              );
-            })}
-          </CardsInner>
-          <Button handleClick={() => setPage(page + 1)}>Load More</Button>
-        </CardsOuter>
-      </Loading>
+      <CardsOuter className="fade_in">
+        <CardsTitle>Popular Movies</CardsTitle>
+        <CardsInner>
+          {popular?.map((movie) => {
+            const {id, title, poster_path} = movie;
+            return (
+              <Card key={id}>
+                <Link to={`/movie/${id}`}>
+                  <LazyLoadImage
+                    wrapperClassName="lazyLoad"
+                    src={
+                      poster_path ? poster_img + poster_path : posterNotFound
+                    }
+                    alt={title}
+                  />
+                </Link>
+                <FavoriteIcon element={movie}/>
+              </Card>
+            );
+          })}
+        </CardsInner>
+        {isFetching && page === totalPage ? (
+          <LoadMoreLoading/>
+        ) : null}
+      </CardsOuter>
     </PageTitle>
   );
 };
