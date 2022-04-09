@@ -48,7 +48,7 @@ const TopRated = () => {
           setFetching(false);
         });
     }
-  }, [page, isFetching]);
+  }, [isFetching]);
 
   useEffect(() => {
     document.addEventListener("scroll", handleScroll);
