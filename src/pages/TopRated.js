@@ -48,7 +48,7 @@ const TopRated = () => {
           setFetching(false);
         });
     }
-  }, [isFetching]);
+  }, [page, isFetching]);
 
   useEffect(() => {
     document.addEventListener("scroll", handleScroll);
@@ -81,7 +81,7 @@ const TopRated = () => {
             );
           })}
         </CardsInner>
-        {isFetching && page === totalPage ? (
+        {isFetching || page === totalPage ? (
           <LoadMoreLoading/>
         ) : null}
       </CardsOuter>
