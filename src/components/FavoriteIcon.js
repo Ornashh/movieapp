@@ -28,11 +28,11 @@ export const FavButton = styled.div`
 `;
 
 export default function FavoriteIcon({element}) {
-  const {handleAdd, favoriteArr} = useGlobalContext();
+  const {handleToggleFavorite, favoriteArr} = useGlobalContext();
 
   return (
     <FavButton
-      onClick={() => handleAdd(element)}
+      onClick={() => handleToggleFavorite(element)}
       className="fav_btn"
     >
       {favoriteArr.find((item) => item.id === element.id) ? (

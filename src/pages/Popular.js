@@ -38,7 +38,7 @@ const Popular = () => {
             return [...prevState, ...data.results];
           });
           setTotalPage(data.total_pages);
-          setPage(page + 1);
+          setPage(page => page + 1);
         })
         .catch((error) => {
           console.log(error);

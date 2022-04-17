@@ -11,7 +11,7 @@ import { FavButton } from "../components/FavoriteIcon";
 import { AiFillHeart } from "react-icons/ai";
 
 const Favorite = () => {
-  let {favoriteArr, poster_img, posterNotFound, handleRemove, handleClear} =
+  let {favoriteArr, poster_img, posterNotFound, handleRemoveFavorite, handleClear} =
     useGlobalContext();
 
   return (
@@ -39,7 +39,7 @@ const Favorite = () => {
                       />
                     </Link>
                     <FavButton
-                      onClick={() => handleRemove(movie)}
+                      onClick={() => handleRemoveFavorite(movie)}
                       className="fav_btn"
                     >
                       <AiFillHeart/>

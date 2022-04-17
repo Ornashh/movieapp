@@ -21,11 +21,15 @@ const AppProvider = ({children}) => {
     localStorage.setItem("movie", JSON.stringify(state.favoriteArr));
   }, [state.favoriteArr]);
 
-  const handleAdd = (movie) => {
-    dispatch({type: "ADD_FAVORITE", payload: movie});
+  const handleToggleFavorite = (movie) => {
+    if (state.favoriteArr.find((item) => item.id === movie.id)) {
+      dispatch({type: "REMOVE_FAVORITE", payload: movie})
+    } else {
+      dispatch({type: "ADD_FAVORITE", payload: movie})
+    }
   };
 
-  const handleRemove = (movie) => {
+  const handleRemoveFavorite = (movie) => {
     dispatch({type: "REMOVE_FAVORITE", payload: movie});
   };
 
@@ -42,8 +46,8 @@ const AppProvider = ({children}) => {
         backdrop_img,
         posterNotFound,
         backdropNotFound,
-        handleAdd,
-        handleRemove,
+        handleToggleFavorite,
+        handleRemoveFavorite,
         handleClear,
       }}
     >

@@ -7,8 +7,8 @@ const ButtonWrapper = styled.div`
   margin-top: 20px;
   
   button {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 400;
     color: #fff;
     background-color: #1976d2;
     border-radius: 5px;
