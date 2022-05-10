@@ -19,11 +19,10 @@ const TopRated = () => {
 
   const handleScroll = (e) => {
     const scrollHeight = e.target.documentElement.scrollHeight;
-    const currentHeight = Math.ceil(
-      e.target.documentElement.scrollTop + window.innerHeight
-    );
+    const scrollTop = e.target.documentElement.scrollTop;
+    const innerHeight = window.innerHeight;
 
-    if ((scrollHeight - currentHeight) <= 50) {
+    if (scrollHeight - (scrollTop + innerHeight) < 200) {
       setFetching(true);
     }
   };

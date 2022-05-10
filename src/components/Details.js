@@ -126,13 +126,11 @@ const Details = ({details, loading}) => {
     background: `url(${backdrop}) no-repeat center center/cover fixed`,
   };
 
-  const genresFormat = genres?.map((genre) => {
-    return genre.name;
-  }).join(", ");
-
-  const countryFormat = production_countries?.map((el) => {
-    return el.name;
-  }).join(", ");
+  const formatter = (data) => {
+    return data?.map((el) => {
+      return el.name
+    }).join(", ")
+  }
 
   const dateFormat = new Date(release_date).toLocaleDateString("en-US", {
     month: "long",
@@ -167,7 +165,7 @@ const Details = ({details, loading}) => {
         </MoviePoster>
         <MovieInfo>
           <MovieTitle>{title}</MovieTitle>
-          <MovieGenres>{genresFormat}</MovieGenres>
+          <MovieGenres>{formatter(genres)}</MovieGenres>
           <div>
             <Rate
               value={vote_average / 2}
@@ -180,7 +178,7 @@ const Details = ({details, loading}) => {
           <MovieMoreInfo>
             <div>
               <h4>Country:</h4>
-              <p>{countryFormat}</p>
+              <p>{formatter(production_countries)}</p>
             </div>
             <div>
               <h4>Release:</h4>
