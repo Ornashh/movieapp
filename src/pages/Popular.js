@@ -8,10 +8,15 @@ import PageTitle from "../components/PageTitle";
 import FavoriteIcon from "../components/FavoriteIcon";
 import LoadMoreLoading from "../components/LoadMoreLoading";
 
-import { CardsOuter, CardsInner, CardsTitle, Card } from "../components/styledComponents/Cards";
+import {
+  CardsOuter,
+  CardsInner,
+  CardsTitle,
+  Card,
+} from "../components/styledComponents/Cards";
 
 const Popular = () => {
-  const {poster_img, posterNotFound} = useGlobalContext();
+  const { poster_img, posterNotFound } = useGlobalContext();
   const [popular, setPopular] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
@@ -22,22 +27,23 @@ const Popular = () => {
     const scrollTop = e.target.documentElement.scrollTop;
     const innerHeight = window.innerHeight;
 
-    if (scrollHeight - (scrollTop + innerHeight) < 200) {
+    if (scrollHeight - (scrollTop + innerHeight) < 500) {
       setFetching(true);
     }
   };
 
   useEffect(() => {
     if (isFetching) {
-      fetch(POPULAR_URL + page).then((resp) => {
-        return resp.json();
-      })
+      fetch(POPULAR_URL + page)
+        .then((resp) => {
+          return resp.json();
+        })
         .then((data) => {
           setPopular((prevState) => {
             return [...prevState, ...data.results];
           });
           setTotalPage(data.total_pages);
-          setPage(page => page + 1);
+          setPage((page) => page + 1);
         })
         .catch((error) => {
           console.log(error);
@@ -62,26 +68,24 @@ const Popular = () => {
         <CardsTitle>Popular Movies</CardsTitle>
         <CardsInner>
           {popular?.map((movie) => {
-            const {id, title, poster_path} = movie;
+            const { id, title, poster_path } = movie;
             return (
               <Card key={id}>
                 <Link to={`/movie/${id}`}>
                   <LazyLoadImage
-                    wrapperClassName="lazyLoad"
+                    effect="blur"
                     src={
                       poster_path ? poster_img + poster_path : posterNotFound
                     }
                     alt={title}
                   />
                 </Link>
-                <FavoriteIcon element={movie}/>
+                <FavoriteIcon element={movie} />
               </Card>
             );
           })}
         </CardsInner>
-        {isFetching || page === totalPage ? (
-          <LoadMoreLoading/>
-        ) : null}
+        {isFetching || page === totalPage ? <LoadMoreLoading /> : null}
       </CardsOuter>
     </PageTitle>
   );

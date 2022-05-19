@@ -6,6 +6,7 @@ import NowPlaying from "../components/NowPlaying";
 import Popular from "../components/Popular";
 import TopRated from "../components/TopRated";
 import PageTitle from "../components/PageTitle";
+import { AiFillGithub } from "react-icons/ai";
 
 const Content = styled.div`
   @media screen and (max-width: 1024px) {
@@ -13,13 +14,39 @@ const Content = styled.div`
   }
 `;
 
+const Footer = styled.div`
+  padding: 50px 20px 50px 110px;
+
+  @media screen and (max-width: 1024px) {
+    padding: 50px 20px;
+  }
+
+  p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #767676;
+    margin-bottom: 20px;
+  }
+
+  a {
+    font-size: 2rem;
+    color: #767676;
+  }
+`;
+
 const Home = () => {
   return (
     <PageTitle title="Home">
       <Content>
-        <NowPlaying/>
-        <Popular/>
-        <TopRated/>
+        <NowPlaying />
+        <Popular />
+        <TopRated />
+        <Footer>
+          <p>Build on React / StyledComponents</p>
+          <a href="https://github.com/ornashh">
+            <AiFillGithub />
+          </a>
+        </Footer>
       </Content>
     </PageTitle>
   );

@@ -32,6 +32,7 @@ const Card = styled.div`
     display: block;
     width: 100%;
     height: 100%;
+    transition: transform 0.2s linear;
   }
 
   img {
@@ -39,15 +40,19 @@ const Card = styled.div`
     object-position: top;
     width: 100%;
     height: 100%;
-    transition: transform 0.3s ease-out;
   }
 
-  &:hover img {
+  &:hover a {
     transform: scale(1.05);
   }
 
+  span {
+    width: 100%;
+    height: 100%;
+  }
+
   @media screen and (max-width: 768px) {
-    height: 250px;
+    height: 170px;
   }
 `;
 
@@ -72,8 +77,8 @@ const CardDesc = styled.div`
   }
 `;
 
-const Cast = ({id}) => {
-  const {poster_img, posterNotFound} = useGlobalContext();
+const Cast = ({ id }) => {
+  const { poster_img, posterNotFound } = useGlobalContext();
   const [credits, setCredits] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -94,17 +99,15 @@ const Cast = ({id}) => {
   }, [id]);
 
   return (
-    <Loading loading={loading} style={{height: "50vh"}}>
+    <Loading loading={loading} style={{ height: "50vh" }}>
       <CastWrapper className="fade_in">
         <Swiper
           className="mySwiper"
           navigation={true}
           freeMode={true}
+          slidesPerView={3}
           spaceBetween={10}
           breakpoints={{
-            320: {
-              slidesPerView: 2,
-            },
             640: {
               slidesPerView: 3,
             },
@@ -115,15 +118,15 @@ const Cast = ({id}) => {
               slidesPerView: 5,
             },
             1440: {
-              slidesPerView: 6
+              slidesPerView: 6,
             },
             1700: {
-              slidesPerView: 7
-            }
+              slidesPerView: 7,
+            },
           }}
         >
           {credits?.map((cast) => {
-            const {id, profile_path, name, character} = cast;
+            const { id, profile_path, name, character } = cast;
             return (
               <SwiperSlide key={id}>
                 <Card>
@@ -136,6 +139,7 @@ const Cast = ({id}) => {
                           : posterNotFound
                       }
                       alt={name}
+                      effect="blur"
                     />
                   </Link>
                 </Card>

@@ -13,7 +13,7 @@ import {
   CardsInner,
   CardsTitle,
   Card,
-  EmptyMessage
+  EmptyMessage,
 } from "../components/styledComponents/Cards";
 import Loading from "../components/Loading";
 
@@ -37,7 +37,7 @@ const Form = styled.form`
 `;
 
 const Search = () => {
-  const {poster_img, posterNotFound} = useGlobalContext();
+  const { poster_img, posterNotFound } = useGlobalContext();
   const value = useRef();
   const [name, setName] = useState("");
   const [results, setResults] = useState([]);
@@ -75,7 +75,7 @@ const Search = () => {
   return (
     <PageTitle title="Search">
       <Form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Search" ref={value} autoFocus/>
+        <input type="text" placeholder="Search" ref={value} autoFocus />
       </Form>
 
       {name ? (
@@ -84,12 +84,12 @@ const Search = () => {
             <CardsTitle>Results: {name}</CardsTitle>
             <CardsInner>
               {results?.map((movie) => {
-                const {id, title, poster_path} = movie;
+                const { id, title, poster_path } = movie;
                 return (
                   <Card key={id}>
                     <Link to={`/movie/${id}`}>
                       <LazyLoadImage
-                        wrapperClassName="lazyLoad"
+                        effect="blur"
                         src={
                           poster_path
                             ? poster_img + poster_path
@@ -98,7 +98,7 @@ const Search = () => {
                         alt={title}
                       />
                     </Link>
-                    <FavoriteIcon element={movie}/>
+                    <FavoriteIcon element={movie} />
                   </Card>
                 );
               })}

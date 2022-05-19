@@ -11,7 +11,7 @@ import PageTitle from "../components/PageTitle";
 import { API_KEY, API_URL } from "../helpers/Config";
 
 const SingleMovie = () => {
-  const {id} = useParams();
+  const { id } = useParams();
   const [index, setIndex] = useState(1);
   const [details, setDetails] = useState({});
   const [loading, setLoading] = useState(true);
@@ -35,21 +35,19 @@ const SingleMovie = () => {
 
   return (
     <PageTitle title={details.title}>
-      <Details id={id} details={details} loading={loading}/>
+      <Details id={id} details={details} loading={loading} />
 
-      <Tabs index={index} setIndex={setIndex}/>
+      <Tabs index={index} setIndex={setIndex} />
 
       {index === 1 ? (
-        <Cast id={id}/>
+        <Cast id={id} />
       ) : index === 2 ? (
-        <Videos id={id}/>
+        <Videos id={id} />
       ) : index === 3 ? (
-        <Photos id={id}/>
-      ) : (
-        ""
-      )}
+        <Photos id={id} />
+      ) : null}
 
-      <Rec id={id}/>
+      <Rec id={id} />
     </PageTitle>
   );
 };

@@ -1,36 +1,50 @@
 import styled from "styled-components";
 
 export const CardsOuter = styled.div`
-  padding: 20px 20px 20px 110px;
+  padding: 50px 20px 20px 110px;
 
   @media screen and (max-width: 1024px) {
-    padding: 20px 20px 100px 20px;
+    padding: 50px 20px 100px 20px;
   }
 `;
 
 export const CardsInner = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, 220px);
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
+  justify-content: flex-start;
   gap: 20px;
 
-  @media screen and (max-width: 520px) {
-    justify-content: center;
+  @media screen and (min-width: 660px) {
+    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+  }
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(23%, 1fr));
+  }
+
+  @media screen and (min-width: 1280px) {
+    grid-template-columns: repeat(auto-fill, minmax(18%, 1fr));
+  }
+
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: repeat(auto-fill, minmax(15%, 1fr));
   }
 `;
 
 export const CardsTitle = styled.div`
-  font-size: 1.7rem;
+  font-size: 24px;
   font-weight: 500;
-  text-align: ${props => props.center ? "center" : ""};
-  margin-bottom: 15px;
+  text-align: ${(props) => (props.center ? "center" : "")};
+  margin-bottom: 30px;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 32px;
+  }
 `;
 
 export const Card = styled.div`
   border-radius: 5px;
   position: relative;
-  width: 220px;
-  height: 320px;
   overflow: hidden;
   transition: all 0.3s ease !important;
 

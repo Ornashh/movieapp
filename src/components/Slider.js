@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ export const SliderOuter = styled.div`
   padding-left: 110px;
 
   @media screen and (max-width: 1024px) {
-    padding: 0 20px;
+    padding: 0 10px;
   }
 `;
 
@@ -26,7 +26,7 @@ export const Title = styled.div`
 `;
 
 export const SliderCard = styled.div`
-  border-radius: 5px;
+  border-radius: 4px;
   position: relative;
   width: inherit;
   height: 350px;
@@ -42,38 +42,40 @@ export const SliderCard = styled.div`
     object-position: top;
     width: 100%;
     height: 100%;
-    transition: transform 0.3s ease-out;
   }
 
-  &:hover img {
+  &:hover a {
     transform: scale(1.05);
+  }
+
+  span {
+    width: 100%;
+    height: 100%;
   }
 
   a {
     display: block;
     width: 100%;
     height: 100%;
+    transition: all 0.2s linear;
   }
 
   @media screen and (max-width: 768px) {
-    height: auto;
+    height: 170px;
   }
 `;
 
-
-function Slider({data}) {
-  const {poster_img, posterNotFound} = useGlobalContext();
+function Slider({ data }) {
+  const { poster_img, posterNotFound } = useGlobalContext();
 
   return (
     <Swiper
       className="mySwiper"
       navigation={true}
       freeMode={true}
+      slidesPerView={3}
       spaceBetween={10}
       breakpoints={{
-        320: {
-          slidesPerView: 2,
-        },
         640: {
           slidesPerView: 3,
         },
@@ -84,26 +86,22 @@ function Slider({data}) {
           slidesPerView: 5,
         },
         1440: {
-          slidesPerView: 6
+          slidesPerView: 6,
         },
         1700: {
-          slidesPerView: 7
-        }
+          slidesPerView: 7,
+        },
       }}
     >
       {data?.map((movie) => {
-        const {id, title, poster_path} = movie;
+        const { id, title, poster_path } = movie;
         return (
           <SwiperSlide key={id}>
             <SliderCard>
               <Link to={`/movie/${id}`}>
                 <LazyLoadImage
-                  wrapperClassName="lazyLoad"
-                  src={
-                    poster_path
-                      ? poster_img + poster_path
-                      : posterNotFound
-                  }
+                  effect="blur"
+                  src={poster_path ? poster_img + poster_path : posterNotFound}
                   alt={title}
                 />
               </Link>

@@ -15,7 +15,7 @@ import Modal from "./Modal";
 
 import { FaPlay } from "react-icons/fa";
 
-const Videos = ({id}) => {
+const Videos = ({ id }) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -28,9 +28,9 @@ const Videos = ({id}) => {
 
   useEffect(() => {
     if (modalIsOpen) {
-      document.querySelector("body").style.overflow = "hidden"
+      document.querySelector("body").style.overflow = "hidden";
     } else {
-      document.querySelector("body").style.overflow = "unset"
+      document.querySelector("body").style.overflow = "unset";
     }
   }, [modalIsOpen]);
 
@@ -59,23 +59,24 @@ const Videos = ({id}) => {
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
-  }
+  };
 
   return (
-    <Loading loading={loading} style={{height: "50vh"}}>
+    <Loading loading={loading} style={{ height: "50vh" }}>
       <MediaOuter>
         <MediaInner className="fade_in">
           {videos?.map((video) => {
-            const {id, key, name, type} = video;
+            const { id, key, name, type } = video;
             return (
               <MediaItem key={id}>
                 <LazyLoadImage
                   wrapperClassName="lazyLoad"
                   src={`https://i3.ytimg.com/vi/${key}/maxresdefault.jpg`}
                   alt="video"
+                  effect="blur"
                 />
                 <InfoWrapper>
-                  <FaPlay onClick={() => openModal(key)}/>
+                  <FaPlay onClick={() => openModal(key)} />
                   <Info>
                     <h4>{name}</h4>
                     <p>{type}</p>
@@ -85,7 +86,10 @@ const Videos = ({id}) => {
             );
           })}
           {modalIsOpen && (
-            <Modal handleClickAway={handleClickAway} handleClick={handleCloseModal}>
+            <Modal
+              handleClickAway={handleClickAway}
+              handleClick={handleCloseModal}
+            >
               <iframe
                 title="frame"
                 src={`https://www.youtube.com/embed/${video_path}?autoplay=1&mute=1`}

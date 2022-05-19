@@ -18,6 +18,32 @@ const Movie = styled.div`
   padding: 20px 20px 20px 110px;
   z-index: 5;
 
+  @media screen and (max-width: 1024px) {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+    padding: 0;
+    height: auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+`;
+
+const BackgroundImage = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  @media screen and (max-width: 1024px) {
+    position: static;
+  }
+
   &::after {
     content: "";
     position: absolute;
@@ -26,20 +52,16 @@ const Movie = styled.div`
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    z-index: -1;
+
+    @media screen and (max-width: 1024px) {
+      background-color: unset;
+    }
   }
 
-  @media screen and (max-width: 1024px) {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 20px;
-    padding: 20px;
-    height: auto;
-  }
-
-  @media screen and (max-width: 767px) {
-    grid-template-columns: 1fr;
-    justify-items: center;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
 
@@ -51,6 +73,10 @@ const MoviePoster = styled.div`
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
     max-width: 100%;
   }
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
 `;
 
 const MovieInfo = styled.div`
@@ -60,6 +86,7 @@ const MovieInfo = styled.div`
   @media screen and (max-width: 1024px) {
     width: 100%;
     margin-left: 0;
+    padding: 20px;
   }
 `;
 
@@ -88,15 +115,15 @@ const MovieMoreInfo = styled.div`
   div {
     display: grid;
     grid-template-columns: 150px 1fr;
-    
+
     &:not(:last-child) {
       margin-bottom: 10px;
     }
   }
 `;
 
-const Details = ({details, loading}) => {
-  const {poster_img, backdrop_img, posterNotFound, backdropNotFound} =
+const Details = ({ details, loading }) => {
+  const { poster_img, backdrop_img, posterNotFound, backdropNotFound } =
     useGlobalContext();
 
   const {
@@ -111,7 +138,7 @@ const Details = ({details, loading}) => {
     revenue,
     vote_average,
     production_countries,
-    production_companies
+    production_companies,
   } = details;
 
   let poster;
@@ -127,10 +154,12 @@ const Details = ({details, loading}) => {
   };
 
   const formatter = (data) => {
-    return data?.map((el) => {
-      return el.name
-    }).join(", ")
-  }
+    return data
+      ?.map((el) => {
+        return el.name;
+      })
+      .join(", ");
+  };
 
   const dateFormat = new Date(release_date).toLocaleDateString("en-US", {
     month: "long",
@@ -153,15 +182,20 @@ const Details = ({details, loading}) => {
     return `${hour}h ${min}m`;
   };
 
-  const productionFormat = production_companies?.map((production) => {
-    return production.name;
-  }).join(", ");
+  const productionFormat = production_companies
+    ?.map((production) => {
+      return production.name;
+    })
+    .join(", ");
 
   return (
     <Loading loading={loading}>
-      <Movie className="fade_in" style={backgroundImg}>
+      <Movie className="fade_in">
+        <BackgroundImage>
+          <img src={backdrop} alt="#" />
+        </BackgroundImage>
         <MoviePoster>
-          <img src={poster} alt={title || "movie_title"}/>
+          <img src={poster} alt={title || "movie_title"} />
         </MoviePoster>
         <MovieInfo>
           <MovieTitle>{title}</MovieTitle>

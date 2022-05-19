@@ -26,9 +26,9 @@ const Nav = styled.nav`
 
   @media screen and (max-width: 1024px) {
     flex-direction: row;
-    bottom: 0;
+    bottom: -1px;
     width: 100%;
-    height: 80px;
+    height: 60px;
   }
 `;
 
@@ -37,17 +37,19 @@ const NavLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  
+
+  @media screen and (max-width: 1024px) {
+    font-size: 1.5rem;
+  }
+
   svg {
     transition: all 0.3s ease;
   }
-  
+
   &:hover svg {
     color: #1976d2 !important;
   }
-`
+`;
 
 const Navbar = () => {
   const location = useLocation();
@@ -65,19 +67,19 @@ const Navbar = () => {
   return (
     <Nav>
       <NavLink to={"/"} title="Home">
-        <AiOutlineHome color={location.pathname === "/" ? "#1976d2" : "#fff"}/>
+        <AiOutlineHome color={location.pathname === "/" ? "#1976d2" : "#fff"} />
       </NavLink>
       <NavLink to={"/search"} title="Search">
-        <AiOutlineSearch color={activeLink("search")}/>
+        <AiOutlineSearch color={activeLink("search")} />
       </NavLink>
       <NavLink to={"/popular"} title="Popular">
-        <AiOutlineFire color={activeLink("popular")}/>
+        <AiOutlineFire color={activeLink("popular")} />
       </NavLink>
       <NavLink to={"/top_rated"} title="Top rated">
-        <AiOutlineStar color={activeLink("top_rated")}/>
+        <AiOutlineStar color={activeLink("top_rated")} />
       </NavLink>
       <NavLink to={"/favorite"} title="Favorite">
-        <AiOutlineHeart color={activeLink("favorite")}/>
+        <AiOutlineHeart color={activeLink("favorite")} />
       </NavLink>
     </Nav>
   );

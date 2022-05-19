@@ -5,14 +5,24 @@ import { Link } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PageTitle from "../components/PageTitle";
 
-import { CardsOuter, CardsInner, CardsTitle, Card } from "../components/styledComponents/Cards";
-import Button from "../components/Button"
+import {
+  CardsOuter,
+  CardsInner,
+  CardsTitle,
+  Card,
+} from "../components/styledComponents/Cards";
+import Button from "../components/Button";
 import { FavButton } from "../components/FavoriteIcon";
 import { AiFillHeart } from "react-icons/ai";
 
 const Favorite = () => {
-  let {favoriteArr, poster_img, posterNotFound, handleRemoveFavorite, handleClear} =
-    useGlobalContext();
+  let {
+    favoriteArr,
+    poster_img,
+    posterNotFound,
+    handleRemoveFavorite,
+    handleClear,
+  } = useGlobalContext();
 
   return (
     <PageTitle title={"Favorite"}>
@@ -24,12 +34,12 @@ const Favorite = () => {
             <CardsTitle>Favorite Movies</CardsTitle>
             <CardsInner>
               {favoriteArr?.map((movie) => {
-                const {id, title, poster_path} = movie;
+                const { id, title, poster_path } = movie;
                 return (
                   <Card key={id}>
                     <Link to={`/movie/${id}`}>
                       <LazyLoadImage
-                        wrapperClassName="lazyLoad"
+                        effect="blur"
                         src={
                           poster_path
                             ? poster_img + poster_path
@@ -42,7 +52,7 @@ const Favorite = () => {
                       onClick={() => handleRemoveFavorite(movie)}
                       className="fav_btn"
                     >
-                      <AiFillHeart/>
+                      <AiFillHeart />
                     </FavButton>
                   </Card>
                 );
