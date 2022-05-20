@@ -70,9 +70,8 @@ const Videos = ({ id }) => {
             return (
               <MediaItem key={id}>
                 <LazyLoadImage
-                  wrapperClassName="lazyLoad"
                   src={`https://i3.ytimg.com/vi/${key}/maxresdefault.jpg`}
-                  alt="video"
+                  alt={name}
                   effect="blur"
                 />
                 <InfoWrapper>

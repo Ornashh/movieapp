@@ -22,7 +22,7 @@ export const SliderOuter = styled.div`
 export const Title = styled.div`
   font-size: 1.5rem;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
 
 export const SliderCard = styled.div`

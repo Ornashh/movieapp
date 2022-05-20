@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const TabPanel = styled.div`
   display: flex;
@@ -12,8 +12,9 @@ const TabPanel = styled.div`
 `;
 
 const Tab = styled.button`
-  font-size: 1.3rem;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
   color: #70757a;
   background-color: #1f1f1f;
   border-right: 1px solid #0e0e0e;
@@ -31,11 +32,11 @@ const Tab = styled.button`
   }
 
   @media screen and (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 14px;
   }
 `;
 
-function Tabs({index, setIndex}) {
+function Tabs({ index, setIndex }) {
   return (
     <TabPanel>
       <Tab
