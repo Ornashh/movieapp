@@ -29,7 +29,7 @@ const Footer = styled.div`
   }
 
   a {
-    font-size: 2rem;
+    font-size: 32px;
     color: #767676;
   }
 `;
@@ -42,7 +42,7 @@ const Home = () => {
         <Popular />
         <TopRated />
         <Footer>
-          <p>Build on React / StyledComponents</p>
+          <p>Build on React • 2021</p>
           <a href="https://github.com/ornashh">
             <AiFillGithub />
           </a>

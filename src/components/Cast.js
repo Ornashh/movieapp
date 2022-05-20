@@ -52,7 +52,7 @@ const Card = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    height: 170px;
+    height: 100%;
   }
 `;
 

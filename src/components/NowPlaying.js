@@ -23,7 +23,11 @@ const MovieWrapper = styled.div`
 const MovieItem = styled.div`
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 600px;
+
+  @media (max-width: 768px) {
+    height: 350px;
+  }
 
   img {
     object-fit: cover;
@@ -34,7 +38,7 @@ const MovieItem = styled.div`
 `;
 
 const MovieInfoOuter = styled.div`
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+  background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   position: absolute;
   top: 0;
   width: 100%;
@@ -56,44 +60,45 @@ const MovieInfoInner = styled.div`
 `;
 
 const MovieTitle = styled.div`
-  font-size: 2rem;
-  font-weight: 700;
-`;
-
-const MovieOverview = styled.div`
-  font-size: 1.03rem;
-  line-height: 1.2;
-  margin-top: 5px;
-`;
-
-const MovieLink = styled.div`
-  display: flex;
-  margin: 20px 0;
+  margin-bottom: 15px;
 
   a {
-    font-size: 1rem;
     color: #fff;
-    background-color: #1976d2;
-    border-radius: 5px;
-    text-decoration: none;
-    padding: 8px 20px;
-    transition: background-color 0.3s ease;
+    font-size: 40px;
+    font-weight: 700;
+    position: relative;
+    transition: all 0.2s linear;
+
+    @media (max-width: 768px) {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
     &:hover {
-      background-color: #165ea5;
+      color: #1976d2;
     }
   }
 `;
 
+const MovieOverview = styled.div`
+  font-size: 16px;
+  line-height: 1.4;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+`;
+
 const NowPlaying = () => {
-  const {backdrop_img, backdropNotFound} = useGlobalContext();
+  const { backdrop_img, backdropNotFound } = useGlobalContext();
   const [nowPlaying, setNowPlaying] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(NOW_PLAYING_URL).then((resp) => {
-      return resp.json();
-    })
+    fetch(NOW_PLAYING_URL)
+      .then((resp) => {
+        return resp.json();
+      })
       .then((data) => {
         setNowPlaying(data.results);
       })
@@ -106,19 +111,19 @@ const NowPlaying = () => {
   }, []);
 
   return (
-    <Loading loading={loading} style={{height: "50vh"}}>
+    <Loading loading={loading} style={{ height: "50vh" }}>
       <MovieWrapper className="fade_in">
         <Swiper
-          autoplay={{
-            delay: 10000,
-            disableOnInteraction: false,
-          }}
+          // autoplay={{
+          //   delay: 10000,
+          //   disableOnInteraction: false,
+          // }}
           pagination={{
             dynamicBullets: true,
           }}
         >
           {nowPlaying?.map((movie) => {
-            const {id, title, overview, backdrop_path} = movie;
+            const { id, title, overview, backdrop_path } = movie;
             return (
               <SwiperSlide key={id}>
                 <MovieItem>
@@ -133,17 +138,14 @@ const NowPlaying = () => {
                 </MovieItem>
                 <MovieInfoOuter>
                   <MovieInfoInner>
-                    <MovieTitle>{title}</MovieTitle>
-                    {overview === "" ? (
-                      ""
-                    ) : (
+                    <MovieTitle>
+                      <Link to={`/movie/${id}`}>{title}</Link>
+                    </MovieTitle>
+                    {overview ? (
                       <MovieOverview>
                         {`${overview.substring(0, 200)}...`}
                       </MovieOverview>
-                    )}
-                    <MovieLink>
-                      <Link to={`/movie/${id}`}>Details</Link>
-                    </MovieLink>
+                    ) : null}
                   </MovieInfoInner>
                 </MovieInfoOuter>
               </SwiperSlide>

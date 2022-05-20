@@ -1,16 +1,17 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 
 const ButtonWrapper = styled.div`
   text-align: center;
   margin-top: 20px;
-  
+
   button {
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 600;
     color: #fff;
     background-color: #1976d2;
-    border-radius: 5px;
+    border-radius: 4px;
+    text-transform: uppercase;
     padding: 10px 20px;
     transition: background-color 0.3s ease;
 
@@ -20,7 +21,7 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-export default function Button({children, handleClick}) {
+export default function Button({ children, handleClick }) {
   return (
     <ButtonWrapper>
       <button onClick={handleClick}>{children}</button>

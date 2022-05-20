@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import styled from "styled-components";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -10,7 +10,7 @@ export const FavButton = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px;
+  padding: 10px;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
@@ -27,8 +27,8 @@ export const FavButton = styled.div`
   }
 `;
 
-export default function FavoriteIcon({element}) {
-  const {handleToggleFavorite, favoriteArr} = useGlobalContext();
+export default function FavoriteIcon({ element }) {
+  const { handleToggleFavorite, favoriteArr } = useGlobalContext();
 
   return (
     <FavButton
@@ -36,9 +36,9 @@ export default function FavoriteIcon({element}) {
       className="fav_btn"
     >
       {favoriteArr.find((item) => item.id === element.id) ? (
-        <AiFillHeart/>
+        <AiFillHeart />
       ) : (
-        <AiOutlineHeart/>
+        <AiOutlineHeart />
       )}
     </FavButton>
   );

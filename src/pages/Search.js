@@ -75,13 +75,13 @@ const Search = () => {
   return (
     <PageTitle title="Search">
       <Form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Search" ref={value} autoFocus />
+        <input type="text" placeholder="Search" ref={value} />
       </Form>
 
       {name ? (
         <Loading loading={loading}>
           <CardsOuter className="fade_in">
-            <CardsTitle>Results: {name}</CardsTitle>
+            <CardsTitle>Result: {name}</CardsTitle>
             <CardsInner>
               {results?.map((movie) => {
                 const { id, title, poster_path } = movie;

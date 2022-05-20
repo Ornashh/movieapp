@@ -18,17 +18,19 @@ const Movie = styled.div`
   padding: 20px 20px 20px 110px;
   z-index: 5;
 
+  //@media screen and (max-width: 1024px) {
+  //  display: grid;
+  //  grid-template-columns: 300px 1fr;
+  //  gap: 20px;
+  //  padding: 0;
+  //  height: auto;
+  //}
+
   @media screen and (max-width: 1024px) {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr;
     padding: 0;
     height: auto;
-  }
-
-  @media screen and (max-width: 767px) {
-    grid-template-columns: 1fr;
-    justify-items: center;
   }
 `;
 
@@ -42,6 +44,7 @@ const BackgroundImage = styled.div`
 
   @media screen and (max-width: 1024px) {
     position: static;
+    height: 400px;
   }
 
   &::after {
@@ -91,12 +94,12 @@ const MovieInfo = styled.div`
 `;
 
 const MovieTitle = styled.div`
-  font-size: 3.5rem;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.1;
 
   @media screen and (max-width: 1024px) {
-    font-size: 2.5rem;
+    font-size: 32px;
   }
 `;
 
@@ -106,7 +109,7 @@ const MovieGenres = styled.div`
 `;
 
 const MovieOverview = styled.div`
-  font-size: 1.03rem;
+  font-size: 16px;
   line-height: 1.2;
   margin: 15px 0;
 `;
@@ -149,10 +152,6 @@ const Details = ({ details, loading }) => {
     ? (backdrop = backdrop_img + backdrop_path)
     : (backdrop = backdropNotFound);
 
-  const backgroundImg = {
-    background: `url(${backdrop}) no-repeat center center/cover fixed`,
-  };
-
   const formatter = (data) => {
     return data
       ?.map((el) => {
@@ -192,7 +191,7 @@ const Details = ({ details, loading }) => {
     <Loading loading={loading}>
       <Movie className="fade_in">
         <BackgroundImage>
-          <img src={backdrop} alt="#" />
+          <img src={backdrop} alt={title} />
         </BackgroundImage>
         <MoviePoster>
           <img src={poster} alt={title || "movie_title"} />

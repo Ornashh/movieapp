@@ -58,7 +58,7 @@ const Favorite = () => {
                 );
               })}
             </CardsInner>
-            <Button handleClick={handleClear}>Clear all</Button>
+            <Button handleClick={handleClear}>Clear</Button>
           </>
         )}
       </CardsOuter>
