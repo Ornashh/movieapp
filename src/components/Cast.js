@@ -25,7 +25,6 @@ const Card = styled.div`
   border-radius: 5px;
   position: relative;
   width: inherit;
-  height: 320px;
   overflow: hidden;
 
   a {
@@ -48,10 +47,6 @@ const Card = styled.div`
 
   span {
     width: 100%;
-    height: 100%;
-  }
-
-  @media screen and (max-width: 768px) {
     height: 100%;
   }
 `;

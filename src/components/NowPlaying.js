@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { NOW_PLAYING_URL } from "../helpers/Config";
 import Loading from "./Loading";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import styled from "styled-components";
 
@@ -27,6 +28,11 @@ const MovieItem = styled.div`
 
   @media (max-width: 768px) {
     height: 350px;
+  }
+
+  span {
+    width: 100%;
+    height: 100%;
   }
 
   img {
@@ -114,10 +120,10 @@ const NowPlaying = () => {
     <Loading loading={loading} style={{ height: "50vh" }}>
       <MovieWrapper className="fade_in">
         <Swiper
-          // autoplay={{
-          //   delay: 10000,
-          //   disableOnInteraction: false,
-          // }}
+          autoplay={{
+            delay: 10000,
+            disableOnInteraction: false,
+          }}
           pagination={{
             dynamicBullets: true,
           }}
@@ -127,7 +133,8 @@ const NowPlaying = () => {
             return (
               <SwiperSlide key={id}>
                 <MovieItem>
-                  <img
+                  <LazyLoadImage
+                    effect="blur"
                     src={
                       backdrop_path
                         ? backdrop_img + backdrop_path
