@@ -65,6 +65,11 @@ export const Card = styled.div`
     height: 100%;
   }
 
+  span {
+    width: 100%;
+    height: 100%;
+  }
+
   a {
     display: block;
     width: 100%;

@@ -21,6 +21,11 @@ const CastWrapper = styled.div`
   }
 `;
 
+const CardOuter = styled.div`
+  display: grid;
+  gap: 15px;
+`;
+
 const Card = styled.div`
   border-radius: 5px;
   position: relative;
@@ -52,10 +57,12 @@ const Card = styled.div`
 `;
 
 const CardDesc = styled.div`
+  display: grid;
+  gap: 5px;
+
   h3 {
     font-size: 1.1rem;
     font-weight: 500;
-    margin: 10px 0 3px 0;
 
     @media screen and (max-width: 768px) {
       font-size: 0.8rem;
@@ -124,24 +131,26 @@ const Cast = ({ id }) => {
             const { id, profile_path, name, character } = cast;
             return (
               <SwiperSlide key={id}>
-                <Card>
-                  <Link to={`/person/${id}`}>
-                    <LazyLoadImage
-                      wrapperClassName="lazyLoad"
-                      src={
-                        profile_path
-                          ? poster_img + profile_path
-                          : posterNotFound
-                      }
-                      alt={name}
-                      effect="blur"
-                    />
-                  </Link>
-                </Card>
-                <CardDesc>
-                  <h3>{name}</h3>
-                  <p>{character}</p>
-                </CardDesc>
+                <CardOuter>
+                  <Card>
+                    <Link to={`/person/${id}`}>
+                      <LazyLoadImage
+                        wrapperClassName="lazyLoad"
+                        src={
+                          profile_path
+                            ? poster_img + profile_path
+                            : posterNotFound
+                        }
+                        alt={name}
+                        effect="blur"
+                      />
+                    </Link>
+                  </Card>
+                  <CardDesc>
+                    <h3>{name}</h3>
+                    <p>{character}</p>
+                  </CardDesc>
+                </CardOuter>
               </SwiperSlide>
             );
           })}

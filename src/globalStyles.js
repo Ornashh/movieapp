@@ -66,7 +66,28 @@ const GlobalStyle = createGlobalStyle`
 
   .swiper-button-next,
   .swiper-button-prev {
-    color: #fff !important;
+    background-color: rgba(0,0,0,0.8);
+    top: 0;
+    width: auto;
+    height: 100%;
+    margin: 0;
+    padding: 10px;
+
+    &:after {
+      font-size: 32px;
+    }
+    
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+  
+  .swiper-button-next {
+    right: 0;
+  }
+
+  .swiper-button-prev {
+    left: 0;
   }
 
   .lazyLoad {
