@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { API_KEY, API_URL } from "../helpers/Config";
+import { API_KEY, API_URL } from "../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import {
@@ -64,7 +64,7 @@ const Videos = ({ id }) => {
   return (
     <Loading loading={loading} style={{ height: "50vh" }}>
       <MediaOuter>
-        <MediaInner className="fade_in">
+        <MediaInner>
           {videos?.map((video) => {
             const { id, key, name, type } = video;
             return (

@@ -27,7 +27,7 @@ export const FavButton = styled.div`
   }
 `;
 
-export default function FavoriteIcon({ element }) {
+export default function FavoriteButton({ element }) {
   const { handleToggleFavorite, favoriteArr } = useGlobalContext();
 
   return (

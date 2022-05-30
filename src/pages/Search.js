@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 
-import { SEARCH_URL } from "../helpers/Config";
+import { SEARCH_URL } from "../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PageTitle from "../components/PageTitle";
-import FavoriteIcon from "../components/FavoriteIcon";
+import FavoriteButton from "../components/FavoriteButton";
 
 import styled from "styled-components";
 import {
@@ -98,7 +98,7 @@ const Search = () => {
                         alt={title}
                       />
                     </Link>
-                    <FavoriteIcon element={movie} />
+                    <FavoriteButton element={movie} />
                   </Card>
                 );
               })}

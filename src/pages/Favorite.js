@@ -12,7 +12,7 @@ import {
   Card,
 } from "../components/styledComponents/Cards";
 import Button from "../components/Button";
-import { FavButton } from "../components/FavoriteIcon";
+import { FavButton } from "../components/FavoriteButton";
 import { AiFillHeart } from "react-icons/ai";
 
 const Favorite = () => {
@@ -38,15 +38,19 @@ const Favorite = () => {
                 return (
                   <Card key={id}>
                     <Link to={`/movie/${id}`}>
-                      <LazyLoadImage
-                        effect="blur"
-                        src={
-                          poster_path
-                            ? poster_img + poster_path
-                            : posterNotFound
-                        }
-                        alt={title}
-                      />
+                      <figure>
+                        <picture>
+                          <LazyLoadImage
+                            effect="blur"
+                            src={
+                              poster_path
+                                ? poster_img + poster_path
+                                : posterNotFound
+                            }
+                            alt={title}
+                          />
+                        </picture>
+                      </figure>
                     </Link>
                     <FavButton
                       onClick={() => handleRemoveFavorite(movie)}

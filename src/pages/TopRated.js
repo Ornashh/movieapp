@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
-import { TOP_RATED_URL } from "../helpers/Config";
+import { TOP_RATED_URL } from "../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PageTitle from "../components/PageTitle";
-import FavoriteIcon from "../components/FavoriteIcon";
+import FavoriteButton from "../components/FavoriteButton";
 import LoadMoreLoading from "../components/LoadMoreLoading";
 
 import {
@@ -72,15 +72,21 @@ const TopRated = () => {
             return (
               <Card key={id}>
                 <Link to={`/movie/${id}`}>
-                  <LazyLoadImage
-                    effect="blur"
-                    src={
-                      poster_path ? poster_img + poster_path : posterNotFound
-                    }
-                    alt={title}
-                  />
+                  <figure>
+                    <picture>
+                      <LazyLoadImage
+                        effect="blur"
+                        src={
+                          poster_path
+                            ? poster_img + poster_path
+                            : posterNotFound
+                        }
+                        alt={title}
+                      />
+                    </picture>
+                  </figure>
                 </Link>
-                <FavoriteIcon element={movie} />
+                <FavoriteButton element={movie} />
               </Card>
             );
           })}

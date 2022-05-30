@@ -3,7 +3,7 @@ import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
-import FavoriteIcon from "./FavoriteIcon";
+import FavoriteButton from "./FavoriteButton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -50,25 +50,13 @@ export const SliderCard = styled.div`
   height: inherit;
   overflow: hidden;
 
-  &:hover .fav_btn {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  img {
-    object-fit: cover;
-    object-position: top;
-    width: 100%;
-    height: 100%;
-  }
-
   &:hover a {
     transform: scale(1.05);
   }
 
-  span {
-    width: 100%;
-    height: 100%;
+  &:hover .fav_btn {
+    opacity: 1;
+    visibility: visible;
   }
 
   a {
@@ -76,6 +64,36 @@ export const SliderCard = styled.div`
     width: 100%;
     height: 100%;
     transition: all 0.2s linear;
+  }
+
+  figure {
+    background-color: rgb(32, 33, 36);
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 150%;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out 0s;
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  span {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    height: 100%;
   }
 `;
 
@@ -97,13 +115,19 @@ function Slider({ data }) {
           <SwiperSlide key={id}>
             <SliderCard>
               <Link to={`/movie/${id}`}>
-                <LazyLoadImage
-                  effect="blur"
-                  src={poster_path ? poster_img + poster_path : posterNotFound}
-                  alt={title}
-                />
+                <figure>
+                  <picture>
+                    <LazyLoadImage
+                      effect="blur"
+                      src={
+                        poster_path ? poster_img + poster_path : posterNotFound
+                      }
+                      alt={title}
+                    />
+                  </picture>
+                </figure>
               </Link>
-              <FavoriteIcon element={movie} />
+              <FavoriteButton element={movie} />
             </SliderCard>
           </SwiperSlide>
         );

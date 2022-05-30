@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 
-import { API_KEY, API_URL } from "../helpers/Config";
+import { API_KEY, API_URL } from "../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Loading from "./Loading";
 
@@ -14,7 +14,7 @@ SwiperCore.use([Navigation]);
 
 const CastWrapper = styled.div`
   margin: 20px 0 50px 0;
-  padding: 0 20px 0 110px;
+  padding-left: 110px;
 
   @media screen and (max-width: 1024px) {
     padding: 0 20px 0 20px;
@@ -39,18 +39,36 @@ const Card = styled.div`
     transition: transform 0.2s linear;
   }
 
-  img {
-    object-fit: cover;
-    object-position: top;
-    width: 100%;
-    height: 100%;
-  }
-
   &:hover a {
     transform: scale(1.05);
   }
 
+  figure {
+    background-color: rgb(32, 33, 36);
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 150%;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out 0s;
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   span {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: top;
     width: 100%;
     height: 100%;
   }
@@ -102,7 +120,7 @@ const Cast = ({ id }) => {
 
   return (
     <Loading loading={loading} style={{ height: "50vh" }}>
-      <CastWrapper className="fade_in">
+      <CastWrapper>
         <Swiper
           className="mySwiper"
           navigation={true}
@@ -133,18 +151,21 @@ const Cast = ({ id }) => {
               <SwiperSlide key={id}>
                 <CardOuter>
                   <Card>
-                    <Link to={`/person/${id}`}>
-                      <LazyLoadImage
-                        wrapperClassName="lazyLoad"
-                        src={
-                          profile_path
-                            ? poster_img + profile_path
-                            : posterNotFound
-                        }
-                        alt={name}
-                        effect="blur"
-                      />
-                    </Link>
+                    <figure>
+                      <picture>
+                        <Link to={`/person/${id}`}>
+                          <LazyLoadImage
+                            src={
+                              profile_path
+                                ? poster_img + profile_path
+                                : posterNotFound
+                            }
+                            alt={name}
+                            effect="blur"
+                          />
+                        </Link>
+                      </picture>
+                    </figure>
                   </Card>
                   <CardDesc>
                     <h3>{name}</h3>

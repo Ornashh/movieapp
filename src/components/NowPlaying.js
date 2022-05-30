@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 
-import { NOW_PLAYING_URL } from "../helpers/Config";
+import { NOW_PLAYING_URL } from "../utils/Config";
 import Loading from "./Loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 

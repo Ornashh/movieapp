@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import GlobalStyle from "./globalStyles";
-import ScrollToTop from "./helpers/ScrollToTop";
+import ScrollToTop from "./utils/ScrollToTop";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -16,28 +16,28 @@ import Person from "./pages/Person";
 function App() {
   return (
     <main>
-      <GlobalStyle/>
+      <GlobalStyle />
       <Router>
-        <Navbar/>
-        <ScrollToTop/>
+        <Navbar />
+        <ScrollToTop />
         <Switch>
           <Route exact path="/">
-            <Home/>
+            <Home />
           </Route>
           <Route path="/search">
-            <Search/>
+            <Search />
           </Route>
           <Route path="/popular">
-            <Popular/>
+            <Popular />
           </Route>
           <Route path="/top_rated">
-            <TopRated/>
+            <TopRated />
           </Route>
           <Route path="/favorite">
-            <Favorite/>
+            <Favorite />
           </Route>
-          <Route path="/movie/:id" children={<SingleMovie/>}/>
-          <Route path="/person/:id" children={<Person/>}/>
+          <Route path="/movie/:id" children={<SingleMovie />} />
+          <Route path="/person/:id" children={<Person />} />
         </Switch>
       </Router>
     </main>

@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Cast from "./Cast";
+import Videos from "./Videos";
+import Photos from "./Photos";
 
-const TabPanel = styled.div`
+const TabNav = styled.div`
   display: flex;
-  justify-content: center;
-  padding-left: 90px;
-
-  @media screen and (max-width: 1024px) {
-    padding-left: 0;
-  }
 `;
 
 const Tab = styled.button`
@@ -36,29 +33,59 @@ const Tab = styled.button`
   }
 `;
 
-function Tabs({ index, setIndex }) {
+const TabNavItem = ({ title, tab, tabName, setTabName }) => {
+  const handleClick = () => {
+    setTabName(tab);
+  };
+
   return (
-    <TabPanel>
-      <Tab
-        className={index === 1 ? "active-tab" : ""}
-        onClick={() => setIndex(1)}
-      >
-        Cast
-      </Tab>
-      <Tab
-        className={index === 2 ? "active-tab" : ""}
-        onClick={() => setIndex(2)}
-      >
-        Videos
-      </Tab>
-      <Tab
-        className={index === 3 ? "active-tab" : ""}
-        onClick={() => setIndex(3)}
-      >
-        Photos
-      </Tab>
-    </TabPanel>
+    <Tab className={tabName === tab ? "active-tab" : ""} onClick={handleClick}>
+      {title}
+    </Tab>
   );
-}
+};
+
+const TabContent = ({ tab, tabName, children }) => {
+  return tabName === tab ? <>{children}</> : null;
+};
+
+const Tabs = ({ id }) => {
+  const [tabName, setTabName] = useState("Cast");
+
+  return (
+    <div>
+      <TabNav>
+        <TabNavItem
+          title="Cast"
+          tab="Cast"
+          tabName={tabName}
+          setTabName={setTabName}
+        />
+        <TabNavItem
+          title="Videos"
+          tab="Videos"
+          tabName={tabName}
+          setTabName={setTabName}
+        />
+        <TabNavItem
+          title="Photos"
+          tab="Photos"
+          tabName={tabName}
+          setTabName={setTabName}
+        />
+      </TabNav>
+
+      <TabContent tab="Cast" tabName={tabName}>
+        <Cast id={id} />
+      </TabContent>
+      <TabContent tab="Videos" tabName={tabName}>
+        <Videos id={id} />
+      </TabContent>
+      <TabContent tab="Photos" tabName={tabName}>
+        <Photos id={id} />
+      </TabContent>
+    </div>
+  );
+};
 
 export default Tabs;

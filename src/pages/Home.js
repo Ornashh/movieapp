@@ -41,6 +41,7 @@ const Home = () => {
         <NowPlaying />
         <Popular />
         <TopRated />
+
         <Footer>
           <p>Build on React • 2021</p>
           <a href="https://github.com/ornashh">

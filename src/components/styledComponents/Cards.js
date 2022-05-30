@@ -48,6 +48,12 @@ export const Card = styled.div`
   overflow: hidden;
   transition: all 0.3s ease !important;
 
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   &:hover {
     transform: scale(1.03);
   }
@@ -57,10 +63,20 @@ export const Card = styled.div`
     visibility: visible;
   }
 
-  img {
-    box-shadow: 0 5px 10px 3px rgba(0, 0, 0, 0.4);
-    object-fit: cover;
-    object-position: center;
+  figure {
+    background-color: rgb(32, 33, 36);
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 150%;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out 0s;
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
   }
@@ -70,8 +86,9 @@ export const Card = styled.div`
     height: 100%;
   }
 
-  a {
-    display: block;
+  img {
+    object-fit: cover;
+    object-position: center;
     width: 100%;
     height: 100%;
   }

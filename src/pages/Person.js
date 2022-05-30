@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 
-import { API_KEY, API_URL } from "../helpers/Config";
+import { API_KEY, API_URL } from "../utils/Config";
 import Loading from "../components/Loading";
 import PersonMovie from "../components/PersonMovie";
 import PageTitle from "../components/PageTitle";
@@ -14,9 +14,8 @@ const PersonOuter = styled.div`
 
   @media screen and (max-width: 1024px) {
     padding: 20px 20px 100px;
-  }`
-;
-
+  }
+`;
 const PersonInner = styled.div`
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -44,7 +43,7 @@ const PersonImage = styled.div`
 
 const PersonInfo = styled.div`
   padding: 10px 20px;
-  
+
   div {
     margin-top: 10px;
   }
@@ -65,22 +64,15 @@ const ReadMore = styled.button`
   padding: 3px 0;
 `;
 
-
 function Person() {
-  const {id} = useParams();
-  const {poster_img} = useGlobalContext();
+  const { id } = useParams();
+  const { poster_img } = useGlobalContext();
   const [person, setPerson] = useState({});
   const [readMore, setReadMore] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const {
-    profile_path,
-    name,
-    birthday,
-    deathday,
-    place_of_birth,
-    biography
-  } = person;
+  const { profile_path, name, birthday, deathday, place_of_birth, biography } =
+    person;
 
   const dateFormat = (date) => {
     return new Date(date).toLocaleDateString("en-US", {
@@ -112,19 +104,24 @@ function Person() {
         <PersonOuter>
           <PersonInner>
             <PersonImage>
-              <img src={poster_img + profile_path} alt="#"/>
+              <img src={poster_img + profile_path} alt="#" />
             </PersonImage>
             <PersonInfo>
               <h1>{name}</h1>
               <div>
-                {dateFormat(birthday)} &#8212; {deathday === null ? "" : dateFormat(deathday)}
+                {dateFormat(birthday)} &#8212;
+                {deathday === null ? "" : dateFormat(deathday)}
               </div>
               <div>{place_of_birth}</div>
               <div>
-                {biography?.length <= 400 ? biography : (
+                {biography?.length <= 400 ? (
+                  biography
+                ) : (
                   <>
                     <PersonBiography>
-                      {readMore ? biography : `${biography?.substring(0, 400)}...`}
+                      {readMore
+                        ? biography
+                        : `${biography?.substring(0, 400)}...`}
                     </PersonBiography>
                     <ReadMore onClick={() => setReadMore(!readMore)}>
                       {readMore ? "Read Less" : "Read More"}
@@ -134,7 +131,7 @@ function Person() {
               </div>
             </PersonInfo>
           </PersonInner>
-          <PersonMovie/>
+          <PersonMovie />
         </PersonOuter>
       </Loading>
     </PageTitle>

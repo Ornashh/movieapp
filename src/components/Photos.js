@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context";
 
-import { API_KEY, API_URL } from "../helpers/Config";
+import { API_KEY, API_URL } from "../utils/Config";
 import { v4 as uuidv4 } from "uuid";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
@@ -63,7 +63,7 @@ const Photos = ({ id }) => {
 
   return (
     <Loading loading={loading} style={{ height: "50vh" }}>
-      <MediaOuter className="fade_in">
+      <MediaOuter>
         <MediaInner>
           {photos?.map((photo) => {
             const { file_path } = photo;
