@@ -1,15 +1,10 @@
 import styled from "styled-components";
 
 export const MediaOuter = styled.div`
-  margin-top: 20px;
-  padding: 0 20px 50px 110px;
+  padding: 20px;
 
   @media screen and (max-width: 1024px) {
-    padding: 0 20px 50px 20px;
-  }
-
-  @media screen and (max-width: 425px) {
-    padding: 0 0 50px 0;
+    padding: 20px;
   }
 `;
 

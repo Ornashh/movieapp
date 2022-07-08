@@ -4,16 +4,18 @@ import { API_KEY, API_URL } from "../utils/Config";
 import styled from "styled-components";
 import { Title } from "./Slider";
 import Slider from "./Slider";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 
-const RecWrapper = styled.div`
-  margin-bottom: 30px;
-  padding: 0 20px 0 110px;
+const RecOuter = styled.div`
+  padding: 50px 0;
 
   @media screen and (max-width: 1024px) {
-    margin-bottom: 100px;
-    padding: 0 20px;
+    padding-bottom: 100px;
   }
+`;
+
+const RecInner = styled.div`
+  padding-left: 20px;
 `;
 
 const Rec = ({ id }) => {
@@ -40,12 +42,14 @@ const Rec = ({ id }) => {
 
   return (
     <Loading loading={loading} style={{ height: "50vh" }}>
-      <RecWrapper>
-        <div className="fade_in">
-          <Title>Recommended Movies</Title>
-          {rec.length === 0 ? "" : <Slider data={rec} />}
-        </div>
-      </RecWrapper>
+      {rec.length ? (
+        <RecOuter>
+          <RecInner className="fade_in">
+            <Title>Recommended Movies</Title>
+            <Slider data={rec} />
+          </RecInner>
+        </RecOuter>
+      ) : null}
     </Loading>
   );
 };

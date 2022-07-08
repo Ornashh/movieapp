@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context";
 
 import { API_KEY, API_URL } from "../utils/Config";
-import { v4 as uuidv4 } from "uuid";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { MediaInner, MediaItem, MediaOuter } from "./styledComponents/Media";
 import Modal from "./Modal";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 
 import SwiperCore, { Navigation } from "swiper/core";
 SwiperCore.use([Navigation]);
@@ -65,10 +64,10 @@ const Photos = ({ id }) => {
     <Loading loading={loading} style={{ height: "50vh" }}>
       <MediaOuter>
         <MediaInner>
-          {photos?.map((photo) => {
-            const { file_path } = photo;
+          {photos?.map((el, i) => {
+            const { file_path } = el;
             return (
-              <MediaItem key={uuidv4()} pointer>
+              <MediaItem key={i} pointer>
                 <LazyLoadImage
                   wrapperClassName="lazyLoad"
                   src={file_path ? backdrop_img + file_path : backdropNotFound}
@@ -82,7 +81,7 @@ const Photos = ({ id }) => {
           {modalIsOpen && (
             <Modal
               handleClickAway={handleClickAway}
-              handleClick={handleCloseModal}
+              handleClose={handleCloseModal}
             >
               <img src={backdrop_img + photoPath} alt="movie_photo" id="img" />
             </Modal>

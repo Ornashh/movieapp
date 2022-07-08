@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { API_KEY, API_URL } from "../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 
 import styled from "styled-components";
 
@@ -13,11 +13,10 @@ import SwiperCore, { Navigation } from "swiper/core";
 SwiperCore.use([Navigation]);
 
 const CastWrapper = styled.div`
-  margin: 20px 0 50px 0;
-  padding-left: 110px;
+  padding: 20px 0 20px 20px;
 
-  @media screen and (max-width: 1024px) {
-    padding: 0 20px 0 20px;
+  @media screen and (max-width: 768px) {
+    padding: 20px;
   }
 `;
 

@@ -3,7 +3,7 @@ import { useGlobalContext } from "../context";
 import { useParams } from "react-router-dom";
 
 import { API_KEY, API_URL } from "../utils/Config";
-import Loading from "../components/Loading";
+import { Loading } from "../components/Loading";
 import PersonMovie from "../components/PersonMovie";
 import PageTitle from "../components/PageTitle";
 
@@ -22,7 +22,7 @@ const PersonInner = styled.div`
   gap: 20px;
   margin-bottom: 30px;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     justify-items: center;
   }
@@ -33,6 +33,10 @@ const PersonImage = styled.div`
   width: 300px;
   height: 450px;
   overflow: hidden;
+
+  @media screen and (max-width: 425px) {
+    width: 100%;
+  }
 
   img {
     object-fit: cover;

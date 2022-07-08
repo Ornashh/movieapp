@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Title } from "./Slider";
 
 import { API_KEY, API_URL } from "../utils/Config";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 import Slider from "./Slider";
 
 function PersonMovie() {

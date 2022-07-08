@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { POPULAR_URL } from "../utils/Config";
 import { SliderOuter, Title } from "./Slider";
 import Slider from "./Slider";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 
 const Popular = () => {
   const [popular, setPopular] = useState([]);

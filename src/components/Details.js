@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 
 const Movie = styled.div`
   color: #fff;
@@ -15,16 +15,7 @@ const Movie = styled.div`
   position: relative;
   height: 100vh;
   min-height: 600px;
-  padding: 20px 20px 20px 110px;
   z-index: 5;
-
-  //@media screen and (max-width: 1024px) {
-  //  display: grid;
-  //  grid-template-columns: 300px 1fr;
-  //  gap: 20px;
-  //  padding: 0;
-  //  height: auto;
-  //}
 
   @media screen and (max-width: 1024px) {
     display: grid;
@@ -188,7 +179,7 @@ const Details = ({ details, loading }) => {
     .join(", ");
 
   return (
-    <Loading loading={loading}>
+    <Loading loading={loading} style={{ height: "100vh" }}>
       <Movie className="fade_in">
         <BackgroundImage>
           <img src={backdrop} alt={title} />

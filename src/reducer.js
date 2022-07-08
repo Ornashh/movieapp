@@ -1,3 +1,23 @@
+export const addFavorite = (payload) => {
+  return {
+    type: "ADD_FAVORITE",
+    payload,
+  };
+};
+
+export const removeFavorite = (payload) => {
+  return {
+    type: "REMOVE_FAVORITE",
+    payload,
+  };
+};
+
+export const clearFavoriteList = () => {
+  return {
+    type: "CLEAR",
+  };
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_FAVORITE":
@@ -7,7 +27,7 @@ const reducer = (state, action) => {
 
       if (exist) {
         state.favoriteArr.map((item) =>
-          item.id === action.payload.id ? {...exist} : item
+          item.id === action.payload.id ? { ...exist } : item
         );
       } else {
         state.favoriteArr.push({

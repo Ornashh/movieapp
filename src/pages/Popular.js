@@ -6,7 +6,6 @@ import { POPULAR_URL } from "../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import PageTitle from "../components/PageTitle";
 import FavoriteButton from "../components/FavoriteButton";
-import LoadMoreLoading from "../components/LoadMoreLoading";
 
 import {
   CardsOuter,
@@ -14,6 +13,7 @@ import {
   CardsTitle,
   Card,
 } from "../components/styledComponents/Cards";
+import { LoadMore } from "../components/Loading";
 
 const Popular = () => {
   const { poster_img, posterNotFound } = useGlobalContext();
@@ -91,7 +91,9 @@ const Popular = () => {
             );
           })}
         </CardsInner>
-        {isFetching || page === totalPage ? <LoadMoreLoading /> : null}
+        {isFetching || page === totalPage ? (
+          <LoadMore style={{ paddingTop: 20 }} />
+        ) : null}
       </CardsOuter>
     </PageTitle>
   );

@@ -3,7 +3,7 @@ import { useGlobalContext } from "../context";
 import { Link } from "react-router-dom";
 
 import { NOW_PLAYING_URL } from "../utils/Config";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import styled from "styled-components";

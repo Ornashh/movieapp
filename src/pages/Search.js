@@ -15,7 +15,7 @@ import {
   Card,
   EmptyMessage,
 } from "../components/styledComponents/Cards";
-import Loading from "../components/Loading";
+import { Loading } from "../components/Loading";
 
 const Form = styled.form`
   padding: 20px 20px 0 110px;

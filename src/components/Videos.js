@@ -10,7 +10,7 @@ import {
   InfoWrapper,
   Info,
 } from "./styledComponents/Media";
-import Loading from "./Loading";
+import { Loading } from "./Loading";
 import Modal from "./Modal";
 
 import { FaPlay } from "react-icons/fa";
@@ -65,8 +65,8 @@ const Videos = ({ id }) => {
     <Loading loading={loading} style={{ height: "50vh" }}>
       <MediaOuter>
         <MediaInner>
-          {videos?.map((video) => {
-            const { id, key, name, type } = video;
+          {videos?.map((el) => {
+            const { id, key, name, type } = el;
             return (
               <MediaItem key={id}>
                 <LazyLoadImage
@@ -87,7 +87,7 @@ const Videos = ({ id }) => {
           {modalIsOpen && (
             <Modal
               handleClickAway={handleClickAway}
-              handleClick={handleCloseModal}
+              handleClose={handleCloseModal}
             >
               <iframe
                 title="frame"

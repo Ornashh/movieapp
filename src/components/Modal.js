@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import { FaTimes } from "react-icons/fa";
 
@@ -48,17 +48,13 @@ const ModalCloseButton = styled.button`
   z-index: -1;
 `;
 
-function Modal({handleClickAway, handleClick, children}) {
+function Modal({ handleClickAway, handleClose, children }) {
   return (
     <ModalOuter onClick={handleClickAway}>
-      <ModalCloseButton
-        onClick={handleClick}
-      >
-        <FaTimes size={"3em"}/>
+      <ModalCloseButton onClick={handleClose}>
+        <FaTimes size={"3em"} />
       </ModalCloseButton>
-      <ModalInner>
-        {children}
-      </ModalInner>
+      <ModalInner>{children}</ModalInner>
     </ModalOuter>
   );
 }
