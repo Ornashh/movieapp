@@ -1,1 +1,1 @@
-![alt text](https://github.com/Ornashh/react-movieapp/blob/main/screenshot/react-movieapp.jpg)
+![alt text](https://github.com/Ornashh/react-movieapp/blob/master/screenshot/react-movieapp.jpg)
