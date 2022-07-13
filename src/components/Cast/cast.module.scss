@@ -1,0 +1,83 @@
+.cast_wrapper {
+  padding: 20px 0 20px 20px;
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
+}
+
+.card_outer {
+  display: grid;
+  gap: 15px;
+}
+
+.card {
+  border-radius: 5px;
+  position: relative;
+  width: inherit;
+  overflow: hidden;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s linear;
+  }
+
+  &:hover a {
+    transform: scale(1.05);
+  }
+
+  figure {
+    background-color: rgb(32, 33, 36);
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 150%;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out 0s;
+  }
+
+  picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  span {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.card_desc {
+  display: grid;
+  gap: 5px;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  p {
+    color: #70757a;
+    font-weight: 500;
+
+    @media screen and (max-width: 768px) {
+      font-size: 0.7rem;
+    }
+  }
+}

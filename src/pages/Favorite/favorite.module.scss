@@ -1,0 +1,24 @@
+.btn_wrapper {
+  text-align: center;
+  padding: 20px;
+}
+
+.btn {
+  font-size: 16px;
+  color: #fff;
+  border-radius: 3px;
+  background-color: #1976d2;
+  padding: 8px 24px;
+  transition: background-color .3s ease;
+
+  &:hover {
+    background-color: #165ea5 !important;
+  }
+}
+
+.empty_message {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  padding: 20px;
+}
