@@ -9,16 +9,16 @@ const FavButton = ({ element }) => {
   const dispatch = useDispatch();
   const { favoriteList } = useSelector((state) => state);
 
-  const handleToggleFavorite = (movie) => {
-    if (favoriteList.find((item) => item.id === movie.id)) {
-      dispatch(removeFavorite(movie));
+  const handleToggleFavorite = () => {
+    if (favoriteList.find((item) => item.id === element.id)) {
+      dispatch(removeFavorite(element));
     } else {
-      dispatch(addFavorite(movie));
+      dispatch(addFavorite(element));
     }
   };
 
   return (
-    <div onClick={() => handleToggleFavorite(element)} className={s.icon}>
+    <div onClick={handleToggleFavorite} className={s.icon}>
       {favoriteList.find((item) => item.id === element.id) ? (
         <AiFillHeart />
       ) : (

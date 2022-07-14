@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import s from "./nowplaying.module.scss";
-
 import Loading from "../Loading";
-import { backdropImageUrl } from "../../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { getNowPlaying } from "./api";
+import { BACKDROP_URL, BACKDROP_NOT_FOUND } from "../../utils/constants";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper/core";
-import { getNowPlaying } from "./api";
 SwiperCore.use([Autoplay, Pagination]);
 
 const NowPlaying = () => {
-  const { backdropNotFoundImage } = useSelector((state) => state);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,8 +50,8 @@ const NowPlaying = () => {
                     effect="blur"
                     src={
                       backdrop_path
-                        ? backdropImageUrl + backdrop_path
-                        : backdropNotFoundImage
+                        ? BACKDROP_URL + backdrop_path
+                        : BACKDROP_NOT_FOUND
                     }
                     alt={title || "movie"}
                   />

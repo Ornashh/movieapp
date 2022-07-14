@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import s from "./carousel.module.scss";
-import { posterImageUrl } from "../../utils/Config";
 import FavButton from "../FavButton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { POSTER_URL, POSTER_NOT_FOUND } from "../../utils/constants";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper/core";
@@ -30,8 +29,6 @@ const breakpoints = {
 };
 
 const Carousel = ({ title, data }) => {
-  const { posterNotFoundImage } = useSelector((state) => state);
-
   return (
     <div className={s.carousel}>
       <div className={s.carousel_title}>{title}</div>
@@ -55,8 +52,8 @@ const Carousel = ({ title, data }) => {
                         effect="blur"
                         src={
                           poster_path
-                            ? posterImageUrl + poster_path
-                            : posterNotFoundImage
+                            ? POSTER_URL + poster_path
+                            : POSTER_NOT_FOUND
                         }
                         alt={title}
                       />

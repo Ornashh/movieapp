@@ -2,13 +2,18 @@ import React, { useState } from "react";
 
 import s from "./person.module.scss";
 import Loading from "../Loading";
-import { posterImageUrl } from "../../utils/Config";
+import { POSTER_NOT_FOUND, POSTER_URL } from "../../utils/constants";
 
 const PersonInfo = ({ person, loading }) => {
   const [readMore, setReadMore] = useState(false);
 
   const { profile_path, name, birthday, deathday, place_of_birth, biography } =
     person;
+
+  let poster;
+  profile_path
+    ? (poster = POSTER_URL + profile_path)
+    : (poster = POSTER_NOT_FOUND);
 
   const dateFormat = (date) => {
     return new Date(date).toLocaleDateString("en-US", {
@@ -22,7 +27,7 @@ const PersonInfo = ({ person, loading }) => {
     <Loading loading={loading} isHalf>
       <div className={s.person}>
         <div className={s.image}>
-          <img src={posterImageUrl + profile_path} alt={name} />
+          <img src={poster} alt={name} />
         </div>
         <div className={s.info}>
           <h1>{name}</h1>

@@ -1,4 +1,5 @@
-import instance, { API_KEY } from "../../axios";
+import instance from "../../axios";
+import { API_KEY } from "../../utils/constants";
 
 export const getPerson = (id) => {
   return instance(true)

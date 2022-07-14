@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import s from "./cards.module.scss";
-import { posterImageUrl } from "../../utils/Config";
 import FavButton from "../FavButton";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { POSTER_URL, POSTER_NOT_FOUND } from "../../utils/constants";
 
 const Cards = ({
   title,
@@ -15,8 +14,6 @@ const Cards = ({
   totalPage,
   loadMore = true,
 }) => {
-  const { posterNotFoundImage } = useSelector((state) => state);
-
   return (
     <div className={s.cards_outer}>
       <div className={s.cards_title}>{title}</div>
@@ -31,8 +28,8 @@ const Cards = ({
                       effect="blur"
                       src={
                         el.poster_path
-                          ? posterImageUrl + el.poster_path
-                          : posterNotFoundImage
+                          ? POSTER_URL + el.poster_path
+                          : POSTER_NOT_FOUND
                       }
                       alt={title}
                     />

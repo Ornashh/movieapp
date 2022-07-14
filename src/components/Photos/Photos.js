@@ -2,22 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import s from "../Media/media.module.scss";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import { backdropImageUrl } from "../../utils/Config";
 import Loading from "../Loading";
 import Media from "../Media";
 import Modal from "../Modal";
 import { openMediaModal } from "../../store/action";
 import { getPhotos } from "./api";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { BACKDROP_URL, BACKDROP_NOT_FOUND } from "../../utils/constants";
 
 import SwiperCore, { Navigation } from "swiper/core";
 SwiperCore.use([Navigation]);
 
 const Photos = ({ id }) => {
   const dispatch = useDispatch();
-  const { backdropNotFoundImage, isOpenMediaModal } = useSelector(
-    (state) => state
-  );
+  const { isOpenMediaModal } = useSelector((state) => state);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [photoPath, setPhotoPath] = useState("");
@@ -49,11 +47,7 @@ const Photos = ({ id }) => {
           return (
             <div key={i} className={s.media_item}>
               <LazyLoadImage
-                src={
-                  file_path
-                    ? backdropImageUrl + file_path
-                    : backdropNotFoundImage
-                }
+                src={file_path ? BACKDROP_URL + file_path : BACKDROP_NOT_FOUND}
                 alt="movie_photo"
                 effect="blur"
                 onClick={() => handleClick(file_path)}
@@ -63,11 +57,7 @@ const Photos = ({ id }) => {
         })}
         {isOpenMediaModal && (
           <Modal>
-            <img
-              src={backdropImageUrl + photoPath}
-              alt="movie_photo"
-              id="img"
-            />
+            <img src={BACKDROP_URL + photoPath} alt="movie_photo" id="img" />
           </Modal>
         )}
       </Media>

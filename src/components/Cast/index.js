@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import s from "./cast.module.scss";
-import { posterImageUrl } from "../../utils/Config";
 import Loading from "../Loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { getCast } from "./api";
+import { POSTER_URL, POSTER_NOT_FOUND } from "../../utils/constants";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper/core";
-import { getCast } from "./api";
 SwiperCore.use([Navigation]);
 
 const breakpoints = {
@@ -31,7 +30,6 @@ const breakpoints = {
 };
 
 const Cast = ({ id }) => {
-  const { posterNotFoundImage } = useSelector((state) => state);
   const [credits, setCredits] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -71,8 +69,8 @@ const Cast = ({ id }) => {
                         <LazyLoadImage
                           src={
                             profile_path
-                              ? posterImageUrl + profile_path
-                              : posterNotFoundImage
+                              ? POSTER_URL + profile_path
+                              : POSTER_NOT_FOUND
                           }
                           alt={name}
                           effect="blur"

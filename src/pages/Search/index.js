@@ -16,7 +16,7 @@ const Search = () => {
   useEffect(() => {
     setLoading(true);
     if (name) {
-      search()
+      search(name)
         .then((res) => {
           setResults((prevState) => {
             return [...prevState, ...res.results];

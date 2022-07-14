@@ -1,5 +1,5 @@
 import axios from "axios";
-export const API_KEY = "39008b197a5755859d6786a809d485be";
+// export const API_KEY = "39008b197a5755859d6786a809d485be";
 
 const instance = () => {
   const axiosInstance = axios.create({

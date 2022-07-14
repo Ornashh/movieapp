@@ -1,11 +1,16 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-
-import ScrollToTop from "./utils/ScrollToTop";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Navbar from "./components/Navbar";
-import Routes from "./Routes";
-import { useSelector } from "react-redux";
+import Home from "./pages/Home";
+import Search from "./pages/Search";
+import Popular from "./pages/Popular";
+import TopRated from "./pages/TopRated";
+import Favorite from "./pages/Favorite";
+import SingleMovie from "./pages/SingleMovie";
+import Person from "./pages/Person";
+import ScrollToTop from "./utils/scrollToTop";
 
 const App = () => {
   const { isOpenMediaModal, favoriteList } = useSelector((state) => state);
@@ -27,7 +32,25 @@ const App = () => {
       <Router>
         <Navbar />
         <ScrollToTop />
-        <Routes />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/search">
+            <Search />
+          </Route>
+          <Route path="/popular">
+            <Popular />
+          </Route>
+          <Route path="/top_rated">
+            <TopRated />
+          </Route>
+          <Route path="/favorite">
+            <Favorite />
+          </Route>
+          <Route path="/movie/:id" children={<SingleMovie />} />
+          <Route path="/person/:id" children={<Person />} />
+        </Switch>
       </Router>
     </main>
   );

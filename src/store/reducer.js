@@ -4,15 +4,11 @@ import {
   CLEAR_FAVORITE_LIST,
   OPEN_MEDIA_MODAL,
 } from "./action";
-import posterNotFound from "../assets/images/poster-not-found.jpg";
-import backdropNotFound from "../assets/images/backdrop-not-found.jpg";
 
 const movieFromLocalStorage = JSON.parse(localStorage.getItem("movie") || "[]");
 
 const initialState = {
   favoriteList: movieFromLocalStorage,
-  posterNotFoundImage: posterNotFound,
-  backdropNotFoundImage: backdropNotFound,
   isOpenMediaModal: false,
 };
 

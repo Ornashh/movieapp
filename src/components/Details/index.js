@@ -1,18 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-import Rate from "rc-rate";
 import s from "./details.module.scss";
+import Rate from "rc-rate";
 import "rc-rate/assets/index.css";
-
 import Loading from "../Loading";
-import { backdropImageUrl, posterImageUrl } from "../../utils/Config";
+import {
+  POSTER_URL,
+  BACKDROP_URL,
+  POSTER_NOT_FOUND,
+  BACKDROP_NOT_FOUND,
+} from "../../utils/constants";
 
 const Details = ({ details, loading }) => {
-  const { posterNotFoundImage, backdropNotFoundImage } = useSelector(
-    (state) => state
-  );
-
   const {
     backdrop_path,
     poster_path,
@@ -30,13 +29,13 @@ const Details = ({ details, loading }) => {
 
   let poster;
   poster_path
-    ? (poster = posterImageUrl + poster_path)
-    : (poster = posterNotFoundImage);
+    ? (poster = POSTER_URL + poster_path)
+    : (poster = POSTER_NOT_FOUND);
 
   let backdrop;
   backdrop_path
-    ? (backdrop = backdropImageUrl + backdrop_path)
-    : (backdrop = backdropNotFoundImage);
+    ? (backdrop = BACKDROP_URL + backdrop_path)
+    : (backdrop = BACKDROP_NOT_FOUND);
 
   const formatter = (data) => {
     return data
