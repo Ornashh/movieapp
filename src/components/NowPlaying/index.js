@@ -6,6 +6,7 @@ import Loading from "../Loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getNowPlaying } from "./api";
 import { BACKDROP_URL, BACKDROP_NOT_FOUND } from "../../utils/constants";
+import { useSnackbar } from "notistack";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper/core";
@@ -14,6 +15,7 @@ SwiperCore.use([Autoplay, Pagination]);
 const NowPlaying = () => {
   const [nowPlaying, setNowPlaying] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     setLoading(true);
@@ -22,7 +24,7 @@ const NowPlaying = () => {
         setNowPlaying(res.results);
       })
       .catch((error) => {
-        console.log(error);
+        enqueueSnackbar(error.message, { variant: "error" });
       })
       .finally(() => {
         setLoading(false);

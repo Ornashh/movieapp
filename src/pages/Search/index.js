@@ -6,12 +6,14 @@ import PageTitle from "../../components/PageTitle";
 import Cards from "../../components/Cards";
 import Layout from "../../components/Layout";
 import { search } from "./api";
+import { useSnackbar } from "notistack";
 
 const Search = () => {
   const value = useRef();
   const [name, setName] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     setLoading(true);
@@ -23,7 +25,7 @@ const Search = () => {
           });
         })
         .catch((error) => {
-          console.log(error);
+          enqueueSnackbar(error.message, { variant: "error" });
         })
         .finally(() => {
           setLoading(false);

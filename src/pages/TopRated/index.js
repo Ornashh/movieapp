@@ -4,12 +4,14 @@ import PageTitle from "../../components/PageTitle";
 import Cards from "../../components/Cards";
 import Layout from "../../components/Layout";
 import { getTopRated } from "./api";
+import { useSnackbar } from "notistack";
 
 const TopRated = () => {
   const [topRated, setTopRated] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
   const [isFetching, setFetching] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleScroll = (e) => {
     const scrollHeight = e.target.documentElement.scrollHeight;
@@ -32,7 +34,7 @@ const TopRated = () => {
           setPage((page) => page + 1);
         })
         .catch((error) => {
-          console.log(error);
+          enqueueSnackbar(error.message, { variant: "error" });
         })
         .finally(() => {
           setFetching(false);

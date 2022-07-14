@@ -6,6 +6,7 @@ import Loading from "../Loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getCast } from "./api";
 import { POSTER_URL, POSTER_NOT_FOUND } from "../../utils/constants";
+import { useSnackbar } from "notistack";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper/core";
@@ -32,6 +33,7 @@ const breakpoints = {
 const Cast = ({ id }) => {
   const [credits, setCredits] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     setLoading(true);
@@ -40,7 +42,7 @@ const Cast = ({ id }) => {
         setCredits(res.cast);
       })
       .catch((error) => {
-        console.log(error);
+        enqueueSnackbar(error.message, { variant: "error" });
       })
       .finally(() => {
         setLoading(false);

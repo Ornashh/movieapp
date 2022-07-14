@@ -9,6 +9,7 @@ import { openMediaModal } from "../../store/action";
 import { getPhotos } from "./api";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { BACKDROP_URL, BACKDROP_NOT_FOUND } from "../../utils/constants";
+import { useSnackbar } from "notistack";
 
 import SwiperCore, { Navigation } from "swiper/core";
 SwiperCore.use([Navigation]);
@@ -19,6 +20,7 @@ const Photos = ({ id }) => {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [photoPath, setPhotoPath] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleClick = (photoPath) => {
     dispatch(openMediaModal(true));
@@ -32,7 +34,7 @@ const Photos = ({ id }) => {
         setPhotos(res.backdrops);
       })
       .catch((error) => {
-        console.log(error);
+        enqueueSnackbar(error.message, { variant: "error" });
       })
       .finally(() => {
         setLoading(false);

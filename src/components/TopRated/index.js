@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import Carousel from "../Carousel";
 import Loading from "../Loading";
 import { getTopRated } from "./api";
+import { useSnackbar } from "notistack";
 
 const TopRated = () => {
   const [topRated, setTopRated] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     setLoading(true);
@@ -15,7 +17,7 @@ const TopRated = () => {
         setTopRated(res.results);
       })
       .catch((error) => {
-        console.log(error);
+        enqueueSnackbar(error.message, { variant: "error" });
       })
       .finally(() => {
         setLoading(false);

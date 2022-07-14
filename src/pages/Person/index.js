@@ -6,11 +6,13 @@ import PersonMovie from "../../components/PersonMovie";
 import PageTitle from "../../components/PageTitle";
 import Layout from "../../components/Layout";
 import { getPerson } from "./api";
+import { useSnackbar } from "notistack";
 
 const Person = () => {
   const { id } = useParams();
   const [person, setPerson] = useState({});
   const [loading, setLoading] = useState(true);
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     setLoading(true);
@@ -19,7 +21,7 @@ const Person = () => {
         setPerson(res);
       })
       .catch((error) => {
-        console.log(error);
+        enqueueSnackbar(error.message, { variant: "error" });
       })
       .finally(() => {
         setLoading(false);

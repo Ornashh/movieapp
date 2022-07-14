@@ -10,6 +10,7 @@ import Media from "../Media";
 import { openMediaModal } from "../../store/action";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { getVideos } from "./api";
+import { useSnackbar } from "notistack";
 
 const Videos = ({ id }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Videos = ({ id }) => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [video_path, setVideoPath] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleClick = (video_path) => {
     dispatch(openMediaModal(true));
@@ -30,7 +32,7 @@ const Videos = ({ id }) => {
         setVideos(res.results);
       })
       .catch((error) => {
-        console.log(error);
+        enqueueSnackbar(error.message, { variant: "error" });
       })
       .finally(() => {
         setLoading(false);
