@@ -1,5 +1,4 @@
 .carousel {
-  padding-bottom: 40px;
   padding-left: 20px;
 
   @media screen and (max-width: 1024px) {
@@ -24,10 +23,10 @@
     transform: scale(1.05);
   }
 
-  //&:hover #icon {
-  //  opacity: 1 !important;
-  //  visibility: visible !important;
-  //}
+  &:hover div {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 
   a {
     display: block;

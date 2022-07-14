@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import s from "../Media/media.module.scss";
-import { API_KEY, API_URL } from "../../utils/Config";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import { FaPlay } from "react-icons/fa";
+
 import Loading from "../Loading";
 import Modal from "../Modal";
-import { FaPlay } from "react-icons/fa";
 import Media from "../Media";
 import { openMediaModal } from "../../store/action";
-import { useDispatch, useSelector } from "react-redux";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { getVideos } from "./api";
 
 const Videos = ({ id }) => {
   const dispatch = useDispatch();
@@ -24,12 +25,9 @@ const Videos = ({ id }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${API_URL}movie/${id}/videos?api_key=${API_KEY}&language=en-US`)
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setVideos(data.results);
+    getVideos(id)
+      .then((res) => {
+        setVideos(res.results);
       })
       .catch((error) => {
         console.log(error);
@@ -40,7 +38,7 @@ const Videos = ({ id }) => {
   }, [id]);
 
   return (
-    <Loading loading={loading} style={{ height: "50vh" }}>
+    <Loading loading={loading} isHalf>
       <Media>
         {videos?.map((el) => {
           const { id, key, name, type } = el;

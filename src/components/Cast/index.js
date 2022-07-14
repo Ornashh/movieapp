@@ -1,16 +1,34 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import s from "./cast.module.scss";
-import { API_KEY, API_URL } from "../../utils/Config";
-import { Link } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import Loading from "../Loading";
 import { posterImageUrl } from "../../utils/Config";
+import Loading from "../Loading";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation } from "swiper/core";
-import { useSelector } from "react-redux";
+import { getCast } from "./api";
 SwiperCore.use([Navigation]);
+
+const breakpoints = {
+  640: {
+    slidesPerView: 3,
+  },
+  768: {
+    slidesPerView: 4,
+  },
+  1024: {
+    slidesPerView: 5,
+  },
+  1440: {
+    slidesPerView: 6,
+  },
+  1700: {
+    slidesPerView: 7,
+  },
+};
 
 const Cast = ({ id }) => {
   const { posterNotFoundImage } = useSelector((state) => state);
@@ -18,12 +36,10 @@ const Cast = ({ id }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_URL}movie/${id}/credits?api_key=${API_KEY}&language=en-US`)
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setCredits(data.cast);
+    setLoading(true);
+    getCast(id)
+      .then((res) => {
+        setCredits(res.cast);
       })
       .catch((error) => {
         console.log(error);
@@ -34,7 +50,7 @@ const Cast = ({ id }) => {
   }, [id]);
 
   return (
-    <Loading loading={loading} style={{ height: "50vh" }}>
+    <Loading loading={loading} isHalf>
       <div className={s.cast_wrapper}>
         <Swiper
           className="mySwiper"
@@ -42,50 +58,32 @@ const Cast = ({ id }) => {
           freeMode={true}
           slidesPerView={3}
           spaceBetween={10}
-          breakpoints={{
-            640: {
-              slidesPerView: 3,
-            },
-            768: {
-              slidesPerView: 4,
-            },
-            1024: {
-              slidesPerView: 5,
-            },
-            1440: {
-              slidesPerView: 6,
-            },
-            1700: {
-              slidesPerView: 7,
-            },
-          }}
+          breakpoints={breakpoints}
         >
           {credits?.map((cast) => {
             const { id, profile_path, name, character } = cast;
             return (
               <SwiperSlide key={id}>
-                <div className={s.card_outer}>
-                  <div className={s.card}>
+                <div className={s.card}>
+                  <Link to={`/person/${id}`}>
                     <figure>
                       <picture>
-                        <Link to={`/person/${id}`}>
-                          <LazyLoadImage
-                            src={
-                              profile_path
-                                ? posterImageUrl + profile_path
-                                : posterNotFoundImage
-                            }
-                            alt={name}
-                            effect="blur"
-                          />
-                        </Link>
+                        <LazyLoadImage
+                          src={
+                            profile_path
+                              ? posterImageUrl + profile_path
+                              : posterNotFoundImage
+                          }
+                          alt={name}
+                          effect="blur"
+                        />
                       </picture>
                     </figure>
-                  </div>
-                  <div className={s.card_desc}>
-                    <h3>{name}</h3>
-                    <p>{character}</p>
-                  </div>
+                  </Link>
+                </div>
+                <div className={s.card_desc}>
+                  <h3>{name}</h3>
+                  <p>{character}</p>
                 </div>
               </SwiperSlide>
             );

@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-
-import { backdropImageUrl } from "../../utils/Config";
+import { useDispatch, useSelector } from "react-redux";
 
 import s from "../Media/media.module.scss";
-import { API_KEY, API_URL } from "../../utils/Config";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
+import { backdropImageUrl } from "../../utils/Config";
 import Loading from "../Loading";
+import Media from "../Media";
+import Modal from "../Modal";
+import { openMediaModal } from "../../store/action";
+import { getPhotos } from "./api";
 
 import SwiperCore, { Navigation } from "swiper/core";
-import Media from "../Media";
-import { useDispatch, useSelector } from "react-redux";
-import { openMediaModal } from "../../store/action";
-import Modal from "../Modal";
 SwiperCore.use([Navigation]);
 
 const Photos = ({ id }) => {
@@ -31,14 +29,9 @@ const Photos = ({ id }) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      `${API_URL}movie/${id}/images?api_key=${API_KEY}&language=en-US&include_image_language=null`
-    )
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setPhotos(data.backdrops);
+    getPhotos(id)
+      .then((res) => {
+        setPhotos(res.backdrops);
       })
       .catch((error) => {
         console.log(error);
@@ -49,7 +42,7 @@ const Photos = ({ id }) => {
   }, [id]);
 
   return (
-    <Loading loading={loading} style={{ height: "50vh" }}>
+    <Loading loading={loading} isHalf>
       <Media>
         {photos?.map((el, i) => {
           const { file_path } = el;

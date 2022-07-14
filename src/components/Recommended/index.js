@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 
-import s from "./recommended.module.scss";
 import Carousel from "../Carousel";
 import Loading from "../Loading";
-import { API_KEY, API_URL } from "../../utils/Config";
+import { getRecommended } from "./api";
 
 const Recommended = ({ id }) => {
   const [rec, setRec] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `${API_URL}movie/${id}/recommendations?api_key=${API_KEY}&language=en-US&page=1`
-    )
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setRec(data.results);
+    setLoading(true);
+    getRecommended(id)
+      .then((res) => {
+        setRec(res.results);
       })
       .catch((error) => {
         console.log(error);
@@ -28,8 +23,8 @@ const Recommended = ({ id }) => {
   }, [id]);
 
   return (
-    <Loading loading={loading} style={{ height: "50vh" }}>
-      <div className={s.recommended_wrapper}>
+    <Loading loading={loading} isHalf>
+      <div className="mt-10 mb-10">
         {rec.length ? <Carousel title="Recommended Movies" data={rec} /> : null}
       </div>
     </Loading>

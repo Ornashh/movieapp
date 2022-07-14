@@ -3,10 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 import s from "./search.module.scss";
 import Loading from "../../components/Loading";
 import PageTitle from "../../components/PageTitle";
-import { SEARCH_URL } from "../../utils/Config";
-import { useSelector } from "react-redux";
 import Cards from "../../components/Cards";
 import Layout from "../../components/Layout";
+import { search } from "./api";
 
 const Search = () => {
   const value = useRef();
@@ -17,13 +16,10 @@ const Search = () => {
   useEffect(() => {
     setLoading(true);
     if (name) {
-      fetch(`${SEARCH_URL}page=1&query=${name}`)
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((data) => {
+      search()
+        .then((res) => {
           setResults((prevState) => {
-            return [...prevState, ...data.results];
+            return [...prevState, ...res.results];
           });
         })
         .catch((error) => {
@@ -55,7 +51,7 @@ const Search = () => {
             <Cards title={`Results: ${name}`} data={results} loadMore={false} />
           </Loading>
         ) : (
-          <div className={s.empty_message}>No search results</div>
+          <div className="empty_message fade_in ">No search results</div>
         )}
       </Layout>
     </PageTitle>

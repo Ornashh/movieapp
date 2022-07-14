@@ -74,8 +74,8 @@ const Details = ({ details, loading }) => {
     .join(", ");
 
   return (
-    <Loading loading={loading} style={{ height: "100vh" }}>
-      <div className={`${s.movie} fade-in`}>
+    <Loading loading={loading}>
+      <div className={`${s.movie} fade_in`}>
         <div className={s.backdrop}>
           <img src={backdrop} alt={title} />
         </div>

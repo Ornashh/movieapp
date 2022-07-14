@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import s from "./nowplaying.module.scss";
-import { backdropImageUrl } from "../../utils/Config";
 
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import Loading from "../Loading";
-import { NOW_PLAYING_URL } from "../../utils/Config";
+import { backdropImageUrl } from "../../utils/Config";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Autoplay, Pagination } from "swiper/core";
-import { useSelector } from "react-redux";
+import { getNowPlaying } from "./api";
 SwiperCore.use([Autoplay, Pagination]);
 
 const NowPlaying = () => {
@@ -19,12 +19,10 @@ const NowPlaying = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(NOW_PLAYING_URL)
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setNowPlaying(data.results);
+    setLoading(true);
+    getNowPlaying()
+      .then((res) => {
+        setNowPlaying(res.results);
       })
       .catch((error) => {
         console.log(error);
@@ -35,8 +33,8 @@ const NowPlaying = () => {
   }, []);
 
   return (
-    <Loading loading={loading} style={{ height: "50vh" }}>
-      <div className={`${s.movie_wrapper} fade_in`}>
+    <Loading loading={loading} isHalf>
+      <div className="fade_in">
         <Swiper
           autoplay={{
             delay: 10000,
@@ -50,7 +48,7 @@ const NowPlaying = () => {
             const { id, title, overview, backdrop_path } = movie;
             return (
               <SwiperSlide key={id}>
-                <div className={s.movie_item}>
+                <div className={s.item}>
                   <LazyLoadImage
                     effect="blur"
                     src={
@@ -61,11 +59,11 @@ const NowPlaying = () => {
                     alt={title || "movie"}
                   />
                 </div>
-                <div className={s.movie_info_outer}>
-                  <div className={s.movie_info_inner}>
-                    <div className={s.movie_title}>{title}</div>
+                <div className={s.info_outer}>
+                  <div className={s.info_inner}>
+                    <div className={s.title}>{title}</div>
                     {overview ? (
-                      <div className={s.movie_overview}>
+                      <div className={s.overview}>
                         {`${overview.substring(0, 200)}...`}
                       </div>
                     ) : null}

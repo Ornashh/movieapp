@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { API_KEY, API_URL } from "../../utils/Config";
 import Loading from "../Loading";
 import Carousel from "../Carousel";
+import { getPersonMovie } from "./api";
 
 const PersonMovie = () => {
   const { id } = useParams();
@@ -11,14 +11,10 @@ const PersonMovie = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `${API_URL}person/${id}/movie_credits?api_key=${API_KEY}&language=en-US`
-    )
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setPersonMovie(data.cast);
+    setLoading(true);
+    getPersonMovie(id)
+      .then((res) => {
+        setPersonMovie(res.cast);
       })
       .catch((error) => {
         console.log(error);
@@ -29,8 +25,8 @@ const PersonMovie = () => {
   }, [id]);
 
   return (
-    <Loading loading={loading} style={{ height: "50vh" }}>
-      <div className="fade_in">
+    <Loading loading={loading} isHalf>
+      <div className="mt-5 mb-5">
         <Carousel title="Movies" data={personMovie} />
       </div>
     </Loading>

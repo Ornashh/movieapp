@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { POPULAR_URL } from "../../utils/Config";
 import PageTitle from "../../components/PageTitle";
 import Cards from "../../components/Cards";
 import Layout from "../../components/Layout";
+import { getPopular } from "./api";
 
-const Index = () => {
+const Popular = () => {
   const [popular, setPopular] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(null);
@@ -23,15 +23,12 @@ const Index = () => {
 
   useEffect(() => {
     if (isFetching) {
-      fetch(POPULAR_URL + page)
-        .then((resp) => {
-          return resp.json();
-        })
-        .then((data) => {
+      getPopular(page)
+        .then((res) => {
           setPopular((prevState) => {
-            return [...prevState, ...data.results];
+            return [...prevState, ...res.results];
           });
-          setTotalPage(data.total_pages);
+          setTotalPage(res.total_pages);
           setPage((page) => page + 1);
         })
         .catch((error) => {
@@ -66,4 +63,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Popular;

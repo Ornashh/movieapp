@@ -1,5 +1,5 @@
 .cards_outer {
-  padding: 20px;
+  padding: 40px 20px;
 }
 
 .cards_inner {
@@ -26,20 +26,16 @@
 }
 
 .cards_title {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 500;
   margin-bottom: 30px;
-
-  @media screen and (min-width: 1024px) {
-    font-size: 32px;
-  }
 }
 
 .card {
   border-radius: 5px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease !important;
+  transition: all 0.3s ease;
 
   a {
     display: block;
@@ -51,10 +47,10 @@
     transform: scale(1.03);
   }
 
-  //&:hover #icon {
-  //  opacity: 1 !important;
-  //  visibility: visible !important;
-  //}
+  &:hover div {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
 
   figure {
     background-color: rgb(32, 33, 36);

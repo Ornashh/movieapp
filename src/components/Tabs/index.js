@@ -13,7 +13,7 @@ const TabNavItem = ({ title, tab, tabName, setTabName }) => {
 
   return (
     <button
-      className={tabName === tab ? `${s.tab} active-tab` : `${s.tab}`}
+      className={tabName === tab ? `${s.tab} ${s.active_tab}` : `${s.tab}`}
       onClick={handleClick}
     >
       {title}

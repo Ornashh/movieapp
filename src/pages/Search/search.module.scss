@@ -1,5 +1,5 @@
 .form {
-  padding: 20px;
+  padding: 20px 20px 0 20px;
 
   input {
     outline: none;
@@ -15,11 +15,4 @@
   @media screen and (max-width: 1024px) {
     padding: 20px;
   }
-}
-
-.empty_message {
-  font-size: 32px;
-  font-weight: 500;
-  text-align: center;
-  padding: 0 20px;
 }

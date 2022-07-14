@@ -33,7 +33,7 @@ const Favorite = () => {
             </div>
           </>
         ) : (
-          <div className={s.empty_message}>Favorite list is empty</div>
+          <div className="empty_message fade_in">Favorite list is empty</div>
         )}
       </Layout>
     </PageTitle>

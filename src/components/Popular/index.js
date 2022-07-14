@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 
 import Carousel from "../Carousel";
 import Loading from "../Loading";
-import { POPULAR_URL } from "../../utils/Config";
+import { getPopular } from "./api";
 
 const Popular = () => {
   const [popular, setPopular] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(POPULAR_URL)
-      .then((resp) => {
-        return resp.json();
-      })
-      .then((data) => {
-        setPopular(data.results);
+    setLoading(true);
+    getPopular()
+      .then((res) => {
+        setPopular(res.results);
       })
       .catch((error) => {
         console.log(error);
@@ -25,8 +23,10 @@ const Popular = () => {
   }, []);
 
   return (
-    <Loading loading={loading} style={{ height: "50vh" }}>
-      <Carousel title="Popular Movies" data={popular} />
+    <Loading loading={loading} isHalf>
+      <div className="mt-5">
+        <Carousel title="Popular Movies" data={popular} />
+      </div>
     </Loading>
   );
 };

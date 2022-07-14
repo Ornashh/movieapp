@@ -1,11 +1,6 @@
-.person_outer {
-  margin-bottom: 40px;
-}
-
-.person_inner {
+.person {
   display: grid;
   grid-template-columns: 300px 1fr;
-  //gap: 20px;
   padding: 20px;
 
   @media screen and (max-width: 768px) {
@@ -37,10 +32,6 @@
   div {
     margin-top: 10px;
   }
-
-  @media screen and (max-width: 1024px) {
-    padding: 0;
-  }
 }
 
 .bio {
@@ -51,5 +42,5 @@
 .read_more {
   font-size: 14px;
   color: #1976d2;
-  padding: 3px 0;
+  padding: 0 5px;
 }

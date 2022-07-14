@@ -41,11 +41,6 @@ main {
   position: relative;
 }
 
-.active-tab {
-  color: #1976d2 !important;
-  background-color: #0e0e0e !important;
-}
-
 .fade_in {
   animation: fadeIn 0.5s ease-out;
 }
@@ -87,12 +82,29 @@ main {
   left: 0 !important;
 }
 
-.lazyLoad {
-  width: inherit;
-  height: inherit;
-  background-color: #1f1f1f;
-}
-
 .disable_scroll {
   overflow: hidden;
+}
+
+.empty_message {
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  padding: 20px;
+}
+
+.mt-5 {
+  margin-top: 40px;
+}
+
+.mb-5 {
+  margin-bottom: 40px;
+}
+
+.mt-10 {
+  margin-top: 80px;
+}
+
+.mb-10 {
+  margin-bottom: 80px;
 }
