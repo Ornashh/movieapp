@@ -47,7 +47,7 @@ const Photos = ({ id }) => {
         {photos?.map((el, i) => {
           const { file_path } = el;
           return (
-            <div key={i} className={s.media_item}>
+            <div key={i} className={`${s.media_item} ${s.photo_item}`}>
               <LazyLoadImage
                 src={file_path ? BACKDROP_URL + file_path : BACKDROP_NOT_FOUND}
                 alt="movie_photo"
