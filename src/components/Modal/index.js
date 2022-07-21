@@ -9,7 +9,7 @@ const Modal = ({ children }) => {
   const dispatch = useDispatch();
 
   const handleClickAway = (e) => {
-    if (e.target.id !== "video" || e.target.id !== "img") {
+    if (e.target.id !== "video" && e.target.id !== "img") {
       dispatch(openMediaModal(false));
     }
   };
