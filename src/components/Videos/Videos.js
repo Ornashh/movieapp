@@ -7,9 +7,9 @@ import { FaPlay } from "react-icons/fa";
 import Loading from "../Loading";
 import Modal from "../Modal";
 import Media from "../Media";
-import { openMediaModal } from "../../store/action";
+import { openMediaModal } from "../../redux/action";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { getVideos } from "./api";
+import { getVideos } from "../../api";
 import { useSnackbar } from "notistack";
 
 const Videos = ({ id }) => {

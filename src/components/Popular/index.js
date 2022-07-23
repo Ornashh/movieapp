@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Carousel from "../Carousel";
 import Loading from "../Loading";
-import { getPopular } from "./api";
+import { getPopular } from "../../api";
 import { useSnackbar } from "notistack";
 
 const Popular = () => {

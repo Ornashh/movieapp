@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 
 import PersonInfo from "../../components/PersonInfo";
 import PersonMovie from "../../components/PersonMovie";
-import PageTitle from "../../components/PageTitle";
 import Layout from "../../components/Layout";
-import { getPerson } from "./api";
+import { getPerson } from "../../api";
 import { useSnackbar } from "notistack";
 
 const Person = () => {
@@ -29,12 +28,10 @@ const Person = () => {
   }, [id]);
 
   return (
-    <PageTitle title={person.name}>
-      <Layout>
-        <PersonInfo person={person} loading={loading} />
-        <PersonMovie />
-      </Layout>
-    </PageTitle>
+    <Layout title={person.name}>
+      <PersonInfo person={person} loading={loading} />
+      <PersonMovie />
+    </Layout>
   );
 };
 

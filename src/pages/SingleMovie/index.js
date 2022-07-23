@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import PageTitle from "../../components/PageTitle";
 import Layout from "../../components/Layout";
 import Details from "../../components/Details";
 import Tabs from "../../components/Tabs";
 import Recommended from "../../components/Recommended";
-import { getMovie } from "./api";
+import { getMovie } from "../../api";
 import { useSnackbar } from "notistack";
 
 const SingleMovie = () => {
@@ -30,13 +29,11 @@ const SingleMovie = () => {
   }, [id]);
 
   return (
-    <PageTitle title={details.title}>
-      <Layout>
-        <Details id={id} details={details} loading={loading} />
-        <Tabs id={id} />
-        <Recommended id={id} />
-      </Layout>
-    </PageTitle>
+    <Layout title={details.title}>
+      <Details id={id} details={details} loading={loading} />
+      <Tabs id={id} />
+      <Recommended id={id} />
+    </Layout>
   );
 };
 

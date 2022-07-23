@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import s from "./nowplaying.module.scss";
 import Loading from "../Loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { getNowPlaying } from "./api";
+import { getNowPlaying } from "../../api";
 import { BACKDROP_URL, BACKDROP_NOT_FOUND } from "../../utils/constants";
 import { useSnackbar } from "notistack";
 

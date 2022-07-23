@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import s from "./modal.module.scss";
 import { FaTimes } from "react-icons/fa";
-import { openMediaModal } from "../../store/action";
+import { openMediaModal } from "../../redux/action";
 
 const Modal = ({ children }) => {
   const dispatch = useDispatch();

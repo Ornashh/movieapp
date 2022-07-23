@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import s from "./cast.module.scss";
 import Loading from "../Loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { getCast } from "./api";
+import { getCast } from "../../api";
 import { POSTER_URL, POSTER_NOT_FOUND } from "../../utils/constants";
 import { useSnackbar } from "notistack";
 

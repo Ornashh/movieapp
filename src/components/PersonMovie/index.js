@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import Loading from "../Loading";
 import Carousel from "../Carousel";
-import { getPersonMovie } from "./api";
+import { getPersonMovie } from "../../api";
 
 const PersonMovie = () => {
   const { id } = useParams();

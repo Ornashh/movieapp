@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 
 import s from "./search.module.scss";
 import Loading from "../../components/Loading";
-import PageTitle from "../../components/PageTitle";
 import Cards from "../../components/Cards";
 import Layout from "../../components/Layout";
-import { search } from "./api";
+import { search } from "../../api";
 import { useSnackbar } from "notistack";
 
 const Search = () => {
@@ -42,21 +41,19 @@ const Search = () => {
   };
 
   return (
-    <PageTitle title="Search">
-      <Layout>
-        <form onSubmit={handleSubmit} className={s.form}>
-          <input type="text" placeholder="Search" ref={value} />
-        </form>
+    <Layout title="Search">
+      <form onSubmit={handleSubmit} className={s.form}>
+        <input type="text" placeholder="Search" ref={value} />
+      </form>
 
-        {name ? (
-          <Loading loading={loading}>
-            <Cards title={`Results: ${name}`} data={results} loadMore={false} />
-          </Loading>
-        ) : (
-          <div className="empty_message fade_in ">No search results</div>
-        )}
-      </Layout>
-    </PageTitle>
+      {name ? (
+        <Loading loading={loading}>
+          <Cards title={`Results: ${name}`} data={results} loadMore={false} />
+        </Loading>
+      ) : (
+        <div className="empty_message fade_in ">No search results</div>
+      )}
+    </Layout>
   );
 };
 

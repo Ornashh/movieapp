@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Carousel from "../Carousel";
 import Loading from "../Loading";
-import { getRecommended } from "./api";
+import { getRecommended } from "../../api";
 import { useSnackbar } from "notistack";
 
 const Recommended = ({ id }) => {

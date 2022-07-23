@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import s from "./favbtn.module.scss";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { addFavorite, removeFavorite } from "../../store/action";
+import { addFavorite, removeFavorite } from "../../redux/action";
 
 const FavButton = ({ element }) => {
   const dispatch = useDispatch();

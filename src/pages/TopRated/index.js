@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import PageTitle from "../../components/PageTitle";
 import Cards from "../../components/Cards";
 import Layout from "../../components/Layout";
-import { getTopRated } from "./api";
+import { getTopRated } from "../../api";
 import { useSnackbar } from "notistack";
 
 const TopRated = () => {
@@ -51,17 +50,15 @@ const TopRated = () => {
   }, []);
 
   return (
-    <PageTitle title="Top Rated">
-      <Layout>
-        <Cards
-          title="Top Rated Movies"
-          data={topRated}
-          isFetching={isFetching}
-          page={page}
-          totalPage={totalPage}
-        />
-      </Layout>
-    </PageTitle>
+    <Layout title="Top Rated">
+      <Cards
+        title="Top Rated Movies"
+        data={topRated}
+        isFetching={isFetching}
+        page={page}
+        totalPage={totalPage}
+      />
+    </Layout>
   );
 };
 

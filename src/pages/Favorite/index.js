@@ -2,10 +2,9 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import s from "./favorite.module.scss";
-import PageTitle from "../../components/PageTitle";
 
 import Cards from "../../components/Cards";
-import { clearFavoriteList } from "../../store/action";
+import { clearFavoriteList } from "../../redux/action";
 import Layout from "../../components/Layout";
 
 const Favorite = () => {
@@ -17,26 +16,20 @@ const Favorite = () => {
   };
 
   return (
-    <PageTitle title="Favorite">
-      <Layout>
-        {favoriteList?.length ? (
-          <>
-            <Cards
-              title="Favorite Movies"
-              data={favoriteList}
-              loadMore={false}
-            />
-            <div className={s.btn_wrapper}>
-              <button onClick={handleClear} className={s.btn}>
-                Clear
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="empty_message fade_in">Favorite list is empty</div>
-        )}
-      </Layout>
-    </PageTitle>
+    <Layout title="Favorite">
+      {favoriteList?.length ? (
+        <>
+          <Cards title="Favorite Movies" data={favoriteList} loadMore={false} />
+          <div className={s.btn_wrapper}>
+            <button onClick={handleClear} className={s.btn}>
+              Clear
+            </button>
+          </div>
+        </>
+      ) : (
+        <div className="empty_message fade_in">Favorite list is empty</div>
+      )}
+    </Layout>
   );
 };
 

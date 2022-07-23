@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import PageTitle from "../../components/PageTitle";
 import Cards from "../../components/Cards";
 import Layout from "../../components/Layout";
-import { getPopular } from "./api";
+import { getPopular } from "../../api";
 import { useSnackbar } from "notistack";
 
 const Popular = () => {
@@ -51,17 +50,15 @@ const Popular = () => {
   }, []);
 
   return (
-    <PageTitle title="Popular">
-      <Layout>
-        <Cards
-          title="Popular Movies"
-          data={popular}
-          isFetching={isFetching}
-          page={page}
-          totalPage={totalPage}
-        />
-      </Layout>
-    </PageTitle>
+    <Layout title="Popular">
+      <Cards
+        title="Popular Movies"
+        data={popular}
+        isFetching={isFetching}
+        page={page}
+        totalPage={totalPage}
+      />
+    </Layout>
   );
 };
 
