@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Details } from "@/types/movie";
 import { API_KEY } from "@/utils/constants";
 
-export const getDetails = async (id: number): Promise<Details | undefined> => {
+const getDetails = async (id: number): Promise<Details | undefined> => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
   );
