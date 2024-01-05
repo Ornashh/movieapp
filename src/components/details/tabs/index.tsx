@@ -15,7 +15,7 @@ type Props = {
 
 const tabList = [
   {
-    title: "Credits",
+    title: "Cast",
     icon: <Users className="svg" />,
   },
   {
@@ -36,7 +36,7 @@ export const Tabs = ({ id }: Props) => {
   const [activeTabIndex, setActiveTabIndex] = useState<number>(0);
 
   return (
-    <div className="flex flex-col gap-y-6">
+    <div className="flex flex-col gap-y-4">
       <Tab.Group selectedIndex={activeTabIndex} onChange={setActiveTabIndex}>
         <Tab.List className="border border-border rounded-xl flex p-1 overflow-hidden">
           {tabList.map(({ title, icon }, index) => {

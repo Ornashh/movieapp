@@ -9,9 +9,11 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
-import { dateFormat, moneyConverter, timeConverter } from "@/utils/helpers";
-import { POSTER_URL } from "@/utils/constants";
 import { useGetDetailsQuery } from "@/rtk/services/injections/moviesApi";
+import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
+import { dateFormat, moneyConverter, timeConverter } from "@/utils/helpers";
+
+const movieInfoClasses = "flex gap-y-1 gap-x-2 max-sm:text-sm";
 
 export const Details = ({ movieId }: { movieId: number }) => {
   const {
@@ -46,32 +48,35 @@ export const Details = ({ movieId }: { movieId: number }) => {
 
         <div className="flex flex-col gap-y-10">
           <div className="flex gap-6 z-20 max-sm:flex-col">
-            <figure className="block min-w-[250px] h-[350px] max-sm:min-w-0 max-sm:w-[200px] max-sm:h-[300px]">
+            <figure className="bg-hover rounded-md relative min-w-[200px] max-h-[300px] overflow-hidden before:content-[''] before:block before:pt-[300px] max-md:min-w-[200px] max-md:max-h-[300px] max-md:before:pt-[300px] max-sm:min-w-auto max-sm:w-[200px]">
               <Image
                 src={
                   details.poster_path
                     ? POSTER_URL + details.poster_path
-                    : "/poster-not-found.jpg"
+                    : POSTER_NOT_FOUND
                 }
                 width={500}
                 height={750}
                 priority
                 alt={details.title}
-                className="rounded-md w-full h-full object-cover"
+                className="absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0 duration-500"
+                onLoadingComplete={(img) => img.classList.remove("opacity-0")}
               />
             </figure>
 
             <div className="flex flex-col gap-y-4 w-full">
-              <h2 className="text-xl font-medium max-sm:text-lg">
-                {details.title}
-              </h2>
+              <div className="flex flex-col gap-y-1">
+                <h2 className="text-xl font-medium max-sm:text-lg">
+                  {details.title}
+                </h2>
 
-              {details.overview && (
-                <p className="max-sm:text-sm">{details.overview}</p>
-              )}
+                {details.overview && (
+                  <p className="max-sm:text-sm">{details.overview}</p>
+                )}
+              </div>
 
               <div className="flex flex-col gap-y-2">
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground">Genres:</div>
                   {details.genres.length > 0 ? (
                     <div className="flex flex-wrap">
@@ -79,10 +84,7 @@ export const Details = ({ movieId }: { movieId: number }) => {
                         return (
                           <Fragment key={id}>
                             {index > 0 && <div>,&nbsp;</div>}
-                            <Link
-                              href={`/genre/${id}`}
-                              className="hover:underline max-md:underline"
-                            >
+                            <Link href={`/genre/${id}`} className="underline">
                               {name}
                             </Link>
                           </Fragment>
@@ -94,42 +96,42 @@ export const Details = ({ movieId }: { movieId: number }) => {
                   )}
                 </div>
 
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground">Release date:</div>
                   <div className=" max-sm:text-sm">
                     {dateFormat(details.release_date)}
                   </div>
                 </div>
 
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground">Runtime:</div>
                   <div className=" max-sm:text-sm">
                     {timeConverter(details.runtime)}
                   </div>
                 </div>
 
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground">Revenue:</div>
                   <div className=" max-sm:text-sm">
                     {moneyConverter(details.revenue)}
                   </div>
                 </div>
 
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground">Budget:</div>
                   <div className=" max-sm:text-sm">
                     {moneyConverter(details.budget)}
                   </div>
                 </div>
 
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground">Rating:</div>
                   <div className="max-sm:text-sm">
                     {details.vote_average.toFixed(1)}/10 ({details.vote_count})
                   </div>
                 </div>
 
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground">Country:</div>
                   {details.production_countries.length > 0 ? (
                     <div className="flex flex-wrap">
@@ -147,7 +149,7 @@ export const Details = ({ movieId }: { movieId: number }) => {
                   )}
                 </div>
 
-                <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                <div className={movieInfoClasses}>
                   <div className="text-secondary-foreground max-sm:text-sm">
                     Language:
                   </div>
@@ -170,13 +172,13 @@ export const Details = ({ movieId }: { movieId: number }) => {
                 </div>
 
                 {details.belongs_to_collection && (
-                  <div className="flex gap-y-1 gap-x-2 max-sm:flex-col max-sm:text-sm">
+                  <div className={movieInfoClasses}>
                     <div className="text-secondary-foreground max-sm:text-sm">
                       Collection:
                     </div>
                     <Link
                       href={`/collection/${details.belongs_to_collection.id}`}
-                      className="hover:underline max-md:underline"
+                      className="underline"
                     >
                       {details.belongs_to_collection.name}
                     </Link>

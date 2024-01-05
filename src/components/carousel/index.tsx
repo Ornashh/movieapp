@@ -11,7 +11,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { IconButton } from "../ui/iconButton";
 import { Movie } from "@/types/movie";
 import { Cast } from "@/types/credits";
-import { POSTER_URL } from "@/utils/constants";
+import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
 import { cn } from "@/utils/cn";
 
 type Props = {
@@ -36,7 +36,7 @@ export const Carousel = ({ title, href, data }: Props) => {
   const swiperRef = useRef<SwiperCore>();
 
   return (
-    <div className="flex flex-col gap-y-4">
+    <div className="flex flex-col gap-y-2">
       <div
         className={cn(
           "flex items-center",
@@ -44,7 +44,7 @@ export const Carousel = ({ title, href, data }: Props) => {
         )}
       >
         <div className="flex items-center gap-x-2">
-          <div className="text-xl font-medium max-sm:text-lg">{title}</div>
+          <div className="text-lg font-medium">{title}</div>
           {href && (
             <Link href={href} className="text-sm text-secondary-foreground">
               View all
@@ -70,7 +70,7 @@ export const Carousel = ({ title, href, data }: Props) => {
             swiperRef.current = swiper;
           }}
           slidesPerView={3}
-          spaceBetween={10}
+          spaceBetween={16}
           freeMode
           modules={[FreeMode, Navigation]}
           breakpoints={breakpoints}
@@ -86,7 +86,7 @@ export const Carousel = ({ title, href, data }: Props) => {
               release_date,
             }: any) => {
               const path = name ? profile_path : poster_path;
-              const link = name ? `/person/${id}` : `/movie/${id}`;
+              const link = name ? `/people/${id}` : `/movie/${id}`;
               const releaseYear = release_date
                 ? new Date(release_date).getFullYear()
                 : "N/A";
@@ -94,12 +94,10 @@ export const Carousel = ({ title, href, data }: Props) => {
               return (
                 <SwiperSlide key={id}>
                   <div className="flex flex-col gap-y-2">
-                    <Link href={link} title={title || name}>
+                    <Link href={link}>
                       <figure className="bg-hover rounded-md relative overflow-hidden before:content-[''] before:block before:pt-[150%]">
                         <Image
-                          src={
-                            path ? POSTER_URL + path : "/poster-not-found.jpg"
-                          }
+                          src={path ? POSTER_URL + path : POSTER_NOT_FOUND}
                           width={500}
                           height={750}
                           alt={title || name}
@@ -115,24 +113,17 @@ export const Carousel = ({ title, href, data }: Props) => {
                       <div>
                         <Link
                           href={link}
-                          className="font-medium truncate hover:underline max-sm:text-sm"
+                          className="text-sm flex max-sm:text-sm"
                         >
                           {name}
                         </Link>
-                        <div className="text-secondary-foreground truncate text-sm">
+                        <div className="text-sm text-secondary-foreground">
                           {character}
                         </div>
                       </div>
                     ) : (
-                      <Link
-                        href={link}
-                        className="max-sm:text-sm flex hover:underline"
-                      >
-                        <div className="font-medium truncate hover:underline">
-                          {title}
-                        </div>
-                        &nbsp;
-                        <div>({releaseYear})</div>
+                      <Link href={link} className="text-sm">
+                        {title} ({releaseYear})
                       </Link>
                     )}
                   </div>

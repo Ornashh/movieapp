@@ -10,7 +10,6 @@ import { Carousel } from "@/components/carousel";
 import { IconButton } from "@/components/ui/iconButton";
 import {
   useGetPopularQuery,
-  useGetTopRatedQuery,
   useGetTrendingQuery,
 } from "@/rtk/services/injections/moviesApi";
 import { useGetGenresQuery } from "@/rtk/services/injections/genresApi";
@@ -21,17 +20,14 @@ const Home = () => {
 
   const { data: trending } = useGetTrendingQuery();
   const { data: genres } = useGetGenresQuery();
-  const { data: popular } = useGetPopularQuery(1);
-  const { data: topRated } = useGetTopRatedQuery(1);
+  const { data: popular } = useGetPopularQuery();
 
   return (
     <div className="flex flex-col gap-y-10 max-sm:gap-y-5">
       {trending && (
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-2">
           <div className="flex justify-between items-center">
-            <div className="text-xl font-medium max-sm:text-lg">
-              Trending today
-            </div>
+            <div className="text-lg font-medium">Trending today</div>
             <div className="flex">
               <IconButton
                 aria-label="left-navigation"
@@ -47,6 +43,8 @@ const Home = () => {
           </div>
           <div>
             <Swiper
+              speed={600}
+              spaceBetween={16}
               onBeforeInit={(swiper) => {
                 swiperRef.current = swiper;
               }}
@@ -56,16 +54,22 @@ const Home = () => {
                 .map(({ id, title, overview, backdrop_path }) => {
                   return (
                     <SwiperSlide key={id}>
-                      <div className="rounded-xl relative overflow-hidden">
-                        <div className="text-[#fafafa] bg-black/60 flex items-center absolute top-0 left-0 w-full h-full p-5">
-                          <div className="flex flex-col gap-y-1 max-w-[600px] overflow-hidden">
+                      <div className="rounded-md relative overflow-hidden">
+                        <div
+                          style={{
+                            background:
+                              "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8) 80%)",
+                          }}
+                          className="text-[#fafafa] flex items-end absolute top-0 left-0 w-full h-full p-5"
+                        >
+                          <div className="max-w-[600px] overflow-hidden">
                             <Link
                               href={`/movie/${id}`}
-                              className="text-xl font-bold truncate max-sm:text-base"
+                              className="text-xl font-bold inline-flex mb-1 max-sm:text-base"
                             >
                               {title}
                             </Link>
-                            <p className="line-clamp-2 max-sm:text-sm">
+                            <p className="truncate max-sm:text-sm">
                               {overview}
                             </p>
                           </div>
@@ -76,7 +80,7 @@ const Home = () => {
                           height={1080}
                           alt={title}
                           priority
-                          className="aspect-video max-h-[500px] h-full object-cover"
+                          className="aspect-video max-h-[400px] h-full object-cover"
                         />
                       </div>
                     </SwiperSlide>
@@ -88,15 +92,15 @@ const Home = () => {
       )}
 
       {genres && (
-        <div className="flex flex-col gap-y-4">
-          <h2 className="text-xl font-medium max-sm:text-lg">Genres</h2>
+        <div className="flex flex-col gap-y-2">
+          <h2 className="text-lg font-medium">Genres</h2>
           <div className="flex flex-wrap gap-2">
             {genres.genres.map(({ id, name }) => {
               return (
                 <Link
                   key={id}
                   href={`/genre/${id}`}
-                  className="border border-border rounded-xl py-1 px-4 duration-200 ease-in-out hover:bg-hover max-sm:text-sm"
+                  className="border border-border rounded-full py-0.5 px-3 duration-200 ease-in-out hover:bg-hover max-sm:text-sm"
                 >
                   {name}
                 </Link>
@@ -107,11 +111,11 @@ const Home = () => {
       )}
 
       {popular && (
-        <Carousel title="Popular" href="/popular" data={popular.results} />
-      )}
-
-      {topRated && (
-        <Carousel title="Top rated" href="/top_rated" data={topRated.results} />
+        <Carousel
+          title="What's popular"
+          href="/popular"
+          data={popular.results}
+        />
       )}
     </div>
   );

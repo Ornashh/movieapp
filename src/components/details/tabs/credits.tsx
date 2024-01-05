@@ -23,7 +23,7 @@ export const Credits = ({ id }: Props) => {
   if (credits) {
     return (
       <Carousel
-        title="Credits"
+        title="Top cast"
         href={`/movie/${id}/credits`}
         data={credits.cast}
       />

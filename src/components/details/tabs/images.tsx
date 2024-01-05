@@ -2,10 +2,11 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { Dialog } from "../dialog";
-import { Loading } from "../../ui/loading";
-import { Alert } from "../../ui/alert";
+import { Loading } from "@/components/ui/loading";
+import { Alert } from "@/components/ui/alert";
 
 import { useGetImagesQuery } from "@/rtk/services/injections/mediaApi";
+import { BACKDROP_URL_ORIGINAL, BACKDROP_URL_SMALL } from "@/utils/constants";
 
 type Props = {
   id: number;
@@ -35,16 +36,16 @@ export const Images = ({ id }: Props) => {
 
   if (images) {
     return (
-      <div className="grid gap-4 grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+      <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
         {images.backdrops.map(({ file_path }, index) => {
           return (
             <figure
               key={index}
-              className="bg-hover rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[60%]"
+              className="bg-hover rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[56%]"
               onClick={() => handleOpenDialog(file_path)}
             >
               <Image
-                src={"https://image.tmdb.org/t/p/w780" + file_path}
+                src={BACKDROP_URL_SMALL + file_path}
                 width={780}
                 height={439}
                 alt=""
@@ -59,7 +60,7 @@ export const Images = ({ id }: Props) => {
         <Dialog open={dialog.isOpen} onClose={handleCloseDialog}>
           <div className="bg-hover relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
             <Image
-              src={"https://image.tmdb.org/t/p/original" + dialog.filePath}
+              src={BACKDROP_URL_ORIGINAL + dialog.filePath}
               width={1920}
               height={1080}
               alt=""

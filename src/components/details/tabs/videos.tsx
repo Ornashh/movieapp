@@ -2,8 +2,8 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { Dialog } from "../dialog";
-import { Loading } from "../../ui/loading";
-import { Alert } from "../../ui/alert";
+import { Loading } from "@/components/ui/loading";
+import { Alert } from "@/components/ui/alert";
 
 import { useGetVideosQuery } from "@/rtk/services/injections/mediaApi";
 
@@ -30,14 +30,14 @@ export const Videos = ({ id }: { id: number }) => {
 
   if (videos) {
     return (
-      <div className="grid gap-4 grid-cols-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+      <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
         {videos?.results.map(({ id, key, name, type }) => {
           const src = `https://img.youtube.com/vi/${key}/maxresdefault.jpg`;
 
           return (
             <div key={id} className="flex flex-col gap-y-2">
               <figure
-                className="bg-hover rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[60%]"
+                className="bg-hover rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[56%]"
                 onClick={() => handleOpenDialog(key)}
               >
                 <Image
@@ -49,7 +49,7 @@ export const Videos = ({ id }: { id: number }) => {
                   onLoadingComplete={(img) => img.classList.remove("opacity-0")}
                 />
               </figure>
-              <div className="truncate max-sm:text-sm">{type}</div>
+              <div className="text-sm truncate">{type}</div>
             </div>
           );
         })}

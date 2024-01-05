@@ -16,12 +16,12 @@ export type Person = {
 };
 
 export type PersonMovies = {
-  cast: PersonMoviesCast[];
-  crew: PersonMoviesCrew[];
+  cast: Cast[];
+  crew: Crew[];
   id: number;
 };
 
-export type PersonMoviesCast = {
+type Cast = {
   adult: boolean;
   backdrop_path?: string;
   genre_ids: number[];
@@ -41,7 +41,7 @@ export type PersonMoviesCast = {
   order: number;
 };
 
-export type PersonMoviesCrew = {
+type Crew = {
   adult: boolean;
   backdrop_path?: string;
   genre_ids: number[];

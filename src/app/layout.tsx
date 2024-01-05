@@ -30,7 +30,7 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <div className="flex gap-x-5 max-w-[1500px] mx-auto py-10 px-5 max-lg:flex-col max-lg:pt-5 max-lg:pb-[85px]">
+          <div className="flex gap-x-5 max-w-[1300px] mx-auto py-10 px-5 max-lg:flex-col max-lg:pt-5 max-lg:pb-[85px]">
             <Navigation />
 
             <div className="flex-1 flex flex-col gap-y-10 min-w-0">

@@ -2,13 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Tab } from "@headlessui/react";
 
 import { Loading } from "@/components/ui/loading";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { useGetCreditsQuery } from "@/rtk/services/injections/creditsApi";
-import { cn } from "@/utils/cn";
 import { useGetDetailsQuery } from "@/rtk/services/injections/moviesApi";
+import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
+import { cn } from "@/utils/cn";
 
 type Props = { params: { id: string } };
 
@@ -61,43 +63,69 @@ const Credits = ({ params }: Props) => {
               <div className="py-3 px-4 max-sm:text-sm">Name</div>
               <div className="py-3 px-4 max-sm:text-sm">Character</div>
             </div>
-            {credits?.cast?.map(({ id, name, character }, index) => {
-              return (
-                <div
-                  key={index}
-                  className="border-b border-border grid grid-cols-[1fr_1fr] last:border-none"
-                >
-                  <Link
-                    href={`/person/${id}`}
-                    className="py-3 px-4 hover:underline max-sm:text-sm"
+            {credits?.cast?.map(
+              ({ id, name, profile_path, character }, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="border-b border-border grid grid-cols-[1fr_1fr] last:border-none"
                   >
-                    {name}
-                  </Link>
-                  <div className="py-3 px-4 max-sm:text-sm">
-                    {character ? character : "N/A"}
+                    <Link
+                      href={`/people/${id}`}
+                      className="flex items-center gap-x-2 py-3 px-4"
+                    >
+                      <Image
+                        src={
+                          profile_path
+                            ? POSTER_URL + profile_path
+                            : POSTER_NOT_FOUND
+                        }
+                        width={50}
+                        height={50}
+                        alt={name}
+                        loading="lazy"
+                        className="rounded-full object-cover min-w-[48px] w-12 h-12 max-sm:min-w-[40px] max-sm:w-10 max-sm:h-10"
+                      />
+                      <div className="max-sm:text-sm">{name}</div>
+                    </Link>
+                    <div className="flex items-center py-3 px-4 max-sm:text-sm">
+                      {character ? character : "N/A"}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </Tab.Panel>
           <Tab.Panel className="flex flex-col">
             <div className="bg-hover rounded-xl grid grid-cols-[1fr_1fr]">
               <div className="py-3 px-4 max-sm:text-sm">Name</div>
               <div className="py-3 px-4 max-sm:text-sm">Job</div>
             </div>
-            {credits?.crew?.map(({ id, name, job }, index) => {
+            {credits?.crew?.map(({ id, name, profile_path, job }, index) => {
               return (
                 <div
                   key={index}
                   className="border-b border-border grid grid-cols-[1fr_1fr] last:border-none"
                 >
                   <Link
-                    href={`/person/${id}`}
-                    className="py-3 px-4 hover:underline max-sm:text-sm"
+                    href={`/people/${id}`}
+                    className="flex items-center gap-x-2 py-3 px-4"
                   >
-                    {name}
+                    <Image
+                      src={
+                        profile_path
+                          ? POSTER_URL + profile_path
+                          : POSTER_NOT_FOUND
+                      }
+                      width={50}
+                      height={50}
+                      alt={name}
+                      loading="lazy"
+                      className="rounded-full object-cover min-w-[48px] w-12 h-12 max-sm:min-w-[40px] max-sm:w-10 max-sm:h-10"
+                    />
+                    <div className="max-sm:text-sm">{name}</div>
                   </Link>
-                  <div className="py-3 px-4 max-sm:text-sm">
+                  <div className="flex items-center py-3 px-4 max-sm:text-sm">
                     {job ? job : "N/A"}
                   </div>
                 </div>

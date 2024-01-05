@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 
 import { Movies } from "./movies";
@@ -7,9 +8,9 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
-import { POSTER_URL } from "@/utils/constants";
-import { dateFormat } from "@/utils/helpers";
 import { useGetPersonQuery } from "@/rtk/services/injections/personApi";
+import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
+import { dateFormat } from "@/utils/helpers";
 
 export const Person = ({ personId }: { personId: number }) => {
   const {
@@ -36,7 +37,7 @@ export const Person = ({ personId }: { personId: number }) => {
     return (
       <div className="flex flex-col gap-y-6">
         <Breadcrumbs>
-          <div>Person</div>
+          <Link href="/people">People</Link>
           <div className="truncate">{person ? person.name : "Loading..."}</div>
         </Breadcrumbs>
 
@@ -47,7 +48,7 @@ export const Person = ({ personId }: { personId: number }) => {
                 src={
                   person.profile_path
                     ? POSTER_URL + person.profile_path
-                    : "/poster-not-found.jpg"
+                    : POSTER_NOT_FOUND
                 }
                 width={500}
                 height={750}

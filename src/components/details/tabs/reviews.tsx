@@ -1,7 +1,7 @@
-import { User2 } from "lucide-react";
+import { User } from "lucide-react";
 
-import { Loading } from "../../ui/loading";
-import { Alert } from "../../ui/alert";
+import { Loading } from "@/components/ui/loading";
+import { Alert } from "@/components/ui/alert";
 
 import { useGetReviewsQuery } from "@/rtk/services/injections/mediaApi";
 import { dateFormat } from "@/utils/helpers";
@@ -27,9 +27,9 @@ export const Reviews = ({ id }: { id: number }) => {
               className="border-b border-border flex flex-col gap-y-4 pb-4 last:border-none last:pb-0"
             >
               <div className="flex items-center gap-x-2">
-                <User2 className="text-icon w-[25px] h-[25px] max-sm:w-[23px] max-sm:h-[23px]" />
+                <User className="text-icon w-[25px] h-[25px] max-sm:w-[23px] max-sm:h-[23px]" />
                 <div>
-                  <div className="font-medium max-sm:text-sm">{author}</div>
+                  <div className="max-sm:text-sm">{author}</div>
                   <div className="text-sm text-secondary-foreground">
                     {dateFormat(created_at)}
                   </div>
