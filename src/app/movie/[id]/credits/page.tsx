@@ -70,24 +70,28 @@ const Credits = ({ params }: Props) => {
                     key={index}
                     className="border-b border-border grid grid-cols-[1fr_1fr] last:border-none"
                   >
-                    <Link
-                      href={`/people/${id}`}
-                      className="flex items-center gap-x-2 py-3 px-4"
-                    >
-                      <Image
-                        src={
-                          profile_path
-                            ? POSTER_URL + profile_path
-                            : POSTER_NOT_FOUND
-                        }
-                        width={50}
-                        height={50}
-                        alt={name}
-                        loading="lazy"
-                        className="rounded-full object-cover min-w-[48px] w-12 h-12 max-sm:min-w-[40px] max-sm:w-10 max-sm:h-10"
-                      />
-                      <div className="max-sm:text-sm">{name}</div>
-                    </Link>
+                    <div className="flex items-center gap-x-2 py-3 px-4">
+                      <figure className="bg-hover rounded-full relative min-w-[48px] overflow-hidden before:content-[''] before:block before:pt-[48px] max-sm:min-w-[40px] max-sm:before:pt-[40px]">
+                        <Image
+                          src={
+                            profile_path
+                              ? POSTER_URL + profile_path
+                              : POSTER_NOT_FOUND
+                          }
+                          width={50}
+                          height={50}
+                          alt={name}
+                          loading="lazy"
+                          className="absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0 duration-500"
+                          onLoadingComplete={(img) =>
+                            img.classList.remove("opacity-0")
+                          }
+                        />
+                      </figure>
+                      <Link href={`/people/${id}`} className="max-sm:text-sm">
+                        {name}
+                      </Link>
+                    </div>
                     <div className="flex items-center py-3 px-4 max-sm:text-sm">
                       {character ? character : "N/A"}
                     </div>
@@ -107,24 +111,28 @@ const Credits = ({ params }: Props) => {
                   key={index}
                   className="border-b border-border grid grid-cols-[1fr_1fr] last:border-none"
                 >
-                  <Link
-                    href={`/people/${id}`}
-                    className="flex items-center gap-x-2 py-3 px-4"
-                  >
-                    <Image
-                      src={
-                        profile_path
-                          ? POSTER_URL + profile_path
-                          : POSTER_NOT_FOUND
-                      }
-                      width={50}
-                      height={50}
-                      alt={name}
-                      loading="lazy"
-                      className="rounded-full object-cover min-w-[48px] w-12 h-12 max-sm:min-w-[40px] max-sm:w-10 max-sm:h-10"
-                    />
-                    <div className="max-sm:text-sm">{name}</div>
-                  </Link>
+                  <div className="flex items-center gap-x-2 py-3 px-4">
+                    <figure className="bg-hover rounded-full relative min-w-[48px] overflow-hidden before:content-[''] before:block before:pt-[48px] max-sm:min-w-[40px] max-sm:before:pt-[40px]">
+                      <Image
+                        src={
+                          profile_path
+                            ? POSTER_URL + profile_path
+                            : POSTER_NOT_FOUND
+                        }
+                        width={50}
+                        height={50}
+                        alt={name}
+                        loading="lazy"
+                        className="absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0 duration-500"
+                        onLoadingComplete={(img) =>
+                          img.classList.remove("opacity-0")
+                        }
+                      />
+                    </figure>
+                    <Link href={`/people/${id}`} className="max-sm:text-sm">
+                      {name}
+                    </Link>
+                  </div>
                   <div className="flex items-center py-3 px-4 max-sm:text-sm">
                     {job ? job : "N/A"}
                   </div>
