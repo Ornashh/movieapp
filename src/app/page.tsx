@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Carousel } from "@/components/carousel";
-import { IconButton } from "@/components/ui/iconButton";
 import {
   useGetPopularQuery,
   useGetTrendingQuery,
@@ -22,6 +21,17 @@ const Home = () => {
   const { data: genres } = useGetGenresQuery();
   const { data: popular } = useGetPopularQuery();
 
+  const buttons = [
+    {
+      icon: <ChevronLeft className="svg" />,
+      onClick: () => swiperRef?.current?.slidePrev(),
+    },
+    {
+      icon: <ChevronRight className="svg" />,
+      onClick: () => swiperRef?.current?.slideNext(),
+    },
+  ];
+
   return (
     <div className="flex flex-col gap-y-10 max-sm:gap-y-5">
       {trending && (
@@ -29,16 +39,18 @@ const Home = () => {
           <div className="flex justify-between items-center">
             <div className="text-lg font-medium">Trending today</div>
             <div className="flex">
-              <IconButton
-                aria-label="left-navigation"
-                icon={<ChevronLeft className="svg" />}
-                onClick={() => swiperRef?.current?.slidePrev()}
-              />
-              <IconButton
-                aria-label="right-navigation"
-                icon={<ChevronRight className="svg" />}
-                onClick={() => swiperRef?.current?.slideNext()}
-              />
+              {buttons.map(({ icon, onClick }, index) => {
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={onClick}
+                    className="rounded-md flex justify-center items-center p-2 duration-200 ease-in-out hover:bg-hover"
+                  >
+                    {icon}
+                  </button>
+                );
+              })}
             </div>
           </div>
           <div>

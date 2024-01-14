@@ -25,7 +25,7 @@ export const Credits = ({ id }: Props) => {
       <Carousel
         title="Top cast"
         href={`/movie/${id}/credits`}
-        data={credits.cast}
+        data={credits.cast.slice(0, 20)}
       />
     );
   }

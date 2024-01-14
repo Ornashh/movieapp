@@ -3,9 +3,15 @@ import { LayoutGrid, LayoutList } from "lucide-react";
 
 import { Grid } from "./grid";
 import { List } from "./list";
-import { IconButton } from "../ui/iconButton";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import { Movie } from "@/types/movie";
+import { cn } from "@/utils/cn";
 
 type Props = {
   title: string;
@@ -37,14 +43,26 @@ export const Cards = ({ title, movies }: Props) => {
         <div className="flex">
           {viewIcons.map(({ icon, title, value }, index) => {
             return (
-              <IconButton
-                key={index}
-                aria-label="view"
-                title={title}
-                icon={icon}
-                disabled={view === value}
-                onClick={() => setView(value as ViewType)}
-              />
+              <TooltipProvider key={index}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div
+                      role="button"
+                      aria-label={title}
+                      onClick={() => setView(value as ViewType)}
+                      className={cn(
+                        "p-2",
+                        view === value
+                          ? "cursor-default select-none pointer-events-none opacity-50"
+                          : ""
+                      )}
+                    >
+                      {icon}
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>{title}</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             );
           })}
         </div>

@@ -7,7 +7,7 @@ Movieapp is a web application developed using [Next.js](https://nextjs.org/) and
 - [Next.js](https://nextjs.org/)
 - [RTK query](https://redux-toolkit.js.org/rtk-query/overview)
 - [tailwindcss](https://tailwindcss.com/)
-- [headlessUI](https://headlessui.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
 - [lucide-react](https://lucide.dev/)
 - [swiper](https://swiperjs.com/)
 

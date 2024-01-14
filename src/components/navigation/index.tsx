@@ -2,21 +2,23 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "@headlessui/react";
-import { Disclosure } from "@headlessui/react";
-import {
-  Home,
-  Search,
-  ChevronDown,
-  ChevronUp,
-  Users,
-  Flame,
-  Star,
-  Film,
-  Play,
-} from "lucide-react";
+import { Home, Search, Users, Flame, Star, Film, Play } from "lucide-react";
 
 import { SwitchTheme } from "./switchTheme";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 import { cn } from "@/utils/cn";
 
 export const Navigation = () => {
@@ -35,7 +37,7 @@ export const Navigation = () => {
           )}
         >
           <Home className="svg" />
-          <div className="max-md:hidden">Home</div>
+          <div className="max-lg:hidden">Home</div>
         </Link>
 
         <Link
@@ -48,86 +50,77 @@ export const Navigation = () => {
           )}
         >
           <Search className="svg" />
-          <div className="max-md:hidden">Search</div>
+          <div className="max-lg:hidden">Search</div>
         </Link>
 
-        <Menu as="div" className="relative lg:hidden">
-          <Menu.Button className="flex items-center gap-x-3 w-full py-3 px-4 max-lg:py-2 max-lg:px-3">
-            <Film className="svg" /> <div className="max-md:hidden">Movies</div>
-          </Menu.Button>
-          <Menu.Items className="bg-background border border-border rounded-md outline-none flex flex-col absolute left-[50%] bottom-[100%] w-40 mb-1 translate-x-[-50%] overflow-hidden">
-            <Menu.Item>
-              <Link href="/now_playing" className="text-sm flex gap-x-3 p-3">
+        <DropdownMenu modal={false}>
+          <DropdownMenuTrigger className="flex items-center gap-x-3 py-3 px-4 max-lg:py-2 max-lg:px-3 lg:hidden">
+            <Film className="svg" />
+            <div className="max-lg:hidden">Movies</div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem asChild>
+              <Link href="/now_playing" className="text-sm flex gap-x-2 p-3">
+                <Play className="text-icon w-4 h-4" /> Now playing
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/popular" className="text-sm flex gap-x-2 p-3">
+                <Flame className="text-icon w-4 h-4" /> Popular
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem asChild>
+              <Link href="/top_rated" className="text-sm flex gap-x-2 p-3">
+                <Star className="text-icon w-4 h-4" /> Top rated
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <Accordion type="single" collapsible className="max-lg:hidden">
+          <AccordionItem value="item-1">
+            <AccordionTrigger className="flex justify-between items-center w-full py-3 px-4 max-lg:py-2 max-lg:px-3">
+              <div className="flex items-center gap-x-3">
+                <Film className="svg" /> Movies
+              </div>
+            </AccordionTrigger>
+            <AccordionContent>
+              <Link
+                href="/now_playing"
+                className={cn(
+                  "flex gap-x-3 py-3 pl-[26px]",
+                  pathname === "/now_playing"
+                    ? "border-r-[2px] border-primary"
+                    : ""
+                )}
+              >
                 <Play className="svg" /> Now playing
               </Link>
-            </Menu.Item>
-            <div className="h-px bg-border" />
-            <Menu.Item>
-              <Link href="/popular" className="text-sm flex gap-x-3 p-3">
+              <Link
+                href="/popular"
+                className={cn(
+                  "flex gap-x-3 py-3 pl-[26px]",
+                  pathname === "/popular" ? "border-r-[2px] border-primary" : ""
+                )}
+              >
                 <Flame className="svg" /> Popular
               </Link>
-            </Menu.Item>
-            <div className="h-px bg-border" />
-            <Menu.Item>
-              <Link href="/top_rated" className="text-sm flex gap-x-3 p-3">
+              <Link
+                href="/top_rated"
+                className={cn(
+                  "flex gap-x-3 py-3 pl-[26px]",
+                  pathname === "/top_rated"
+                    ? "border-r-[2px] border-primary"
+                    : ""
+                )}
+              >
                 <Star className="svg" /> Top rated
               </Link>
-            </Menu.Item>
-          </Menu.Items>
-        </Menu>
-
-        <Disclosure as="div" className="max-lg:hidden">
-          {({ open }) => (
-            <>
-              <Disclosure.Button className="flex justify-between items-center w-full py-3 px-4 max-lg:py-2 max-lg:px-3">
-                <div className="flex items-center gap-x-3">
-                  <Film className="svg" /> Movies
-                </div>
-                {open ? (
-                  <ChevronUp className="text-icon w-4 h-4" />
-                ) : (
-                  <ChevronDown className="text-icon w-4 h-4" />
-                )}
-              </Disclosure.Button>
-
-              <Disclosure.Panel className="flex flex-col">
-                <Link
-                  href="/now_playing"
-                  className={cn(
-                    "flex gap-x-3 py-3 pl-[26px]",
-                    pathname === "/now_playing"
-                      ? "border-r-[2px] border-primary"
-                      : ""
-                  )}
-                >
-                  <Play className="svg" /> Now playing
-                </Link>
-                <Link
-                  href="/popular"
-                  className={cn(
-                    "flex gap-x-3 py-3 pl-[26px]",
-                    pathname === "/popular"
-                      ? "border-r-[2px] border-primary"
-                      : ""
-                  )}
-                >
-                  <Flame className="svg" /> Popular
-                </Link>
-                <Link
-                  href="/top_rated"
-                  className={cn(
-                    "flex gap-x-3 py-3 pl-[26px]",
-                    pathname === "/top_rated"
-                      ? "border-r-[2px] border-primary"
-                      : ""
-                  )}
-                >
-                  <Star className="svg" /> Top rated
-                </Link>
-              </Disclosure.Panel>
-            </>
-          )}
-        </Disclosure>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
 
         <Link
           href="/people"
@@ -139,7 +132,7 @@ export const Navigation = () => {
           )}
         >
           <Users className="svg" />
-          <div className="max-md:hidden">People</div>
+          <div className="max-lg:hidden">People</div>
         </Link>
 
         <SwitchTheme />

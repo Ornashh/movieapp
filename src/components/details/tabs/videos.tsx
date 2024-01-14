@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { Dialog } from "../dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
@@ -54,17 +54,19 @@ export const Videos = ({ id }: { id: number }) => {
           );
         })}
 
-        <Dialog open={dialog.isOpen} onClose={handleCloseDialog}>
-          <div className="bg-hover relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
-            <div className="absolute top-0 left-0 w-full h-full">
-              <iframe
-                title="frame"
-                src={`https://www.youtube.com/embed/${dialog.key}?autoplay=0&mute=1`}
-                allowFullScreen
-                className="w-full h-full"
-              />
+        <Dialog open={dialog.isOpen} onOpenChange={handleCloseDialog}>
+          <DialogContent className="max-w-[1000px] max-h-[600px] mx-auto">
+            <div className="bg-hover relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
+              <div className="absolute top-0 left-0 w-full h-full">
+                <iframe
+                  title="frame"
+                  src={`https://www.youtube.com/embed/${dialog.key}?autoplay=0&mute=1`}
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
             </div>
-          </div>
+          </DialogContent>
         </Dialog>
       </div>
     );

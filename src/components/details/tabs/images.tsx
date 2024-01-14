@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { Dialog } from "../dialog";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
@@ -57,17 +57,19 @@ export const Images = ({ id }: Props) => {
           );
         })}
 
-        <Dialog open={dialog.isOpen} onClose={handleCloseDialog}>
-          <div className="bg-hover relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
-            <Image
-              src={BACKDROP_URL_ORIGINAL + dialog.filePath}
-              width={1920}
-              height={1080}
-              alt=""
-              priority={true}
-              className="absolute top-0 left-0 w-full h-full object-cover"
-            />
-          </div>
+        <Dialog open={dialog.isOpen} onOpenChange={handleCloseDialog}>
+          <DialogContent className="max-w-[1000px] max-h-[600px] mx-auto">
+            <div className="bg-hover relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
+              <Image
+                src={BACKDROP_URL_ORIGINAL + dialog.filePath}
+                width={1920}
+                height={1080}
+                alt=""
+                priority={true}
+                className="absolute top-0 left-0 w-full h-full object-cover"
+              />
+            </div>
+          </DialogContent>
         </Dialog>
       </div>
     );

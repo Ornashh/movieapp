@@ -101,7 +101,7 @@ const Search = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="border border-border rounded-xl flex items-center h-14 pl-3 overflow-hidden"
+        className="border border-border rounded-md flex items-center h-14 pl-3 overflow-hidden"
       >
         <button
           aria-label="search"

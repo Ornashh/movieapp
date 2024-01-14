@@ -20,7 +20,7 @@ export const SwitchTheme = () => {
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       {theme === "light" ? <Sun className="svg" /> : <Moon className="svg" />}
-      <div className="max-md:hidden">
+      <div className="max-lg:hidden">
         {theme === "light" ? "Light" : "Dark"} mode
       </div>
     </button>

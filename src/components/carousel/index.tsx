@@ -8,7 +8,6 @@ import { Swiper as SwiperCore } from "swiper/types";
 import { FreeMode, Navigation } from "swiper/modules";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 
-import { IconButton } from "../ui/iconButton";
 import { Movie } from "@/types/movie";
 import { Cast } from "@/types/credits";
 import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
@@ -22,10 +21,10 @@ type Props = {
 
 const breakpoints = {
   640: {
-    slidesPerView: 3,
+    slidesPerView: 4,
   },
   768: {
-    slidesPerView: 4,
+    slidesPerView: 5,
   },
   1024: {
     slidesPerView: 5,
@@ -34,6 +33,17 @@ const breakpoints = {
 
 export const Carousel = ({ title, href, data }: Props) => {
   const swiperRef = useRef<SwiperCore>();
+
+  const buttons = [
+    {
+      icon: <ChevronLeft className="svg" />,
+      onClick: () => swiperRef?.current?.slidePrev(),
+    },
+    {
+      icon: <ChevronRight className="svg" />,
+      onClick: () => swiperRef?.current?.slideNext(),
+    },
+  ];
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -52,16 +62,18 @@ export const Carousel = ({ title, href, data }: Props) => {
           )}
         </div>
         <div className="flex">
-          <IconButton
-            aria-label="left-navigation"
-            icon={<ChevronLeft className="svg" />}
-            onClick={() => swiperRef?.current?.slidePrev()}
-          />
-          <IconButton
-            aria-label="right-navigation"
-            icon={<ChevronRight className="svg" />}
-            onClick={() => swiperRef?.current?.slideNext()}
-          />
+          {buttons.map(({ icon, onClick }, index) => {
+            return (
+              <button
+                key={index}
+                type="button"
+                onClick={onClick}
+                className="rounded-md flex justify-center items-center p-2 duration-200 ease-in-out hover:bg-hover"
+              >
+                {icon}
+              </button>
+            );
+          })}
         </div>
       </div>
       <div>
