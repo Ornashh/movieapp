@@ -29,6 +29,10 @@ input {
   outline: none;
 }
 
+input::placeholder {
+  color: var(--secondary-foreground);
+}
+
 button:disabled {
   user-select: none;
   pointer-events: none;

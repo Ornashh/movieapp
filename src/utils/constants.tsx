@@ -1,5 +1,5 @@
 const POSTER_URL = "https://image.tmdb.org/t/p/w500";
-const BACKDROP_URL_SMALL = "https://image.tmdb.org/t/p/w1280";
+const BACKDROP_URL_SMALL = "https://image.tmdb.org/t/p/w780";
 const BACKDROP_URL = "https://image.tmdb.org/t/p/w1280";
 const BACKDROP_URL_ORIGINAL = "https://image.tmdb.org/t/p/original";
 const POSTER_NOT_FOUND = "/poster-not-found.jpg";

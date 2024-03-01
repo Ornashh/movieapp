@@ -40,9 +40,9 @@ export const List = ({ movies }: Props) => {
               <div className="overflow-hidden">
                 <Link
                   href={`/movie/${id}`}
-                  className="inline-flex hover:underline max-sm:text-sm"
+                  className="inline-flex max-sm:text-sm"
                 >
-                  <div className="mb-2 hover:underline">
+                  <div className="mb-2">
                     {title} ({releaseYear})
                   </div>
                 </Link>
