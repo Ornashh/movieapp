@@ -72,7 +72,7 @@ const Home = () => {
                             background:
                               "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.8) 80%)",
                           }}
-                          className="text-[#fafafa] flex items-end absolute top-0 left-0 w-full h-full p-5"
+                          className="text-[#fafafa] flex items-end absolute top-0 left-0 w-full h-full p-4"
                         >
                           <div className="max-w-[600px] overflow-hidden">
                             <Link
@@ -112,7 +112,7 @@ const Home = () => {
                 <Link
                   key={id}
                   href={`/genre/${id}`}
-                  className="border border-border rounded-full py-0.5 px-3 duration-200 ease-in-out hover:bg-hover max-sm:text-sm"
+                  className="border border-border rounded-xl py-0.5 px-3 duration-200 ease-in-out hover:bg-hover max-sm:text-sm"
                 >
                   {name}
                 </Link>

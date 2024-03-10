@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Loading } from "@/components/ui/loading";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { Alert } from "@/components/ui/alert";
 import { useGetCreditsQuery } from "@/rtk/services/injections/creditsApi";
 import { useGetDetailsQuery } from "@/rtk/services/injections/moviesApi";
 import { POSTER_URL } from "@/utils/constants";
@@ -21,10 +22,21 @@ const Credits = ({ params }: Props) => {
     { skip: !movieId }
   );
 
-  const { data: details } = useGetDetailsQuery(movieId, { skip: !movieId });
+  const {
+    data: details,
+    isError: isErrorDetails,
+    error: detailsError,
+  } = useGetDetailsQuery(movieId, { skip: !movieId });
 
   if (isLoadingCredits) {
     return <Loading isFullPage />;
+  }
+
+  if (isErrorDetails) {
+    // @ts-ignore
+    const errorMsg = detailsError.data.status_message;
+
+    return <Alert isFullPage>{errorMsg}</Alert>;
   }
 
   return (

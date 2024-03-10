@@ -30,10 +30,7 @@ export const Grid = ({ movies }: Props) => {
               </figure>
             </Link>
 
-            <Link
-              href={`/movie/${id}`}
-              className="text-base flex max-sm:text-sm"
-            >
+            <Link href={`/movie/${id}`} className="flex max-sm:text-sm">
               {title}
             </Link>
           </div>

@@ -62,7 +62,7 @@ const Genre = ({ params }: Props) => {
   }
 
   if (genre.length === 0) {
-    return <Alert>No movies found</Alert>;
+    return <Alert isFullPage>No movies found</Alert>;
   }
 
   return (

@@ -123,10 +123,7 @@ export const Carousel = ({ title, href, data }: Props) => {
                     </Link>
                     {name ? (
                       <div>
-                        <Link
-                          href={link}
-                          className="text-sm flex max-sm:text-sm"
-                        >
+                        <Link href={link} className="flex max-sm:text-sm">
                           {name}
                         </Link>
                         <div className="text-sm text-secondary-foreground">
@@ -134,7 +131,7 @@ export const Carousel = ({ title, href, data }: Props) => {
                         </div>
                       </div>
                     ) : (
-                      <Link href={link} className="text-sm">
+                      <Link href={link} className="msx-sm:text-sm">
                         {title} ({releaseYear})
                       </Link>
                     )}

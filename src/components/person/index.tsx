@@ -43,7 +43,7 @@ export const Person = ({ personId }: { personId: number }) => {
 
         <div className="flex flex-col gap-y-10">
           <div className="flex gap-5 max-sm:flex-col">
-            <figure className="block min-w-[250px] h-[350px] max-sm:min-w-0 max-sm:w-[200px] max-sm:h-[300px]">
+            <figure className="block min-w-[250px] h-[350px] max-sm:min-w-0 max-sm:w-[180px] max-sm:h-[270px]">
               <Image
                 src={
                   person.profile_path

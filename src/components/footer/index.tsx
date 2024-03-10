@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <div className="text-sm text-secondary-foreground flex flex-col gap-y-2">
+    <div className="text-secondary-foreground flex flex-col gap-y-2 max-sm:text-sm">
       <div>
         Build on{" "}
         <a

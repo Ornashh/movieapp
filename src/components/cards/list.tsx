@@ -37,14 +37,9 @@ export const List = ({ movies }: Props) => {
                 </figure>
               </Link>
 
-              <div className="overflow-hidden">
-                <Link
-                  href={`/movie/${id}`}
-                  className="inline-flex max-sm:text-sm"
-                >
-                  <div className="mb-2">
-                    {title} ({releaseYear})
-                  </div>
+              <div className="flex flex-col items-start gap-y-2">
+                <Link href={`/movie/${id}`} className="max-sm:text-sm">
+                  {title} ({releaseYear})
                 </Link>
                 <p className="line-clamp-5 max-sm:text-sm">{overview}</p>
               </div>

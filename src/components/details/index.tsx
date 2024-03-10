@@ -48,7 +48,7 @@ export const Details = ({ movieId }: { movieId: number }) => {
 
         <div className="flex flex-col gap-y-10">
           <div className="flex gap-6 z-20 max-sm:flex-col">
-            <figure className="bg-hover rounded-md relative min-w-[200px] max-h-[300px] overflow-hidden before:content-[''] before:block before:pt-[300px] max-md:min-w-[200px] max-md:max-h-[300px] max-md:before:pt-[300px] max-sm:min-w-auto max-sm:w-[200px]">
+            <figure className="block min-w-[250px] h-[350px] max-sm:min-w-0 max-sm:w-[180px] max-sm:h-[270px]">
               <Image
                 src={
                   details.poster_path
@@ -59,7 +59,7 @@ export const Details = ({ movieId }: { movieId: number }) => {
                 height={750}
                 priority
                 alt={details.title}
-                className="absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0 duration-500"
+                className="rounded-md w-full h-full object-cover"
                 onLoadingComplete={(img) => img.classList.remove("opacity-0")}
               />
             </figure>

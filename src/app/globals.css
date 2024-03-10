@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --primary: #18181b;
+  --primary: #09090b;
   --primary-foreground: #fafafa;
   --background: #fafafa;
-  --foreground: #18181b;
+  --foreground: #09090b;
   --secondary-foreground: #71717a;
   --border: #d4d4d8;
   --hover: #e4e4e7;
@@ -15,12 +15,12 @@
 
 .dark {
   --primary: #fafafa;
-  --primary-foreground: #18181b;
-  --background: #18181b;
-  --foreground: #fafafa;
+  --primary-foreground: #09090b;
+  --background: #09090b;
+  --foreground: #f4f4f5;
   --secondary-foreground: #a1a1aa;
-  --border: #3f3f46;
-  --hover: #3f3f46;
+  --border: #27272a;
+  --hover: #27272a;
   --icon: #a1a1aa;
 }
 
