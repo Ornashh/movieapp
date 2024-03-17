@@ -66,12 +66,12 @@ const People = () => {
           Popular people
         </h1>
 
-        <div className="grid grid-cols-5 gap-4 max-md:grid-cols-4 max-sm:grid-cols-3">
+        <div className="grid grid-cols-5 gap-2 max-md:grid-cols-4 max-sm:grid-cols-3">
           {people?.map(({ id, name, profile_path }) => {
             return (
               <div key={id} className="flex flex-col gap-y-2">
                 <Link href={`/people/${id}`} className="flex flex-col gap-y-2">
-                  <figure className="bg-hover rounded-md relative overflow-hidden before:content-[''] before:block before:pt-[150%]">
+                  <figure className="bg-accent rounded-md relative overflow-hidden before:content-[''] before:block before:pt-[150%]">
                     <Image
                       src={
                         profile_path
@@ -90,12 +90,7 @@ const People = () => {
                   </figure>
                 </Link>
 
-                <Link
-                  href={`/people/${id}`}
-                  className="text-base flex max-sm:text-sm"
-                >
-                  {name}
-                </Link>
+                <div>{name}</div>
               </div>
             );
           })}
@@ -104,11 +99,7 @@ const People = () => {
 
       {isLoadMore && (
         <div className="flex justify-center">
-          <Button
-            aria-label="more"
-            disabled={isLoadingMore}
-            onClick={handleLoadMore}
-          >
+          <Button disabled={isLoadingMore} onClick={handleLoadMore}>
             Load more
           </Button>
         </div>

@@ -62,7 +62,7 @@ const Genre = ({ params }: Props) => {
   }
 
   if (genre.length === 0) {
-    return <Alert isFullPage>No movies found</Alert>;
+    return <Alert isFullPage>Genre not found</Alert>;
   }
 
   return (
@@ -76,11 +76,7 @@ const Genre = ({ params }: Props) => {
 
       {isLoadMore && (
         <div className="flex justify-center">
-          <Button
-            aria-label="more"
-            disabled={isLoadingMore}
-            onClick={handleLoadMore}
-          >
+          <Button disabled={isLoadingMore} onClick={handleLoadMore}>
             Load more
           </Button>
         </div>

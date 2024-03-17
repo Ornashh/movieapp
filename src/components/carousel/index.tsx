@@ -6,8 +6,9 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper/types";
 import { FreeMode, Navigation } from "swiper/modules";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft, ArrowUpRight } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import { Movie } from "@/types/movie";
 import { Cast } from "@/types/credits";
 import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
@@ -31,19 +32,17 @@ const breakpoints = {
   },
 };
 
+const buttons = [
+  {
+    icon: <ChevronLeft className="svg" />,
+  },
+  {
+    icon: <ChevronRight className="svg" />,
+  },
+];
+
 export const Carousel = ({ title, href, data }: Props) => {
   const swiperRef = useRef<SwiperCore>();
-
-  const buttons = [
-    {
-      icon: <ChevronLeft className="svg" />,
-      onClick: () => swiperRef?.current?.slidePrev(),
-    },
-    {
-      icon: <ChevronRight className="svg" />,
-      onClick: () => swiperRef?.current?.slideNext(),
-    },
-  ];
 
   return (
     <div className="flex flex-col gap-y-2">
@@ -54,24 +53,32 @@ export const Carousel = ({ title, href, data }: Props) => {
         )}
       >
         <div className="flex items-center gap-x-2">
-          <div className="text-lg font-medium">{title}</div>
-          {href && (
-            <Link href={href} className="text-sm text-secondary-foreground">
-              View all
+          {href ? (
+            <Link
+              href={href}
+              className="text-lg font-medium flex items-center gap-x-2"
+            >
+              {title} <ArrowUpRight className="svg" />
             </Link>
+          ) : (
+            <div className="text-lg font-medium">{title}</div>
           )}
         </div>
         <div className="flex">
-          {buttons.map(({ icon, onClick }, index) => {
+          {buttons.map(({ icon }, index) => {
             return (
-              <button
+              <Button
                 key={index}
-                type="button"
-                onClick={onClick}
-                className="rounded-md flex justify-center items-center p-2 duration-200 ease-in-out hover:bg-hover"
+                size="icon"
+                variant="ghost"
+                onClick={
+                  index === 0
+                    ? () => swiperRef?.current?.slidePrev()
+                    : () => swiperRef?.current?.slideNext()
+                }
               >
                 {icon}
-              </button>
+              </Button>
             );
           })}
         </div>
@@ -82,7 +89,7 @@ export const Carousel = ({ title, href, data }: Props) => {
             swiperRef.current = swiper;
           }}
           slidesPerView={3}
-          spaceBetween={16}
+          spaceBetween={8}
           freeMode
           modules={[FreeMode, Navigation]}
           breakpoints={breakpoints}
@@ -107,7 +114,7 @@ export const Carousel = ({ title, href, data }: Props) => {
                 <SwiperSlide key={id}>
                   <div className="flex flex-col gap-y-2">
                     <Link href={link}>
-                      <figure className="bg-hover rounded-md relative overflow-hidden before:content-[''] before:block before:pt-[150%]">
+                      <figure className="bg-accent rounded-md relative overflow-hidden before:content-[''] before:block before:pt-[150%]">
                         <Image
                           src={path ? POSTER_URL + path : POSTER_NOT_FOUND}
                           width={500}
@@ -123,17 +130,18 @@ export const Carousel = ({ title, href, data }: Props) => {
                     </Link>
                     {name ? (
                       <div>
-                        <Link href={link} className="flex max-sm:text-sm">
-                          {name}
-                        </Link>
-                        <div className="text-sm text-secondary-foreground">
+                        <div className="flex">{name}</div>
+                        <div className="text-sm text-muted-foreground">
                           {character}
                         </div>
                       </div>
                     ) : (
-                      <Link href={link} className="msx-sm:text-sm">
-                        {title} ({releaseYear})
-                      </Link>
+                      <div>
+                        <div className="truncate">{title}</div>
+                        <div className="text-sm text-muted-foreground">
+                          {releaseYear}
+                        </div>
+                      </div>
                     )}
                   </div>
                 </SwiperSlide>

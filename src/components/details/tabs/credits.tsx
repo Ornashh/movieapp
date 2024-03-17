@@ -1,6 +1,6 @@
-import { Carousel } from "../../carousel";
-import { Loading } from "../../ui/loading";
-import { Alert } from "../../ui/alert";
+import { Carousel } from "@/components/carousel";
+import { Loading } from "@/components/ui/loading";
+import { Alert } from "@/components/ui/alert";
 import { useGetCreditsQuery } from "@/rtk/services/injections/creditsApi";
 
 type Props = {

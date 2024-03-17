@@ -74,11 +74,7 @@ export const MovieList = ({ title, getMovies }: Props) => {
 
       {isLoadMore && (
         <div className="flex justify-center">
-          <Button
-            aria-label="more"
-            disabled={isLoadingMore}
-            onClick={handleLoadMore}
-          >
+          <Button disabled={isLoadingMore} onClick={handleLoadMore}>
             Load more
           </Button>
         </div>

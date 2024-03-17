@@ -13,11 +13,18 @@ module.exports = {
       colors: {
         primary: "var(--primary)",
         "primary-foreground": "var(--primary-foreground)",
+
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "secondary-foreground": "var(--secondary-foreground)",
+
+        "muted-foreground": "var(--muted-foreground)",
+
+        popover: "var(--popover)",
+
         border: "var(--border)",
-        hover: "var(--hover)",
+
+        accent: "var(--accent)",
+
         icon: "var(--icon)",
       },
       keyframes: {

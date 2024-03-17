@@ -1,16 +1,10 @@
 "use client";
 
+import { Fragment } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Home, Search, Users, Flame, Star, Film, Play } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Home, Search, Users, Film, Palette, ChevronRight } from "lucide-react";
 
-import { SwitchTheme } from "./switchTheme";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,124 +12,117 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/utils/cn";
 
+const itemClasses =
+  "rounded-xl flex items-center gap-x-3 w-full h-[50px] px-4 transition-colors duration-200 ease-in-out hover:bg-accent max-lg:justify-center max-lg:w-[50px] max-lg:h-[50px] max-lg:px-0";
+
+const menuItems = [
+  {
+    title: "Home",
+    href: "/",
+    icon: <Home className="svg" />,
+  },
+  {
+    title: "Search",
+    href: "/search",
+    icon: <Search className="svg" />,
+  },
+  {
+    title: "Movies",
+    icon: <Film className="svg" />,
+    dropdownItems: [
+      { title: "Now playing", themeValue: "", href: "/now_playing" },
+      { title: "Popular", themeValue: "", href: "/popular" },
+      { title: "Top rated", themeValue: "", href: "/top_rated" },
+    ],
+  },
+  {
+    title: "People",
+    href: "/people",
+    icon: <Users className="svg" />,
+  },
+  {
+    title: "Appearance",
+    icon: <Palette className="svg" />,
+    dropdownItems: [
+      { title: "Light", themeValue: "light", href: "" },
+      { title: "Dark", themeValue: "dark", href: "" },
+      { title: "System", themeValue: "system", href: "" },
+    ],
+  },
+];
+
 export const Navigation = () => {
-  const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+  const isMatch = useMediaQuery("(max-width: 768px)");
+
+  const handleAppearance = (themeValue: string) => {
+    setTheme(themeValue);
+  };
 
   return (
-    <div className="bg-background border-r border-border sticky top-[40px] left-0 w-[250px] h-[calc(100vh-80px)] z-50 max-lg:border-r-0 max-lg:border-t max-lg:fixed max-lg:top-auto max-lg:bottom-0 max-lg:w-full max-lg:h-16">
-      <div className="flex flex-col h-full max-lg:flex-row max-lg:justify-between max-lg:items-center max-lg:px-5">
-        <Link
-          href="/"
-          className={cn(
-            "flex items-center gap-x-3 py-3 px-4 max-lg:py-2 max-lg:px-3",
-            pathname === "/"
-              ? "border-r-[2px] border-primary max-lg:border-r-0 max-lg:bg-hover max-lg:rounded-md"
-              : ""
-          )}
-        >
-          <Home className="svg" />
-          <div className="max-lg:hidden">Home</div>
-        </Link>
-
-        <Link
-          href="/search"
-          className={cn(
-            "flex items-center gap-x-3 py-3 px-4 max-lg:py-2 max-lg:px-3",
-            pathname === "/search"
-              ? "border-r-[2px] border-primary max-lg:border-r-0 max-lg:bg-hover max-lg:rounded-md"
-              : ""
-          )}
-        >
-          <Search className="svg" />
-          <div className="max-lg:hidden">Search</div>
-        </Link>
-
-        <DropdownMenu modal={false}>
-          <DropdownMenuTrigger className="flex items-center gap-x-3 py-3 px-4 max-lg:py-2 max-lg:px-3 lg:hidden">
-            <Film className="svg" />
-            <div className="max-lg:hidden">Movies</div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem asChild>
-              <Link href="/now_playing" className="text-sm flex gap-x-2 p-3">
-                <Play className="text-icon w-4 h-4" /> Now playing
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href="/popular" className="text-sm flex gap-x-2 p-3">
-                <Flame className="text-icon w-4 h-4" /> Popular
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link href="/top_rated" className="text-sm flex gap-x-2 p-3">
-                <Star className="text-icon w-4 h-4" /> Top rated
-              </Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <Accordion type="single" collapsible className="max-lg:hidden">
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="flex justify-between items-center w-full py-3 px-4 max-lg:py-2 max-lg:px-3">
-              <div className="flex items-center gap-x-3">
-                <Film className="svg" /> Movies
-              </div>
-            </AccordionTrigger>
-            <AccordionContent>
-              <Link
-                href="/now_playing"
-                className={cn(
-                  "flex gap-x-3 py-3 pl-[26px]",
-                  pathname === "/now_playing"
-                    ? "border-r-[2px] border-primary"
-                    : ""
-                )}
-              >
-                <Play className="svg" /> Now playing
-              </Link>
-              <Link
-                href="/popular"
-                className={cn(
-                  "flex gap-x-3 py-3 pl-[26px]",
-                  pathname === "/popular" ? "border-r-[2px] border-primary" : ""
-                )}
-              >
-                <Flame className="svg" /> Popular
-              </Link>
-              <Link
-                href="/top_rated"
-                className={cn(
-                  "flex gap-x-3 py-3 pl-[26px]",
-                  pathname === "/top_rated"
-                    ? "border-r-[2px] border-primary"
-                    : ""
-                )}
-              >
-                <Star className="svg" /> Top rated
-              </Link>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-
-        <Link
-          href="/people"
-          className={cn(
-            "flex items-center gap-x-3 py-3 px-4 max-lg:py-2 max-lg:px-3",
-            pathname === "/people"
-              ? "border-r-[2px] border-primary max-lg:border-r-0 max-lg:bg-hover max-lg:rounded-md"
-              : ""
-          )}
-        >
-          <Users className="svg" />
-          <div className="max-lg:hidden">People</div>
-        </Link>
-
-        <SwitchTheme />
+    <div className="bg-background border-r border-border sticky top-[20px] left-0 w-[250px] h-[calc(100vh-60px)] z-50 max-lg:w-[71px] max-md:border-r-0 max-md:border-t max-md:w-full max-md:h-auto max-md:fixed max-md:top-auto max-md:bottom-0">
+      <div className="flex flex-col pr-5 max-md:flex-row max-md:justify-between max-md:items-center max-md:h-16 max-md:px-5">
+        {menuItems.map(({ title, href, icon, dropdownItems }, index) => {
+          return (
+            <Fragment key={index}>
+              {dropdownItems ? (
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <button className={cn("justify-between", itemClasses)}>
+                      <div className="flex gap-x-3">
+                        {icon}
+                        <div className="max-lg:hidden">{title}</div>
+                      </div>
+                      <ChevronRight className="svg max-lg:hidden" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align={
+                      isMatch && title === "Movies"
+                        ? "center"
+                        : isMatch && title === "Appearance"
+                        ? "end"
+                        : "start"
+                    }
+                    side={isMatch ? "top" : "right"}
+                  >
+                    {dropdownItems.map(({ title, themeValue, href }, index) => {
+                      return (
+                        <Fragment key={index}>
+                          {href ? (
+                            <DropdownMenuItem asChild>
+                              <Link href={href}>{title}</Link>
+                            </DropdownMenuItem>
+                          ) : (
+                            <DropdownMenuItem
+                              disabled={themeValue === theme}
+                              onClick={() => handleAppearance(themeValue)}
+                            >
+                              {title}
+                            </DropdownMenuItem>
+                          )}
+                          {index !== dropdownItems.length - 1 && (
+                            <DropdownMenuSeparator />
+                          )}
+                        </Fragment>
+                      );
+                    })}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link href={href} className={itemClasses}>
+                  <div className="flex gap-x-3">
+                    {icon}
+                    <div className="max-lg:hidden">{title}</div>
+                  </div>
+                </Link>
+              )}
+            </Fragment>
+          );
+        })}
       </div>
     </div>
   );

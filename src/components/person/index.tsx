@@ -43,7 +43,7 @@ export const Person = ({ personId }: { personId: number }) => {
 
         <div className="flex flex-col gap-y-10">
           <div className="flex gap-5 max-sm:flex-col">
-            <figure className="block min-w-[250px] h-[350px] max-sm:min-w-0 max-sm:w-[180px] max-sm:h-[270px]">
+            <figure className="min-w-[200px] max-w-[200px] h-[300px] max-sm:min-w-0 max-sm:w-[180px] max-sm:h-[270px]">
               <Image
                 src={
                   person.profile_path
@@ -65,35 +65,25 @@ export const Person = ({ personId }: { personId: number }) => {
 
               <div className="grid gap-y-2">
                 <div className="flex gap-y-1 gap-x-2">
-                  <div className="text-secondary-foreground max-sm:text-sm">
-                    Birthday:
-                  </div>
+                  <div className="text-muted-foreground">Birthday:</div>
                   <div className="flex gap-x-1">
-                    <div className="max-sm:text-sm">
-                      {dateFormat(person.birthday)}
-                    </div>
+                    <div>{dateFormat(person.birthday)}</div>
                     {person.deathday && (
-                      <div className="max-sm:text-sm">
-                        — {dateFormat(person.deathday)}
-                      </div>
+                      <div>— {dateFormat(person.deathday)}</div>
                     )}
                   </div>
                 </div>
 
                 <div className="flex gap-y-1 gap-x-2">
-                  <div className="text-secondary-foreground max-sm:text-sm">
-                    Place of Birth:
-                  </div>
-                  <div className="max-sm:text-sm">
+                  <div className="text-muted-foreground">Place of Birth:</div>
+                  <div>
                     {person.place_of_birth ? person.place_of_birth : "N/A"}
                   </div>
                 </div>
               </div>
 
               {person.biography && (
-                <p className="whitespace-break-spaces max-sm:text-sm">
-                  {person.biography}
-                </p>
+                <p className="whitespace-break-spaces">{person.biography}</p>
               )}
             </div>
           </div>

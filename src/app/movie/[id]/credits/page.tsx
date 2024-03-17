@@ -1,16 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { User } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { Loading } from "@/components/ui/loading";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Alert } from "@/components/ui/alert";
 import { useGetCreditsQuery } from "@/rtk/services/injections/creditsApi";
 import { useGetDetailsQuery } from "@/rtk/services/injections/moviesApi";
-import { POSTER_URL } from "@/utils/constants";
 
 type Props = { params: { id: string } };
 
@@ -49,99 +45,45 @@ const Credits = ({ params }: Props) => {
         <div>Credits</div>
       </Breadcrumbs>
 
-      <Tabs defaultValue="cast">
-        <TabsList className="">
-          <TabsTrigger value="cast" className="max-sm:text-sm">
-            Cast
-          </TabsTrigger>
-          <TabsTrigger value="crew" className="max-sm:text-sm">
-            Crew
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="cast">
-          <div className="grid gap-y-4">
-            {credits?.cast?.map(
-              ({ id, name, profile_path, character }, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="border-b border-border flex items-center gap-x-2 pb-4 last:border-b-0 last:pb-0"
-                  >
-                    {profile_path ? (
-                      <figure className="bg-hover rounded-full relative min-w-[64px] overflow-hidden before:content-[''] before:block before:pt-[64px] max-sm:min-w-[56px] max-sm:before:pt-[56px]">
-                        <Image
-                          src={POSTER_URL + profile_path}
-                          width={50}
-                          height={50}
-                          alt={name}
-                          loading="lazy"
-                          className="absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0 duration-500"
-                          onLoadingComplete={(img) =>
-                            img.classList.remove("opacity-0")
-                          }
-                        />
-                      </figure>
-                    ) : (
-                      <div className="bg-hover rounded-full flex justify-center items-center w-16 h-16 max-sm:w-14 max-sm:h-14">
-                        <User className="text-icon w-7 h-7" />
-                      </div>
-                    )}
+      <div className="flex flex-col gap-y-2">
+        <div className="text-xl font-medium max-sm:text-lg">Directed by</div>
 
-                    <div>
-                      <Link href={`/people/${id}`} className="max-sm:text-sm">
-                        {name}
-                      </Link>
-                      <div className="text-secondary-foreground max-sm:text-sm">
-                        {character ? character : "N/A"}
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
-            )}
-          </div>
-        </TabsContent>
-        <TabsContent value="crew">
-          <div className="grid gap-y-4">
-            {credits?.crew?.map(({ id, name, profile_path, job }, index) => {
+        <div className="flex">
+          {credits?.crew?.map(({ id, name, job }) => {
+            if (job === "Director") {
               return (
-                <div
-                  key={index}
-                  className="border-b border-border flex items-center gap-x-2 pb-4 last:border-b-0 last:pb-0"
-                >
-                  {profile_path ? (
-                    <figure className="bg-hover rounded-full relative min-w-[64px] overflow-hidden before:content-[''] before:block before:pt-[64px] max-sm:min-w-[56px] max-sm:before:pt-[56px]">
-                      <Image
-                        src={POSTER_URL + profile_path}
-                        width={50}
-                        height={50}
-                        alt={name}
-                        loading="lazy"
-                        className="absolute top-0 left-0 w-full h-full object-cover transition-opacity opacity-0 duration-500"
-                        onLoadingComplete={(img) =>
-                          img.classList.remove("opacity-0")
-                        }
-                      />
-                    </figure>
-                  ) : (
-                    <div className="bg-hover rounded-full flex justify-center items-center w-16 h-16 max-sm:w-14 max-sm:h-14">
-                      <User className="text-icon w-7 h-7" />
-                    </div>
-                  )}
-                  <div>
-                    <Link href={`/people/${id}`} className="max-sm:text-sm">
-                      {name}
-                    </Link>
-                    <div className="text-secondary-foreground max-sm:text-sm">
-                      {job ? job : "N/A"}
-                    </div>
-                  </div>
-                </div>
+                <Link key={id} href={`/people/${id}`}>
+                  {name}
+                </Link>
               );
-            })}
-          </div>
-        </TabsContent>
-      </Tabs>
+            }
+          })}
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-y-4">
+        <div className="text-xl font-medium max-sm:text-lg">Full cast</div>
+
+        <div className="flex flex-col gap-y-4">
+          {credits?.cast?.map(({ id, name, character }) => {
+            return (
+              <div
+                key={id}
+                className="border-b border-border grid grid-cols-2 pb-4 last:border-b-0 last:pb-0"
+              >
+                <div>
+                  <Link href={`/people/${id}`} className="">
+                    {name}
+                  </Link>
+                </div>
+                <div className="text-muted-foreground">
+                  {character ? `as ${character}` : "N/A"}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

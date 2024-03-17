@@ -13,7 +13,7 @@ export const Alert = ({
     <div
       className={cn(
         "text-center flex justify-center items-center",
-        isFullPage ? "h-full max-lg:h-[calc(100vh-105px)]" : "h-[25vh]"
+        isFullPage ? "min-h-[inherit]" : "h-[25vh]"
       )}
     >
       {children}

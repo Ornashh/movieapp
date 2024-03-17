@@ -4,23 +4,37 @@
 
 :root {
   --primary: #09090b;
-  --primary-foreground: #fafafa;
-  --background: #fafafa;
+  --primary-foreground: #ffffff;
+
+  --background: #ffffff;
   --foreground: #09090b;
-  --secondary-foreground: #71717a;
+
+  --muted-foreground: #71717a;
+
+  --popover: #ffffff;
+
   --border: #d4d4d8;
-  --hover: #e4e4e7;
+
+  --accent: #f4f4f5;
+
   --icon: #52525b;
 }
 
 .dark {
-  --primary: #fafafa;
+  --primary: #ffffff;
   --primary-foreground: #09090b;
+
   --background: #09090b;
-  --foreground: #f4f4f5;
-  --secondary-foreground: #a1a1aa;
+  --foreground: #ffffff;
+
+  --muted-foreground: #a1a1aa;
+
+  --popover: #18181b;
+
   --border: #27272a;
-  --hover: #27272a;
+
+  --accent: #27272a;
+
   --icon: #a1a1aa;
 }
 
@@ -29,8 +43,12 @@ input {
   outline: none;
 }
 
+input {
+  background: none;
+}
+
 input::placeholder {
-  color: var(--secondary-foreground);
+  color: var(--muted-foreground);
 }
 
 button:disabled {

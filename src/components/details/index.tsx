@@ -13,7 +13,7 @@ import { useGetDetailsQuery } from "@/rtk/services/injections/moviesApi";
 import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
 import { dateFormat, moneyConverter, timeConverter } from "@/utils/helpers";
 
-const movieInfoClasses = "flex gap-y-1 gap-x-2 max-sm:text-sm";
+const movieInfoClasses = "flex gap-y-1 gap-x-2";
 
 export const Details = ({ movieId }: { movieId: number }) => {
   const {
@@ -48,7 +48,7 @@ export const Details = ({ movieId }: { movieId: number }) => {
 
         <div className="flex flex-col gap-y-10">
           <div className="flex gap-6 z-20 max-sm:flex-col">
-            <figure className="block min-w-[250px] h-[350px] max-sm:min-w-0 max-sm:w-[180px] max-sm:h-[270px]">
+            <figure className="min-w-[200px] max-w-[200px] h-[300px] max-sm:min-w-0 max-sm:w-[180px] max-sm:h-[270px]">
               <Image
                 src={
                   details.poster_path
@@ -70,14 +70,12 @@ export const Details = ({ movieId }: { movieId: number }) => {
                   {details.title}
                 </h2>
 
-                {details.overview && (
-                  <p className="max-sm:text-sm">{details.overview}</p>
-                )}
+                {details.overview && <p>{details.overview}</p>}
               </div>
 
               <div className="flex flex-col gap-y-2">
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground">Genres:</div>
+                  <div className="text-muted-foreground">Genres:</div>
                   {details.genres.length > 0 ? (
                     <div className="flex flex-wrap">
                       {details.genres.map(({ id, name }, index) => {
@@ -97,42 +95,34 @@ export const Details = ({ movieId }: { movieId: number }) => {
                 </div>
 
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground">Release date:</div>
-                  <div className=" max-sm:text-sm">
-                    {dateFormat(details.release_date)}
-                  </div>
+                  <div className="text-muted-foreground">Release date:</div>
+                  <div>{dateFormat(details.release_date)}</div>
                 </div>
 
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground">Runtime:</div>
-                  <div className=" max-sm:text-sm">
-                    {timeConverter(details.runtime)}
-                  </div>
+                  <div className="text-muted-foreground">Runtime:</div>
+                  <div>{timeConverter(details.runtime)}</div>
                 </div>
 
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground">Revenue:</div>
-                  <div className=" max-sm:text-sm">
-                    {moneyConverter(details.revenue)}
-                  </div>
+                  <div className="text-muted-foreground">Revenue:</div>
+                  <div>{moneyConverter(details.revenue)}</div>
                 </div>
 
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground">Budget:</div>
-                  <div className=" max-sm:text-sm">
-                    {moneyConverter(details.budget)}
-                  </div>
+                  <div className="text-muted-foreground">Budget:</div>
+                  <div>{moneyConverter(details.budget)}</div>
                 </div>
 
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground">Rating:</div>
-                  <div className="max-sm:text-sm">
+                  <div className="text-muted-foreground">Rating:</div>
+                  <div>
                     {details.vote_average.toFixed(1)}/10 ({details.vote_count})
                   </div>
                 </div>
 
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground">Country:</div>
+                  <div className="text-muted-foreground">Country:</div>
                   {details.production_countries.length > 0 ? (
                     <div className="flex flex-wrap">
                       {details.production_countries.map(({ name }, index) => {
@@ -150,9 +140,7 @@ export const Details = ({ movieId }: { movieId: number }) => {
                 </div>
 
                 <div className={movieInfoClasses}>
-                  <div className="text-secondary-foreground max-sm:text-sm">
-                    Language:
-                  </div>
+                  <div className="text-muted-foreground">Language:</div>
                   {details.spoken_languages.length > 0 ? (
                     <div className="flex flex-wrap">
                       {details.spoken_languages.map(
@@ -173,9 +161,7 @@ export const Details = ({ movieId }: { movieId: number }) => {
 
                 {details.belongs_to_collection && (
                   <div className={movieInfoClasses}>
-                    <div className="text-secondary-foreground max-sm:text-sm">
-                      Collection:
-                    </div>
+                    <div className="text-muted-foreground">Collection:</div>
                     <Link
                       href={`/collection/${details.belongs_to_collection.id}`}
                       className="underline"

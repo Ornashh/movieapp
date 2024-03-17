@@ -6,6 +6,8 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import { Carousel } from "@/components/carousel";
 import {
   useGetPopularQuery,
@@ -14,6 +16,15 @@ import {
 import { useGetGenresQuery } from "@/rtk/services/injections/genresApi";
 import { BACKDROP_URL } from "@/utils/constants";
 
+const buttons = [
+  {
+    icon: <ChevronLeft className="svg" />,
+  },
+  {
+    icon: <ChevronRight className="svg" />,
+  },
+];
+
 const Home = () => {
   const swiperRef = useRef<SwiperCore>();
 
@@ -21,34 +32,29 @@ const Home = () => {
   const { data: genres } = useGetGenresQuery();
   const { data: popular } = useGetPopularQuery();
 
-  const buttons = [
-    {
-      icon: <ChevronLeft className="svg" />,
-      onClick: () => swiperRef?.current?.slidePrev(),
-    },
-    {
-      icon: <ChevronRight className="svg" />,
-      onClick: () => swiperRef?.current?.slideNext(),
-    },
-  ];
-
   return (
     <div className="flex flex-col gap-y-10 max-sm:gap-y-5">
       {trending && (
         <div className="flex flex-col gap-y-2">
           <div className="flex justify-between items-center">
-            <div className="text-lg font-medium">Trending today</div>
+            <div className="text-xl font-medium max-sm:text-lg">
+              Trending today
+            </div>
             <div className="flex">
-              {buttons.map(({ icon, onClick }, index) => {
+              {buttons.map(({ icon }, index) => {
                 return (
-                  <button
+                  <Button
                     key={index}
-                    type="button"
-                    onClick={onClick}
-                    className="rounded-md flex justify-center items-center p-2 duration-200 ease-in-out hover:bg-hover"
+                    size="icon"
+                    variant="ghost"
+                    onClick={
+                      index === 0
+                        ? () => swiperRef?.current?.slidePrev()
+                        : () => swiperRef?.current?.slideNext()
+                    }
                   >
                     {icon}
-                  </button>
+                  </Button>
                 );
               })}
             </div>
@@ -56,7 +62,7 @@ const Home = () => {
           <div>
             <Swiper
               speed={600}
-              spaceBetween={16}
+              spaceBetween={8}
               onBeforeInit={(swiper) => {
                 swiperRef.current = swiper;
               }}
@@ -77,11 +83,11 @@ const Home = () => {
                           <div className="max-w-[600px] overflow-hidden">
                             <Link
                               href={`/movie/${id}`}
-                              className="text-xl font-bold inline-flex mb-1 max-sm:text-base"
+                              className="text-xl font-bold inline-flex max-sm:text-lg"
                             >
                               {title}
                             </Link>
-                            <p className="truncate max-sm:text-sm">
+                            <p className="line-clamp-2 max-sm:line-clamp-1">
                               {overview}
                             </p>
                           </div>
@@ -112,7 +118,7 @@ const Home = () => {
                 <Link
                   key={id}
                   href={`/genre/${id}`}
-                  className="border border-border rounded-xl py-0.5 px-3 duration-200 ease-in-out hover:bg-hover max-sm:text-sm"
+                  className="border border-border rounded-xl py-0.5 px-3 duration-200 ease-in-out hover:bg-accent"
                 >
                   {name}
                 </Link>

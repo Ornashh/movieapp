@@ -27,19 +27,19 @@ export const Reviews = ({ id }: { id: number }) => {
               className="border-b border-border flex flex-col gap-y-4 pb-4 last:border-none last:pb-0"
             >
               <div className="flex items-center gap-x-2">
-                <div className="bg-hover rounded-full flex justify-center items-center w-10 h-10 max-sm:w-8 max-sm:h-8">
+                <div className="bg-accent rounded-full flex justify-center items-center w-10 h-10 max-sm:w-8 max-sm:h-8">
                   <User className="text-icon w-5 h-5 max-sm:w-4 max-sm:h-4" />
                 </div>
 
                 <div>
-                  <div className="max-sm:text-sm">{author}</div>
-                  <div className="text-sm text-secondary-foreground">
+                  <div>{author}</div>
+                  <div className="text-sm text-muted-foreground">
                     {dateFormat(created_at)}
                   </div>
                 </div>
               </div>
 
-              <p className="max-sm:text-sm">{content}</p>
+              <p>{content}</p>
             </div>
           );
         })}

@@ -30,14 +30,14 @@ export const Videos = ({ id }: { id: number }) => {
 
   if (videos) {
     return (
-      <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+      <div className="grid grid-cols-4 gap-2 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
         {videos?.results.map(({ id, key, name, type }) => {
           const src = `https://img.youtube.com/vi/${key}/maxresdefault.jpg`;
 
           return (
             <div key={id} className="flex flex-col gap-y-2">
               <figure
-                className="bg-hover rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[56%]"
+                className="bg-accent rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[56%]"
                 onClick={() => handleOpenDialog(key)}
               >
                 <Image
@@ -49,14 +49,14 @@ export const Videos = ({ id }: { id: number }) => {
                   onLoadingComplete={(img) => img.classList.remove("opacity-0")}
                 />
               </figure>
-              <div className="text-sm truncate">{type}</div>
+              <div className="truncate">{type}</div>
             </div>
           );
         })}
 
         <Dialog open={dialog.isOpen} onOpenChange={handleCloseDialog}>
           <DialogContent className="max-w-[1000px] max-h-[600px] mx-auto">
-            <div className="bg-hover relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
+            <div className="bg-accent relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
               <div className="absolute top-0 left-0 w-full h-full">
                 <iframe
                   title="frame"

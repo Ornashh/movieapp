@@ -10,12 +10,16 @@ type Props = {
 
 export const Grid = ({ movies }: Props) => {
   return (
-    <div className="grid grid-cols-5 gap-4 max-md:grid-cols-4 max-sm:grid-cols-3">
-      {movies?.map(({ id, title, poster_path }, index) => {
+    <div className="grid grid-cols-5 gap-2 max-md:grid-cols-4 max-sm:grid-cols-3">
+      {movies?.map(({ id, title, poster_path, release_date }, index) => {
+        const releaseYear = release_date
+          ? new Date(release_date).getFullYear()
+          : "N/A";
+
         return (
           <div key={index} className="flex flex-col gap-y-2">
             <Link href={`/movie/${id}`}>
-              <figure className="bg-hover rounded-md relative overflow-hidden before:content-[''] before:block before:pt-[150%]">
+              <figure className="bg-accent rounded-md relative overflow-hidden before:content-[''] before:block before:pt-[150%]">
                 <Image
                   src={
                     poster_path ? POSTER_URL + poster_path : POSTER_NOT_FOUND
@@ -30,9 +34,10 @@ export const Grid = ({ movies }: Props) => {
               </figure>
             </Link>
 
-            <Link href={`/movie/${id}`} className="flex max-sm:text-sm">
-              {title}
-            </Link>
+            <div>
+              <div className="truncate">{title}</div>
+              <div className="text-sm text-muted-foreground">{releaseYear}</div>
+            </div>
           </div>
         );
       })}

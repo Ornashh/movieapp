@@ -41,9 +41,9 @@ export const Movies = ({ personId }: { personId: number }) => {
               return (
                 <div
                   key={index}
-                  className="border-b border-border grid grid-cols-[60px_1fr_1fr] gap-x-2 pb-4 last:border-b-0 last:pb-0"
+                  className="border-b border-border grid grid-cols-[40px_1fr_1fr] gap-x-2 pb-4 last:border-b-0 last:pb-0"
                 >
-                  <div className="text-secondary-foreground max-sm:text-sm">
+                  <div className="text-muted-foreground">
                     {release_date
                       ? new Date(release_date).toLocaleDateString("en-US", {
                           year: "numeric",
@@ -51,13 +51,11 @@ export const Movies = ({ personId }: { personId: number }) => {
                       : "N/A"}
                   </div>
 
-                  <div className="flex">
-                    <Link href={`/movie/${id}`} className="max-sm:text-sm">
-                      {title}
-                    </Link>
+                  <div>
+                    <Link href={`/movie/${id}`}>{title}</Link>
                   </div>
 
-                  <div className="text-secondary-foreground max-sm:text-sm">
+                  <div className="text-muted-foreground">
                     {character ? `as ${character}` : "N/A"}
                   </div>
                 </div>

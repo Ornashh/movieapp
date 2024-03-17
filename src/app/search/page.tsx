@@ -101,21 +101,18 @@ const Search = () => {
 
       <form
         onSubmit={handleSubmit}
-        className="border border-border rounded-md flex items-center h-14 pl-3 overflow-hidden"
+        className="bg-popover border border-border rounded-xl flex items-center h-14 pl-3 overflow-hidden"
       >
-        <button
-          aria-label="search"
-          className="rounded-md p-2 duration-200 ease-in-out hover:bg-hover"
-        >
+        <Button size="icon" variant="ghost">
           <SearchLogo className="svg" />
-        </button>
+        </Button>
         <input
           type="text"
           name="search"
           placeholder="Search movie"
           value={inputValue}
           onChange={handleChange}
-          className="bg-background w-full h-14 px-3"
+          className="w-full h-14 px-3"
         />
       </form>
 
@@ -129,11 +126,7 @@ const Search = () => {
 
           {isLoadMore && (
             <div className="flex justify-center">
-              <Button
-                aria-label="more"
-                disabled={isLoadingMore}
-                onClick={handleLoadMore}
-              >
+              <Button disabled={isLoadingMore} onClick={handleLoadMore}>
                 Load more
               </Button>
             </div>

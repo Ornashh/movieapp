@@ -20,7 +20,7 @@ export const List = ({ movies }: Props) => {
           return (
             <div key={index} className="flex gap-x-4 overflow-hidden">
               <Link href={`/movie/${id}`}>
-                <figure className="bg-hover rounded-md relative min-w-[180px] max-h-[270px] overflow-hidden before:content-[''] before:block before:pt-[270px] max-sm:min-w-[120px] max-sm:max-h-[180px] max-sm:before:pt-[180px]">
+                <figure className="bg-accent rounded-md relative min-w-[180px] max-h-[270px] overflow-hidden before:content-[''] before:block before:pt-[270px] max-sm:min-w-[120px] max-sm:max-h-[180px] max-sm:before:pt-[180px]">
                   <Image
                     src={
                       poster_path ? POSTER_URL + poster_path : POSTER_NOT_FOUND
@@ -38,10 +38,10 @@ export const List = ({ movies }: Props) => {
               </Link>
 
               <div className="flex flex-col items-start gap-y-2">
-                <Link href={`/movie/${id}`} className="max-sm:text-sm">
+                <Link href={`/movie/${id}`}>
                   {title} ({releaseYear})
                 </Link>
-                <p className="line-clamp-5 max-sm:text-sm">{overview}</p>
+                <p className="line-clamp-5">{overview}</p>
               </div>
             </div>
           );

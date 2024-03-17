@@ -40,8 +40,8 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
-      <DialogPrimitive.Close className="absolute top-4 right-4">
-        <X className="text-[#fafafa] w-5 h-5" />
+      <DialogPrimitive.Close className="absolute top-4 right-4 max-sm:top-2 max-sm:right-2">
+        <X className="text-[#ffffff] w-5 h-5" />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>

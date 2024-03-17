@@ -36,12 +36,12 @@ export const Images = ({ id }: Props) => {
 
   if (images) {
     return (
-      <div className="grid grid-cols-4 gap-4 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
+      <div className="grid grid-cols-4 gap-2 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
         {images.backdrops.map(({ file_path }, index) => {
           return (
             <figure
               key={index}
-              className="bg-hover rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[56%]"
+              className="bg-accent rounded-md cursor-pointer min-w-[100px] relative overflow-hidden before:content-[''] before:block before:pt-[56%]"
               onClick={() => handleOpenDialog(file_path)}
             >
               <Image
@@ -59,7 +59,7 @@ export const Images = ({ id }: Props) => {
 
         <Dialog open={dialog.isOpen} onOpenChange={handleCloseDialog}>
           <DialogContent className="max-w-[1000px] max-h-[600px] mx-auto">
-            <div className="bg-hover relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
+            <div className="bg-accent relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
               <Image
                 src={BACKDROP_URL_ORIGINAL + dialog.filePath}
                 width={1920}
