@@ -55,7 +55,7 @@ export const Videos = ({ id }: { id: number }) => {
         })}
 
         <Dialog open={dialog.isOpen} onOpenChange={handleCloseDialog}>
-          <DialogContent className="max-w-[1000px] max-h-[600px] mx-auto">
+          <DialogContent className="max-w-[1000px] max-h-[90vh] mx-auto">
             <div className="bg-accent relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
               <div className="absolute top-0 left-0 w-full h-full">
                 <iframe
