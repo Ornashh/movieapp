@@ -58,7 +58,7 @@ export const Images = ({ id }: Props) => {
         })}
 
         <Dialog open={dialog.isOpen} onOpenChange={handleCloseDialog}>
-          <DialogContent className="max-w-[1000px] max-h-[600px] mx-auto">
+          <DialogContent className="max-w-[1000px] max-h-[90vh] mx-auto">
             <div className="bg-accent relative overflow-hidden before:content-[''] before:block before:pt-[56%]">
               <Image
                 src={BACKDROP_URL_ORIGINAL + dialog.filePath}
