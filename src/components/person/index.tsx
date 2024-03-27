@@ -37,7 +37,7 @@ export const Person = ({ personId }: { personId: number }) => {
     return (
       <div className="flex flex-col gap-y-6">
         <Breadcrumbs>
-          <Link href="/people">People</Link>
+          <div>Person</div>
           <div className="truncate">{person ? person.name : "Loading..."}</div>
         </Breadcrumbs>
 

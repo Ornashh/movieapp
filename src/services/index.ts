@@ -1,5 +1,4 @@
 import { Movies } from "@/types/movie";
-import { People } from "@/types/people";
 import { API_KEY } from "@/utils/constants";
 
 export const getNowPlaying = async (page: number): Promise<Movies> => {
@@ -35,14 +34,6 @@ export const getGenre = async ({
 }): Promise<Movies> => {
   const response = await fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&with_genres=${id}&page=${page}&sort_by=popularity.desc`
-  );
-
-  return await response.json();
-};
-
-export const getPopularPeople = async (page: number): Promise<People> => {
-  const response = await fetch(
-    `https://api.themoviedb.org/3/person/popular?api_key=${API_KEY}&language=en-US&page=${page}`
   );
 
   return await response.json();

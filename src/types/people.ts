@@ -10,13 +10,6 @@ export type Person = {
   profile_path: string;
 };
 
-export type People = {
-  page: number;
-  results: Person[];
-  total_pages: number;
-  total_results: number;
-};
-
 type KnownFor = {
   adult: boolean;
   backdrop_path: string;

@@ -72,9 +72,7 @@ const Credits = ({ params }: Props) => {
                 className="border-b border-border grid grid-cols-2 pb-4 last:border-b-0 last:pb-0"
               >
                 <div>
-                  <Link href={`/people/${id}`} className="">
-                    {name}
-                  </Link>
+                  <Link href={`/people/${id}`}>{name}</Link>
                 </div>
                 <div className="text-muted-foreground">
                   {character ? `as ${character}` : "N/A"}

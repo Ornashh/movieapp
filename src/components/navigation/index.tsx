@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Home, Search, Users, Film, Palette, ChevronRight } from "lucide-react";
+import { Home, Search, Film, Palette, ChevronRight } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -37,11 +37,6 @@ const menuItems = [
       { title: "Popular", themeValue: "", href: "/popular" },
       { title: "Top rated", themeValue: "", href: "/top_rated" },
     ],
-  },
-  {
-    title: "People",
-    href: "/people",
-    icon: <Users className="svg" />,
   },
   {
     title: "Appearance",
