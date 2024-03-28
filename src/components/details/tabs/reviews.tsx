@@ -3,7 +3,7 @@ import { User } from "lucide-react";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
-import { useGetReviewsQuery } from "@/rtk/services/injections/mediaApi";
+import { useGetReviewsQuery } from "@/store/services/injections/mediaApi";
 import { dateFormat } from "@/utils/helpers";
 
 export const Reviews = ({ id }: { id: number }) => {

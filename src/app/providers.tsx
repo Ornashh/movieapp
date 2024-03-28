@@ -3,7 +3,7 @@
 import { PropsWithChildren } from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import { ThemeProvider } from "next-themes";
-import { store } from "@/rtk/store";
+import { store } from "@/store";
 
 export const Providers = ({ children }: PropsWithChildren) => {
   return (

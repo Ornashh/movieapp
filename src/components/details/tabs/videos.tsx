@@ -5,7 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
-import { useGetVideosQuery } from "@/rtk/services/injections/mediaApi";
+import { useGetVideosQuery } from "@/store/services/injections/mediaApi";
 
 const initialDialogState = {
   isOpen: false,

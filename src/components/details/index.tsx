@@ -9,7 +9,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
-import { useGetDetailsQuery } from "@/rtk/services/injections/moviesApi";
+import { useGetDetailsQuery } from "@/store/services/injections/moviesApi";
 import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
 import { dateFormat, moneyConverter, timeConverter } from "@/utils/helpers";
 

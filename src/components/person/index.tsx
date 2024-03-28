@@ -8,7 +8,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
-import { useGetPersonQuery } from "@/rtk/services/injections/personApi";
+import { useGetPersonQuery } from "@/store/services/injections/personApi";
 import { POSTER_NOT_FOUND, POSTER_URL } from "@/utils/constants";
 import { dateFormat } from "@/utils/helpers";
 

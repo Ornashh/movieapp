@@ -1,7 +1,7 @@
 import { Carousel } from "@/components/carousel";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
-import { useGetCreditsQuery } from "@/rtk/services/injections/creditsApi";
+import { useGetCreditsQuery } from "@/store/services/injections/creditsApi";
 
 type Props = {
   id: number;

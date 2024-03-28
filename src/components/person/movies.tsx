@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Loading } from "@/components/ui/loading";
-import { useGetPersonMoviesQuery } from "@/rtk/services/injections/moviesApi";
+import { useGetPersonMoviesQuery } from "@/store/services/injections/moviesApi";
 
 export const Movies = ({ personId }: { personId: number }) => {
   const { data: personMovies, isLoading } = useGetPersonMoviesQuery(personId, {

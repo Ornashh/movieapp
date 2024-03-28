@@ -5,7 +5,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 
-import { useGetImagesQuery } from "@/rtk/services/injections/mediaApi";
+import { useGetImagesQuery } from "@/store/services/injections/mediaApi";
 import { BACKDROP_URL_ORIGINAL, BACKDROP_URL_SMALL } from "@/utils/constants";
 
 type Props = {

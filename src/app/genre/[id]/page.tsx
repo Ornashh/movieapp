@@ -10,7 +10,7 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 import { Movie } from "@/types/movie";
 import { getGenre } from "@/services";
-import { useGetGenresQuery } from "@/rtk/services/injections/genresApi";
+import { useGetGenresQuery } from "@/store/services/injections/genresApi";
 
 type Props = { params: { id: string } };
 

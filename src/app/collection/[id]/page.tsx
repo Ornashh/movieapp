@@ -5,7 +5,7 @@ import { Loading } from "@/components/ui/loading";
 import { Alert } from "@/components/ui/alert";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
-import { useGetCollectionQuery } from "@/rtk/services/injections/moviesApi";
+import { useGetCollectionQuery } from "@/store/services/injections/moviesApi";
 
 type Props = { params: { id: string } };
 

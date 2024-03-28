@@ -20,6 +20,13 @@ export const moviesApi = baseApi.injectEndpoints({
       }),
     }),
 
+    getTopRated: builder.query<Movies, void>({
+      query: () => ({
+        url: `movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`,
+        method: "GET",
+      }),
+    }),
+
     getDetails: builder.query<Details, number>({
       query: (id) => ({
         url: `movie/${id}?api_key=${API_KEY}&language=en-US`,
@@ -46,6 +53,7 @@ export const moviesApi = baseApi.injectEndpoints({
 export const {
   useGetTrendingQuery,
   useGetPopularQuery,
+  useGetTopRatedQuery,
   useGetDetailsQuery,
   useGetPersonMoviesQuery,
   useGetCollectionQuery,

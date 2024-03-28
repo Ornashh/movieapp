@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Loading } from "@/components/ui/loading";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { Alert } from "@/components/ui/alert";
-import { useGetCreditsQuery } from "@/rtk/services/injections/creditsApi";
-import { useGetDetailsQuery } from "@/rtk/services/injections/moviesApi";
+import { useGetCreditsQuery } from "@/store/services/injections/creditsApi";
+import { useGetDetailsQuery } from "@/store/services/injections/moviesApi";
 
 type Props = { params: { id: string } };
 

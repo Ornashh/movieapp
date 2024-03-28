@@ -7,13 +7,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Swiper as SwiperCore } from "swiper/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Carousel } from "@/components/carousel";
+import { Button } from "@/components/ui/button";
+import { Loading } from "@/components/ui/loading";
 import {
   useGetPopularQuery,
+  useGetTopRatedQuery,
   useGetTrendingQuery,
-} from "@/rtk/services/injections/moviesApi";
-import { useGetGenresQuery } from "@/rtk/services/injections/genresApi";
+} from "@/store/services/injections/moviesApi";
+import { useGetGenresQuery } from "@/store/services/injections/genresApi";
 import { BACKDROP_URL } from "@/utils/constants";
 
 const buttons = [
@@ -28,9 +30,15 @@ const buttons = [
 const Home = () => {
   const swiperRef = useRef<SwiperCore>();
 
-  const { data: trending } = useGetTrendingQuery();
+  const { data: trending, isLoading: isLoadingTrending } =
+    useGetTrendingQuery();
   const { data: genres } = useGetGenresQuery();
   const { data: popular } = useGetPopularQuery();
+  const { data: topRated } = useGetTopRatedQuery();
+
+  if (isLoadingTrending) {
+    return <Loading isFullPage />;
+  }
 
   return (
     <div className="flex flex-col gap-y-10 max-sm:gap-y-5">
@@ -134,6 +142,10 @@ const Home = () => {
           href="/popular"
           data={popular.results}
         />
+      )}
+
+      {topRated && (
+        <Carousel title="Top rated" href="/top_rated" data={topRated.results} />
       )}
     </div>
   );
